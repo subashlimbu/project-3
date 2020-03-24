@@ -44,6 +44,7 @@ function deleteARestaurant(req, res) {
 
 function editARestaurant(req, res) {
   const id = req.params.id
+  console.log('gets in here')
   Restaurant
     .findById(id)
     .then(restaurant => {
