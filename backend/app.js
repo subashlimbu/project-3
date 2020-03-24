@@ -8,17 +8,17 @@ mongoose.connect('mongodb://localhost/food-db',
   (err) => {
     if (err) console.log(err)
     else console.log('Mongoose connected!')
-  });
+  })
 
-const expressServer = express();
+const expressServer = express()
 
 
-expressServer.use(bodyParser.json());
+expressServer.use(bodyParser.json())
 
 expressServer.use((req, res, next) => {
   console.log(`Incoming ${req.method} to ${req.url}`)
-  next();
-});
+  next()
+})
 
 expressServer.use('/api', router)
 
