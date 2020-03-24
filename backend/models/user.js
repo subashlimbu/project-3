@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-let mongooseHidden = require('mongoose-hidden')()
+const mongooseHidden = require('mongoose-hidden')()
 
 const bcrypt = require('bcrypt')
 
