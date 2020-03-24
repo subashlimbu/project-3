@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import SearchBar from '../common/SearchBar'
+import SearchBar from './SearchBar'
 
 
 class Restaurants extends React.Component {
@@ -50,9 +50,9 @@ class Restaurants extends React.Component {
             return <div key={restaurant._id} className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
               <div className="card">
                 <div className="card-image">
-                  <figure className="image is-4by3">
+                  {/* <figure className="image is-4by3">
                     <img src={restaurant.image} alt="Placeholder image" />
-                  </figure>
+                  </figure> */}
                 </div>
                 <div className="card-content">
                   <Link className="subtitle" to={`/restaurant/${restaurant._id}`}>{restaurant.name}</Link>

@@ -12,7 +12,7 @@ class SingleRestaurant extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.id
-    axios.get(`api/restaurants/${id}`)
+    axios.get(`/api/restaurant/${id}`)
       .then(resp => this.setState({ restaurant: resp.data }))
       .catch(err => console.error(err))
   }
@@ -22,9 +22,9 @@ class SingleRestaurant extends React.Component {
     console.log(this.props.match)
     console.log(this.state.restaurant)
     if (!this.state.restaurant) {
-      return <h1>Restaaurant not ready...</h1>
+      return <h1>Restaurant not ready...</h1>
     }
-    const { name, address, postcode, telephone, image } = this.state.restaurant
+    const { name, address, postcode, telephone } = this.state.restaurant
 
     return <section className="section">
       <div className="container">
@@ -35,9 +35,9 @@ class SingleRestaurant extends React.Component {
             <p>{postcode}</p>
             <p>{telephone}</p>
           </div>
-          <div className="column is-one-half">
+          {/* <div className="column is-one-half">
             <img src={image} alt={name} />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
