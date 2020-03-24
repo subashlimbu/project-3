@@ -23,10 +23,10 @@ router.route('/restaurant/:id')
 //   .delete(secureRoute, restaurantController.commentDelete)
 //   .put(secureRoute, restaurantController.commentEdit)
 
-// router.route('/register')
-//   .post(userController.register)
+router.route('/register')
+  .post(userController.register)
 
-// router.route('/login')
-//   .post(userController.login)
+router.route('/login')
+  .post(userController.login)
 
 module.exports = router
