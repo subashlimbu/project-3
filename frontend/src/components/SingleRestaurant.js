@@ -1,0 +1,47 @@
+import React from 'react'
+import axios from 'axios'
+
+class SingleRestaurant extends React.Component {
+
+  constructor() {
+    super()
+    this.state = {
+      restaurant: null
+    }
+  }
+
+  componentDidMount() {
+    const id = this.props.match.params.id
+    axios.get(`api/restaurants/${id}`)
+      .then(resp => this.setState({ restaurant: resp.data }))
+      .catch(err => console.error(err))
+  }
+
+  render() {
+
+    console.log(this.props.match)
+    console.log(this.state.restaurant)
+    if (!this.state.restaurant) {
+      return <h1>Restaaurant not ready...</h1>
+    }
+    const { name, address, postcode, telephone, image } = this.state.restaurant
+
+    return <section className="section">
+      <div className="container">
+        <div className="columns">
+          <div className="column is-one-half">
+            <h1 className="title">{name}</h1>
+            <p>{address}</p>
+            <p>{postcode}</p>
+            <p>{telephone}</p>
+          </div>
+          <div className="column is-one-half">
+            <img src={image} alt={name} />
+          </div>
+        </div>
+      </div>
+    </section>
+  }
+}
+
+export default SingleRestaurant
