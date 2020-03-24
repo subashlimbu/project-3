@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import SearchBar from './common/SearchBar'
+import SearchBar from '../common/SearchBar'
 
 
 class Restaurants extends React.Component {
