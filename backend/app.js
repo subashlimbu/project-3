@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const router = require('./router');
 
-mongoose.connect('mongodb://localhost/food-db',
+mongoose.connect('mongodb://localhost/restaurant-db',
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (err) => {
     if (err) console.log(err)
