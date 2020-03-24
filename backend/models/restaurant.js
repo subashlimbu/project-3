@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const commentSchema = mongoose.Schema({
+const commentSchema = mongoose.Schema({ //how come don't need 'new mongoose.Schema' 
   text: { type: String, required: true },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 }, {

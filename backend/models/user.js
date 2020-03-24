@@ -32,8 +32,6 @@ schema.
 
 schema
   .pre('validate', function checkPassword(next) {
-    console.log(this._passwordConfirmation)
-    console.log(this.password)
     if (this.isModified('password') && this._passwordConfirmation !== this.password) {
       this.invalidate('passwordConfirmation', 'passwords should match')
     }
