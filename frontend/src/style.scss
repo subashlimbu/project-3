@@ -1,0 +1,36 @@
+.hero-body {
+  background-image: url('https://www.9-elephants.co.uk/wp-content/uploads/thai-food.jpg');
+  background-size: cover;
+  background-color: black;
+  // opacity: 80%;
+}
+
+.homepage-textbox {
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: auto 200px;
+}
+
+.random-container {
+  background-color: darkred;
+}
+
+.random-container-text {
+  background-color: darkred;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.random-text {
+  font-size: 24px;
+  color: black;
+}
+
+.navbar {
+  background-color: darkred;
+}
+
+.navbar-item {
+  color: white;
+  font-weight: bold;
+}
