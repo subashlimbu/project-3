@@ -8,16 +8,16 @@ const secureRoute = require('./lib/secureRoute')
 
 
 router.route('/restaurants')
-  .get(restaurantController.index)
-  .post(secureRoute, restaurantController.createNewRestaurant)
+  .get(restaurantController.index) //tested and works 
+  .post(secureRoute, restaurantController.createNewRestaurant) //tested and works 
 
 router.route('/restaurant/:id')
-  .get(restaurantController.viewARestaurant)
-  .delete(secureRoute, restaurantController.deleteARestaurant)
-  .put(secureRoute, restaurantController.editARestaurant)
+  .get(restaurantController.viewARestaurant) //tested and works 
+  .delete(secureRoute, restaurantController.deleteARestaurant) //tested and works 
+  .put(secureRoute, restaurantController.editARestaurant) //tested and works 
 
-// router.route('/restaurant/:id/comments')
-//   .post(secureRoute, restaurantController.CreateNewComment)
+  // router.route('/restaurant/:id/comments')
+  .post(secureRoute, restaurantController.CreateNewComment) //not yet written function createNewComment in restaurantController
 
 // router.route('/restaurant/:id/comment/:commentId')
 //   .delete(secureRoute, restaurantController.commentDelete)
