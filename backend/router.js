@@ -16,17 +16,17 @@ router.route('/restaurant/:id')
   .delete(secureRoute, restaurantController.deleteARestaurant)
   .put(secureRoute, restaurantController.editARestaurant)
 
-  // router.route('/restaurant/:id/comments')
-  .post(secureRoute, restaurantController.CreateNewComment)
+// router.route('/restaurant/:id/comments')
+//   .post(secureRoute, restaurantController.CreateNewComment)
 
 // router.route('/restaurant/:id/comment/:commentId')
 //   .delete(secureRoute, restaurantController.commentDelete)
 //   .put(secureRoute, restaurantController.commentEdit)
 
-// router.route('/register')
-//   .post(userController.register)
+router.route('/register')
+  .post(userController.register)
 
-// router.route('/login')
-//   .post(userController.login)
+router.route('/login')
+  .post(userController.login)
 
 module.exports = router
