@@ -176,6 +176,7 @@ function toggleDislikeComment(req, res) {
 function getComments(req, res) {
   Restaurant
     .findById(req.params.id)
+    .populate('comments.user').exec()
     .then(restaurant => {
       // below is the start of filtering the output of this to just the comment text and user
       // this is because we might want to limit the access to knowledge of who has liked/disliked the comments
@@ -183,7 +184,7 @@ function getComments(req, res) {
       // restaurant.comments.forEach(comment => {
 
       // })
-      
+      // console.log(restaurant)
       return res.send(restaurant.comments)
     })
     .catch(err => res.send({ error: err }))
