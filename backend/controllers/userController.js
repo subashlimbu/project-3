@@ -20,7 +20,7 @@ function login(req, res) {
         return res.status(401).send({ message: 'Unauthorized' })
       }
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
-      res.status(202).send({ message: `Welcome back ${user.username}`, token })
+      res.status(202).send({ message: `${user.username}`, token })
     })
     .catch(error => res.send(error))
 }
