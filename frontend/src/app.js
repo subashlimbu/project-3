@@ -11,11 +11,13 @@ import SingleRestaurant from './components/SingleRestaurant'
 import NavBar from './components/NavBar'
 import Login from './components/Login'
 import Register from './components/Register'
+import AddRestaurant from './components/AddRestaurant'
 
 const App = () => (
   <BrowserRouter>
     <NavBar/>
     <Switch>
+      <Route exact path="/restaurant/new" component={AddRestaurant} />
       <Route exact path="/" component={Home}/>
       <Route exact path="/restaurants" component={Restaurants}/>
       <Route path="/restaurant/:id" component={SingleRestaurant}/>
