@@ -39,4 +39,7 @@ router.route('/register')
 router.route('/login')
   .post(userController.login)
 
+router.route('/profile')
+  .get(secureRoute, userController.getProfile)
+
 module.exports = router

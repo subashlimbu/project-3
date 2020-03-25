@@ -34,7 +34,15 @@ function login(req, res) {
     .catch(error => res.send(error))
 }
 
+function getProfile(req, res) {
+  const user = req.currentUser
+  res.status(202).send(user)
+
+
+}
+
 module.exports = {
   register,
-  login
+  login,
+  getProfile
 }
