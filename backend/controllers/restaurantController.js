@@ -1,5 +1,5 @@
 const Restaurant = require('../models/restaurant')
-
+const User = require('../models/user')
 
 function index(req, res) {
   // Find all our pancakes (asynchronous!) and send them back when done
@@ -183,6 +183,7 @@ function getComments(req, res) {
       // restaurant.comments.forEach(comment => {
 
       // })
+      
       return res.send(restaurant.comments)
     })
     .catch(err => res.send({ error: err }))
