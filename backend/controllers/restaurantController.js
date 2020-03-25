@@ -132,6 +132,7 @@ function toggleLikeComment(req, res) {
       const comment = restaurant.comments.id(req.params.commentId)
       //if the user has liked the comment then remove them from the likes otherwise add them to the likes
       if (comment.likedBy.includes(currentUser._id)) {
+        //remove the user id from the comment likedby array
         comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id, 1))
       } else {
         comment.likedBy.push(currentUser._id)
