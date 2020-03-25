@@ -197,7 +197,7 @@ function toggleDislikeComment(req, res) {
     .then(restaurant => {
       const currentUser = req.currentUser
       const comment = restaurant.comments.id(req.params.commentId)
-      res.status(200).send({ 
+      res.status(200).send({
         isLiked: comment.likedBy.includes(currentUser._id),
         isDisliked: comment.dislikedBy.includes(currentUser._id)
       })
@@ -216,6 +216,28 @@ function getComments(req, res) {
     .catch(err => res.send({ error: err }))
 }
 
+function getRandomRestaurant(req, res) {
+  Restaurant
+    .find({})
+    .distinct('_id')
+    .then(restaurants => {
+      const arrayofRestaurantIds = restaurants
+      const randomNumber = Math.floor((Math.random() * arrayofRestaurantIds.length))
+      const idOfOneRandomRestaurant = arrayofRestaurantIds[randomNumber]
+      return idOfOneRandomRestaurant
+      // console.log(idOfOneRandomRestaurant)
+    })
+    .then(singleRestaurantId => {
+      Restaurant
+        .findById(singleRestaurantId)
+        .then(restaurant => {
+          return res.send(restaurant)
+        })
+        .catch(err => res.send({ error: err }))
+    })
+
+}
+
 module.exports = {
   index,
   createNewRestaurant,
@@ -228,5 +250,6 @@ module.exports = {
   toggleLikeComment,
   toggleDislikeComment,
   getComments,
+  getRandomRestaurant,
   getLikeAndDislike
 }

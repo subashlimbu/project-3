@@ -37,9 +37,9 @@ function login(req, res) {
 function getProfile(req, res) {
   const user = req.currentUser
   res.status(202).send(user)
-
-
 }
+
+
 
 module.exports = {
   register,

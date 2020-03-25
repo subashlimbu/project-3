@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
+import { Link } from 'react-router-dom'
+
 
 class Profile extends React.Component {
   constructor() {
@@ -38,7 +40,13 @@ class Profile extends React.Component {
               className="button is-danger">
               {'Delete Account (Are you sure?) [This button DOES NOT WORK] '}
             </button>
-
+            <button
+              className="button is-warning"
+            >
+              <Link to={'/profile/changePassword'}>
+                Change password [THIS button DOES NOT WORK]
+              </Link>
+            </button>
           </div>
         </div>
       </div>
