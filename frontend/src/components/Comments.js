@@ -34,6 +34,20 @@ class Comments extends React.Component {
       .catch(err => console.log(err))
   }
 
+  handleDelete(commentId) {
+    const restaurantId = this.props.restaurantId
+    const authConfig = {
+      headers: {
+        'Authorization': `Bearer ${auth.getToken()}`
+      }
+    }
+    Axios.delete(`/api/restaurant/${restaurantId}/comment/${commentId}`, authConfig)
+      .then(res => {
+        this.updateComments()
+      })
+      .catch(err => console.log(err))
+  }
+
   updateComments() {
     const id = this.props.restaurantId
     console.log('id ', id)
@@ -70,7 +84,13 @@ class Comments extends React.Component {
               onSubmit={(event) => this.handleSubmit(event)}
             />}
           {comments.map(comment => {
-            return <CommentCard key={comment._id} comment={comment} />
+            return <CommentCard
+              key={comment._id}
+              comment={comment}
+              restaurantId={this.props.restaurantId}
+              onClick={() => this.handleDelete(comment._id)}
+              update={() => this.updateComments()}
+            />
           })}
         </div>
       </div>

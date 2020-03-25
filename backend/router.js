@@ -30,6 +30,9 @@ router.route('/restaurant/:id/comment/:commentId/like')
 router.route('/restaurant/:id/comment/:commentId/dislike')
   .get(secureRoute, restaurantController.toggleDislikeComment)
 
+router.route('/restaurant/:id/comment/:commentId/likes')
+  .get(secureRoute, restaurantController.getLikeAndDislike)
+
 router.route('/register')
   .post(userController.register)
 
