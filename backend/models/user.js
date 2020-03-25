@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
-const mongooseHidden = require('mongoose-hidden')()
+const mongooseHidden = require('mongoose-hidden')() //to hide fields when we return info back to user after registration 
+const { isEmail } = require('validator') //to validate email syntax
+const { isValidPassword } = require('mongoose-custom-validators') //to validate password 
+
 
 const bcrypt = require('bcrypt')
 
@@ -14,11 +17,19 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
     minLength: 8,
-    unique: true
+    unique: true,
+    validate: [isEmail, 'please enter a valid email address']
     // validate: [validateEmail, 'Please fill a valid email address'],
     // match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
   },
-  password: { type: String, required: true, hide: true }
+  password: {
+    type: String,
+    required: true,
+    hide: true
+    // validator: isValidPassword, //doesn't work because it's validating the HASHED password which is a complex string that passes this test! 
+    // message: 'Password must have at least: 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.'
+
+  }
 })
 
 schema.plugin(require('mongoose-unique-validator'))

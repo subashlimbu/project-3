@@ -16,25 +16,25 @@ mongoose.connect(
         return User.create([
           {
             "username": "ben",
-            "email": "ben@ben",
+            "email": "ben@ben.com",
             "password": "password",
             "passwordConfirmation": "password"
           },
           {
             "username": "denise",
-            "email": "denise@denise",
+            "email": "denise@denise.com",
             "password": "password",
             "passwordConfirmation": "password"
           },
           {
             "username": "emma",
-            "email": "emma@emma",
+            "email": "emma@emma.com",
             "password": "password",
             "passwordConfirmation": "password"
           },
           {
             "username": "subash",
-            "email": "subash@subash",
+            "email": "subash@subash.com",
             "password": "password",
             "passwordConfirmation": "password"
           }

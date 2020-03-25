@@ -27,7 +27,11 @@ class Login extends React.Component {
       this.state.data)
       .then(response => {
         const token = response.data.token
+        const name = response.data.message
         auth.setToken(token)
+        auth.setName(name)
+        // console.log(response)
+        // console.log(name)
         this.props.history.push('/')
       })
       .catch(error => this.setState({ error: error.response.data.message }))

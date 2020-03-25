@@ -16,6 +16,7 @@ router.route('/restaurant/:id')
 
 router.route('/restaurant/:id/comments')
   .post(secureRoute, restaurantController.CreateNewComment) //tested and works for logged-in user 
+  .get(restaurantController.getComments)
 
 
 router.route('/restaurant/:id/comment/:commentId')
@@ -29,10 +30,20 @@ router.route('/restaurant/:id/comment/:commentId/like')
 router.route('/restaurant/:id/comment/:commentId/dislike')
   .get(secureRoute, restaurantController.toggleDislikeComment)
 
+router.route('/restaurant/:id/comment/:commentId/likes')
+  .get(secureRoute, restaurantController.getLikeAndDislike)
+
 router.route('/register')
   .post(userController.register)
 
 router.route('/login')
   .post(userController.login)
+
+router.route('/profile')
+  .get(secureRoute, userController.getProfile)
+
+
+router.route('/random')
+  .get(restaurantController.getRandomRestaurant)
 
 module.exports = router

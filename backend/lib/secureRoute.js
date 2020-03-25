@@ -16,7 +16,6 @@ function secureRoute(req, res, next) {
   // if we get here we have a token that begins with 'Bearer' but don't know if it's definitely valid yet 
   const token = authToken.replace('Bearer ', '')
 
-
   // so we use jwt to help us check if the token user trying to give us is valid or not 
   // payload is the name of a section of the token where we added extra stuff like sub (Which is user._id)
   jwt.verify(token, secret, (err, payload) => {
@@ -39,6 +38,7 @@ function secureRoute(req, res, next) {
       .catch(() => res.status(401).send({ message: 'Unauthorized, catch error' }))
   })
 }
+
 
 module.exports = secureRoute
 
