@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Map from './Map'
 
 class SingleRestaurant extends React.Component {
 
@@ -35,9 +36,11 @@ class SingleRestaurant extends React.Component {
             <p>{postcode}</p>
             <p>{telephone}</p>
           </div>
-          {/* <div className="column is-one-half">
-            <img src={image} alt={name} />
-          </div> */}
+          <div className="column is-one-half">
+            <Map
+              postcode={postcode}
+            />
+          </div>
         </div>
       </div>
     </section>
