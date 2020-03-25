@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Map from './Map'
+import Comments from './Comments'
 
 class SingleRestaurant extends React.Component {
 
@@ -25,6 +26,8 @@ class SingleRestaurant extends React.Component {
     if (!this.state.restaurant) {
       return <h1>Restaurant not ready...</h1>
     }
+
+    const id = this.props.match.params.id
     const { name, address, postcode, telephone } = this.state.restaurant
 
     return <section className="section">
@@ -43,6 +46,11 @@ class SingleRestaurant extends React.Component {
           </div>
         </div>
       </div>
+      <section className="section">
+        <div className="container">
+          <Comments restaurantId={id}/>
+        </div>
+      </section>
     </section>
   }
 }

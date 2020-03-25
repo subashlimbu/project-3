@@ -173,6 +173,20 @@ function toggleDislikeComment(req, res) {
     .catch(err => res.send({ error: err }))
 }
 
+function getComments(req, res) {
+  Restaurant
+    .findById(req.params.id)
+    .then(restaurant => {
+      // below is the start of filtering the output of this to just the comment text and user
+      // this is because we might want to limit the access to knowledge of who has liked/disliked the comments
+      // const simpleComments = []
+      // restaurant.comments.forEach(comment => {
+
+      // })
+      return res.send(restaurant.comments)
+    })
+    .catch(err => res.send({ error: err }))
+}
 
 module.exports = {
   index,
@@ -184,5 +198,6 @@ module.exports = {
   EditAComment,
   DeleteAComment,
   toggleLikeComment,
-  toggleDislikeComment
+  toggleDislikeComment,
+  getComments
 }

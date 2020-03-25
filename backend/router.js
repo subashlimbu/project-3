@@ -16,6 +16,7 @@ router.route('/restaurant/:id')
 
 router.route('/restaurant/:id/comments')
   .post(secureRoute, restaurantController.CreateNewComment) //tested and works for logged-in user 
+  .get(restaurantController.getComments)
 
 
 router.route('/restaurant/:id/comment/:commentId')

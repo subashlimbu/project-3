@@ -1,8 +1,17 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
+const Joi = require('@hapi/joi')
+const passwordComplexity = require('joi-password-complexity') //validate password complexity in controller, instead of in database 
+
 
 function register(req, res) {
+  const validationResult = passwordComplexity().validate(req.body.password)
+  if (validationResult.error) {//this means there is error {
+    return res.status(400).send({ message: 'Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.' })
+  }
+  // console.log(passwordComplexity().validate(req.body.password))
+  // console.log(passwordComplexity().validate(req.body.password).error)
   User
     .create(req.body)
     .then(user => {
