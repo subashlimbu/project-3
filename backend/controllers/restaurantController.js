@@ -60,8 +60,117 @@ function editARestaurant(req, res) {
 }
 
 function CreateNewComment(req, res) {
+  const currentUser = req.currentUser
+  req.body.user = currentUser // really important line, this is essentially adding a user field to our req.body (in JSON left side in insomia)
+  Restaurant
+    .findById(req.params.id)
+    .then(restaurant => {
+      if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID, sadly.' })
+      restaurant.comments.push(req.body)
+      return restaurant.save()
+    })
+    .then(restaurant => res.status(201).send(restaurant))
+    .catch(error => res.send(error))
+}
 
+function EditAComment(req, res) {
+  const currentUser = req.currentUser
+  Restaurant
+    .findById(req.params.id)
+    .then(restaurant => {
+      if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
 
+      //at this point we have the specific resto, now get the comment I want to edit 
+      const comment = restaurant.comments.id(req.params.commentId)
+
+      //check if the comment is posted by the same person who is now trying to edit it 
+      if (!comment.user.equals(currentUser._id)) {
+        return res.status(401).send({ message: 'Do not edit others restaurants!' })
+      }
+      //at this point it would be the same person, so we want to update the resto with the new text (on left side in insomia, json body)
+      comment.set(req.body)
+      return restaurant.save()
+    })
+    .then(restaurant => res.status(200).send(restaurant))
+    .catch(error => res.send(error))
+
+}
+
+function DeleteAComment(req, res) {
+  const currentUser = req.currentUser
+  Restaurant
+    // id refers to the resto ID that the comment lives on
+    .findById(req.params.id)
+    .then(restaurant => {
+      if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
+      // get the comment that I need to delete. We get it using the id method of mongoose 
+      const comment = restaurant.comments.id(req.params.commentId)
+      if (!comment.user.equals(currentUser._id)) {
+        return res.status(401).send({ message: 'Do not delete other peoples restaurant!' })
+      }
+      // Mongoose Remove method to delete that comment
+      comment.remove()
+      return restaurant.save()
+    })
+    .then(restaurant => res.status(202).send(restaurant)) //send back the resto
+    .catch(error => res.send(error))
+}
+
+//LIKES AND DISLIKES: this is temporary for the moment, unsure if this is the best possible implementation
+//it works though
+//need to add functionality to not allow user to like if they've disliked already and vice versa.
+
+function toggleLikeComment(req, res) {
+  //get current user from request
+  const currentUser = req.currentUser
+  Restaurant
+    //find the restaurant from request
+    .findById(req.params.id)
+    .then(restaurant => {
+      if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
+      //get the comment from request
+      const comment = restaurant.comments.id(req.params.commentId)
+      //if the user has liked the comment then remove them from the likes otherwise add them to the likes
+      if (comment.likedBy.includes(currentUser._id)) {
+        comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id, 1))
+      } else {
+        if (comment.dislikedBy.includes(currentUser._id)) return restaurant
+        comment.likedBy.push(currentUser._id)
+      }
+      return restaurant.save()
+    })
+    .then(restaurant => {
+      const currentUser = req.currentUser
+      const comment = restaurant.comments.id(req.params.commentId)
+      //return a boolean telling the front end if the user has liked the comment or not
+      //this can be used for a button graphic to be filled in or not depending on if the user has liked the comment or not
+      res.status(200).send({ isLiked: comment.likedBy.includes(currentUser._id) })
+    })
+    .catch(err => res.send({ error: err }))
+}
+
+//repeat the above logic for dislikedBy
+function toggleDislikeComment(req, res) {
+  const currentUser = req.currentUser
+  Restaurant
+    .findById(req.params.id)
+    .then(restaurant => {
+      if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
+      const comment = restaurant.comments.id(req.params.commentId)
+      if (comment.dislikedBy.includes(currentUser._id)) {
+        comment.dislikedBy.splice(comment.dislikedBy.indexOf(currentUser._id, 1))
+      } else {
+        if (comment.likedBy.includes(currentUser._id)) return restaurant
+        comment.dislikedBy.push(currentUser._id)
+      }
+      return restaurant.save()
+    })
+    .then(restaurant => {
+      const currentUser = req.currentUser
+      const comment = restaurant.comments.id(req.params.commentId)
+      res.status(200).send({ isDisliked: comment.dislikedBy.includes(currentUser._id) })
+    })
+    .catch(err => res.send({ error: err }))
 }
 
 
@@ -71,5 +180,9 @@ module.exports = {
   deleteARestaurant,
   viewARestaurant,
   editARestaurant,
-  CreateNewComment
+  CreateNewComment,
+  EditAComment,
+  DeleteAComment,
+  toggleLikeComment,
+  toggleDislikeComment
 }

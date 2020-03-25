@@ -13,7 +13,6 @@ mongoose.connect(
     console.log('Successfully connected to mongo!')
     db.dropDatabase()
       .then(() => {
-        // Creates our users, then passes them down the chain
         return User.create([
           {
             "username": "ben",
