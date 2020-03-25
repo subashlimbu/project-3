@@ -2,6 +2,14 @@ function setToken(token) {
   localStorage.setItem('token', token)
 }
 
+function setName(name) {
+  localStorage.setItem('name', name)
+}
+
+function getName() {
+  return localStorage.getItem('name')
+}
+
 function isLoggedIn() {
   return !!localStorage.getItem('token')
 }
@@ -23,8 +31,10 @@ function getUserId() {
 
 export default {
   setToken,
+  setName,
   isLoggedIn,
   getToken,
+  getName,
   getUserId,
   logout
 }
