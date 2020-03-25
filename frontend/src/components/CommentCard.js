@@ -1,7 +1,10 @@
 import React from 'react'
 
 const CommentCard = ({ comment }) => {
-  return <h2 className="subtitle">{comment.text}</h2>
+  return <div className="comment">
+    <h2>{comment.user.username}</h2>
+    <p>{comment.text}</p>
+  </div>
 }
 
 export default CommentCard

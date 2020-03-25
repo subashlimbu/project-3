@@ -1,5 +1,5 @@
 const Restaurant = require('../models/restaurant')
-
+const User = require('../models/user')
 
 function index(req, res) {
   // Find all our pancakes (asynchronous!) and send them back when done
@@ -62,6 +62,7 @@ function editARestaurant(req, res) {
 function CreateNewComment(req, res) {
   const currentUser = req.currentUser
   req.body.user = currentUser // really important line, this is essentially adding a user field to our req.body (in JSON left side in insomia)
+  console.log('comment ', req.body)
   Restaurant
     .findById(req.params.id)
     .then(restaurant => {
@@ -174,8 +175,10 @@ function toggleDislikeComment(req, res) {
 }
 
 function getComments(req, res) {
+  console.log(req)
   Restaurant
     .findById(req.params.id)
+    .populate('comments.user').exec()
     .then(restaurant => {
       // below is the start of filtering the output of this to just the comment text and user
       // this is because we might want to limit the access to knowledge of who has liked/disliked the comments
@@ -183,6 +186,7 @@ function getComments(req, res) {
       // restaurant.comments.forEach(comment => {
 
       // })
+      // console.log(restaurant)
       return res.send(restaurant.comments)
     })
     .catch(err => res.send({ error: err }))
