@@ -116,6 +116,61 @@ function DeleteAComment(req, res) {
     .catch(error => res.send(error))
 }
 
+//LIKES AND DISLIKES: this is temporary for the moment, unsure if this is the best possible implementation
+//it works though
+//need to add functionality to not allow user to like if they've disliked already and vice versa.
+
+function toggleLikeComment(req, res) {
+  //get current user from request
+  const currentUser = req.currentUser
+  Restaurant
+    //find the restaurant from request
+    .findById(req.params.id)
+    .then(restaurant => {
+      if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
+      //get the comment from request
+      const comment = restaurant.comments.id(req.params.commentId)
+      //if the user has liked the comment then remove them from the likes otherwise add them to the likes
+      if (comment.likedBy.includes(currentUser._id)) {
+        comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id, 1))
+      } else {
+        comment.likedBy.push(currentUser._id)
+      }
+      return restaurant.save()
+    })
+    .then(restaurant => {
+      const currentUser = req.currentUser
+      const comment = restaurant.comments.id(req.params.commentId)
+      //return a boolean telling the front end if the user has liked the comment or not
+      //this can be used for a button graphic to be filled in or not depending on if the user has liked the comment or not
+      res.status(200).send({ isLiked: comment.likedBy.includes(currentUser._id) })
+    })
+    .catch(err => res.send({ error: err }))
+}
+
+//repeat the above logic for dislikedBy
+function toggleDislikeComment(req, res) {
+  const currentUser = req.currentUser
+  Restaurant
+    .findById(req.params.id)
+    .then(restaurant => {
+      if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
+      const comment = restaurant.comments.id(req.params.commentId)
+      if (comment.dislikedBy.includes(currentUser._id)) {
+        comment.dislikedBy.splice(comment.dislikedBy.indexOf(currentUser._id, 1))
+      } else {
+        comment.dislikedBy.push(currentUser._id)
+      }
+      return restaurant.save()
+    })
+    .then(restaurant => {
+      const currentUser = req.currentUser
+      const comment = restaurant.comments.id(req.params.commentId)
+      res.status(200).send({ isDisliked: comment.dislikedBy.includes(currentUser._id) })
+    })
+    .catch(err => res.send({ error: err }))
+}
+
 
 module.exports = {
   index,
@@ -125,5 +180,7 @@ module.exports = {
   editARestaurant,
   CreateNewComment,
   EditAComment,
-  DeleteAComment
+  DeleteAComment,
+  toggleLikeComment,
+  toggleDislikeComment
 }

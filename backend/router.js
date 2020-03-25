@@ -17,9 +17,17 @@ router.route('/restaurant/:id')
 router.route('/restaurant/:id/comments')
   .post(secureRoute, restaurantController.CreateNewComment) //tested and works for logged-in user 
 
+
 router.route('/restaurant/:id/comment/:commentId')
   .delete(secureRoute, restaurantController.DeleteAComment) //tested and works for logged-in user who created that comment 
   .put(secureRoute, restaurantController.EditAComment) //tested and works for logged-in user who created that comment 
+
+//like and dislike toggles work but this is a tempory fix as I need to ask Nick about the requests/routes used for this
+router.route('/restaurant/:id/comment/:commentId/like')
+  .get(secureRoute, restaurantController.toggleLikeComment)
+
+router.route('/restaurant/:id/comment/:commentId/dislike')
+  .get(secureRoute, restaurantController.toggleDislikeComment)
 
 router.route('/register')
   .post(userController.register)
