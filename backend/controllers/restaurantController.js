@@ -1,5 +1,5 @@
 const Restaurant = require('../models/restaurant')
-
+const User = require('../models/user')
 
 function index(req, res) {
   // Find all our pancakes (asynchronous!) and send them back when done
@@ -62,6 +62,7 @@ function editARestaurant(req, res) {
 function CreateNewComment(req, res) {
   const currentUser = req.currentUser
   req.body.user = currentUser // really important line, this is essentially adding a user field to our req.body (in JSON left side in insomia)
+  console.log('comment ', req.body)
   Restaurant
     .findById(req.params.id)
     .then(restaurant => {
@@ -116,6 +117,26 @@ function DeleteAComment(req, res) {
     .catch(error => res.send(error))
 }
 
+function getLikeAndDislike(req, res) {
+  Restaurant
+    // id refers to the resto ID that the comment lives on
+    .findById(req.params.id)
+    .then(restaurant => {
+      if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
+      // get the comment that I need to delete. We get it using the id method of mongoose 
+      console.log((restaurant.comments.id(req.params.commentId)))
+      return restaurant.comments.id(req.params.commentId)
+    })
+    .then(comment => {
+      const currentUser = req.currentUser
+      return res.send({
+        isLiked: comment.likedBy.includes(currentUser._id),
+        isDisliked: comment.dislikedBy.includes(currentUser._id)
+      })
+    })
+    .catch(err => console.log(err))
+}
+
 //LIKES AND DISLIKES: this is temporary for the moment, unsure if this is the best possible implementation
 //it works though
 //need to add functionality to not allow user to like if they've disliked already and vice versa.
@@ -134,7 +155,10 @@ function toggleLikeComment(req, res) {
       if (comment.likedBy.includes(currentUser._id)) {
         comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id, 1))
       } else {
-        if (comment.dislikedBy.includes(currentUser._id)) return restaurant
+        //if they are in the dislikedBy array the remove them
+        if (comment.dislikedBy.includes(currentUser._id)) {
+          comment.dislikedBy.splice(comment.dislikedBy.indexOf(currentUser._id, 1))
+        }
         comment.likedBy.push(currentUser._id)
       }
       return restaurant.save()
@@ -144,7 +168,10 @@ function toggleLikeComment(req, res) {
       const comment = restaurant.comments.id(req.params.commentId)
       //return a boolean telling the front end if the user has liked the comment or not
       //this can be used for a button graphic to be filled in or not depending on if the user has liked the comment or not
-      res.status(200).send({ isLiked: comment.likedBy.includes(currentUser._id) })
+      res.status(200).send({
+        isLiked: comment.likedBy.includes(currentUser._id),
+        isDisliked: comment.dislikedBy.includes(currentUser._id)
+      })
     })
     .catch(err => res.send({ error: err }))
 }
@@ -160,7 +187,9 @@ function toggleDislikeComment(req, res) {
       if (comment.dislikedBy.includes(currentUser._id)) {
         comment.dislikedBy.splice(comment.dislikedBy.indexOf(currentUser._id, 1))
       } else {
-        if (comment.likedBy.includes(currentUser._id)) return restaurant
+        if (comment.likedBy.includes(currentUser._id)) {
+          comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id, 1))
+        }
         comment.dislikedBy.push(currentUser._id)
       }
       return restaurant.save()
@@ -168,24 +197,45 @@ function toggleDislikeComment(req, res) {
     .then(restaurant => {
       const currentUser = req.currentUser
       const comment = restaurant.comments.id(req.params.commentId)
-      res.status(200).send({ isDisliked: comment.dislikedBy.includes(currentUser._id) })
+      res.status(200).send({
+        isLiked: comment.likedBy.includes(currentUser._id),
+        isDisliked: comment.dislikedBy.includes(currentUser._id)
+      })
     })
     .catch(err => res.send({ error: err }))
 }
 
 function getComments(req, res) {
+  console.log(req)
   Restaurant
     .findById(req.params.id)
+    .populate('comments.user').exec()
     .then(restaurant => {
-      // below is the start of filtering the output of this to just the comment text and user
-      // this is because we might want to limit the access to knowledge of who has liked/disliked the comments
-      // const simpleComments = []
-      // restaurant.comments.forEach(comment => {
-
-      // })
       return res.send(restaurant.comments)
     })
     .catch(err => res.send({ error: err }))
+}
+
+function getRandomRestaurant(req, res) {
+  Restaurant
+    .find({})
+    .distinct('_id')
+    .then(restaurants => {
+      const arrayofRestaurantIds = restaurants
+      const randomNumber = Math.floor((Math.random() * arrayofRestaurantIds.length))
+      const idOfOneRandomRestaurant = arrayofRestaurantIds[randomNumber]
+      return idOfOneRandomRestaurant
+      // console.log(idOfOneRandomRestaurant)
+    })
+    .then(singleRestaurantId => {
+      Restaurant
+        .findById(singleRestaurantId)
+        .then(restaurant => {
+          return res.send(restaurant)
+        })
+        .catch(err => res.send({ error: err }))
+    })
+
 }
 
 module.exports = {
@@ -199,5 +249,7 @@ module.exports = {
   DeleteAComment,
   toggleLikeComment,
   toggleDislikeComment,
-  getComments
+  getComments,
+  getRandomRestaurant,
+  getLikeAndDislike
 }
