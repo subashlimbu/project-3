@@ -48,3 +48,26 @@ class SingleRestaurant extends React.Component {
 }
 
 export default SingleRestaurant
+
+
+// import React from 'react'
+// import { Link } from 'react-router-dom'
+
+// const SingleRestaurant = ({ _id, name, address, cuisine }) => {
+//   return (
+//     <Link to={`/restaurants/${_id}`}>
+//       <div className="container">
+//         {/* <figure className="image is-4by3"> */}
+//         {/* <img src={image} alt={name}  className="gemImage"/> */}
+//         <div className="middle">
+//           <div className="text">{name}</div>
+//           <div className="text">{address}</div>
+//           <div className="text">{cuisine}</div>
+//         </div>
+//         {/* </figure> */}
+//       </div>
+//     </Link>
+//   )
+// }
+
+// export default SingleRestaurant
