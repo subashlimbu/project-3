@@ -134,6 +134,7 @@ function toggleLikeComment(req, res) {
       if (comment.likedBy.includes(currentUser._id)) {
         comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id, 1))
       } else {
+        if (comment.dislikedBy.includes(currentUser._id)) return restaurant
         comment.likedBy.push(currentUser._id)
       }
       return restaurant.save()
@@ -159,6 +160,7 @@ function toggleDislikeComment(req, res) {
       if (comment.dislikedBy.includes(currentUser._id)) {
         comment.dislikedBy.splice(comment.dislikedBy.indexOf(currentUser._id, 1))
       } else {
+        if (comment.likedBy.includes(currentUser._id)) return restaurant
         comment.dislikedBy.push(currentUser._id)
       }
       return restaurant.save()
@@ -171,6 +173,20 @@ function toggleDislikeComment(req, res) {
     .catch(err => res.send({ error: err }))
 }
 
+function getComments(req, res) {
+  Restaurant
+    .findById(req.params.id)
+    .then(restaurant => {
+      // below is the start of filtering the output of this to just the comment text and user
+      // this is because we might want to limit the access to knowledge of who has liked/disliked the comments
+      // const simpleComments = []
+      // restaurant.comments.forEach(comment => {
+
+      // })
+      return res.send(restaurant.comments)
+    })
+    .catch(err => res.send({ error: err }))
+}
 
 module.exports = {
   index,
@@ -182,5 +198,6 @@ module.exports = {
   EditAComment,
   DeleteAComment,
   toggleLikeComment,
-  toggleDislikeComment
+  toggleDislikeComment,
+  getComments
 }
