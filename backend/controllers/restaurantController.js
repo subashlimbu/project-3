@@ -192,6 +192,28 @@ function getComments(req, res) {
     .catch(err => res.send({ error: err }))
 }
 
+function getRandomRestaurant(req, res) {
+  Restaurant
+    .find({})
+    .distinct('_id')
+    .then(restaurants => {
+      const arrayofRestaurantIds = restaurants
+      const randomNumber = Math.floor((Math.random() * arrayofRestaurantIds.length))
+      const idOfOneRandomRestaurant = arrayofRestaurantIds[randomNumber]
+      return idOfOneRandomRestaurant
+      // console.log(idOfOneRandomRestaurant)
+    })
+    .then(singleRestaurantId => {
+      Restaurant
+        .findById(singleRestaurantId)
+        .then(restaurant => {
+          return res.send(restaurant)
+        })
+        .catch(err => res.send({ error: err }))
+    })
+
+}
+
 module.exports = {
   index,
   createNewRestaurant,
@@ -203,5 +225,6 @@ module.exports = {
   DeleteAComment,
   toggleLikeComment,
   toggleDislikeComment,
-  getComments
+  getComments,
+  getRandomRestaurant
 }

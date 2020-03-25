@@ -39,4 +39,8 @@ router.route('/login')
 router.route('/profile')
   .get(secureRoute, userController.getProfile)
 
+
+router.route('/random')
+  .get(restaurantController.getRandomRestaurant)
+
 module.exports = router

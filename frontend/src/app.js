@@ -12,6 +12,7 @@ import NavBar from './components/NavBar'
 import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
+// import ChangePassword from './components/ChangePassword'
 
 const App = () => (
   <BrowserRouter>
@@ -23,6 +24,9 @@ const App = () => (
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/profile" component={Profile} />
+      {/* <Route exact path="/profile" component={ChangePassword} /> */}
+
+
     </Switch>
   </BrowserRouter>
 )
