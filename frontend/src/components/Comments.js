@@ -19,7 +19,10 @@ class Comments extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    console.log(event.target)
     console.log(this.state.newComment)
+    const textField = document.querySelector('.textarea')
+    textField.value = ''
     const id = this.props.restaurantId
     const comment = {
       text: this.state.newComment
@@ -30,7 +33,12 @@ class Comments extends React.Component {
       }
     }
     Axios.post(`/api/restaurant/${id}/comments`, comment, authConfig)
-      .then(() => this.updateComments())
+      .then(() => {
+        this.setState({
+          newComment: ''
+        })
+        this.updateComments()
+      })
       .catch(err => console.log(err))
   }
 
@@ -42,7 +50,7 @@ class Comments extends React.Component {
       }
     }
     Axios.delete(`/api/restaurant/${restaurantId}/comment/${commentId}`, authConfig)
-      .then(res => {
+      .then(() => {
         this.updateComments()
       })
       .catch(err => console.log(err))
