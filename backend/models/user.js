@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const mongooseHidden = require('mongoose-hidden')() //to hide fields when we return info back to user after registration 
 const { isEmail } = require('validator') //to validate email syntax
 const { isValidPassword } = require('mongoose-custom-validators') //to validate password 
+const passwordComplexity = require('joi-password-complexity')
+const uniqueValidator = require('mongoose-unique-validator')
 
 
 const bcrypt = require('bcrypt')
@@ -12,10 +14,10 @@ const bcrypt = require('bcrypt')
 // }
 
 const schema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
+  username: { type: String, required: [true, 'please enter a username'], unique: true },
   email: {
     type: String,
-    required: true,
+    required: [true, 'please enter an email address'],
     minLength: 8,
     unique: true,
     validate: [isEmail, 'please enter a valid email address']
@@ -24,7 +26,7 @@ const schema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'please enter a password'],
     hide: true
     // validator: isValidPassword, //doesn't work because it's validating the HASHED password which is a complex string that passes this test! 
     // message: 'Password must have at least: 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.'
@@ -32,7 +34,7 @@ const schema = new mongoose.Schema({
   }
 })
 
-schema.plugin(require('mongoose-unique-validator'))
+schema.plugin(uniqueValidator, { message: '{PATH} already exists' });
 schema.plugin(mongooseHidden)
 
 schema.
@@ -45,6 +47,10 @@ schema
   .pre('validate', function checkPassword(next) {
     // console.log(this._passwordConfirmation)
     // console.log(this.password)
+    const validationResult = passwordComplexity().validate(this.password)
+    if (validationResult.error) {
+      this.invalidate('password', 'Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.')
+    }
     if (this.isModified('password') && this._passwordConfirmation !== this.password) {
       this.invalidate('passwordConfirmation', 'passwords should match')
     }
