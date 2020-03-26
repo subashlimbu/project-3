@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DropSearch = ({ handleSearch }) => {
+const DropSearch = ({ handleDropdown }) => {
 
   return (
     <div className="field is-flex">
@@ -10,11 +10,9 @@ const DropSearch = ({ handleSearch }) => {
         <div className="select is-rounded">
           <select
             name="cuisine"
-            defaultValue="Please Choose..."
-            onChange={handleSearch}
+            onChange={handleDropdown}
           >
-            <option disabled>Please Choose...</option>
-            <option value="" > Search All </option>
+            <option value="Search All" > Search All </option>
             <option> Chinese </option>
             <option> Japanese </option>
             <option> Italian </option>
