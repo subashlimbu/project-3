@@ -13,7 +13,7 @@ class Restaurants extends React.Component {
       // cuisine: '',
       restaurants: null,
       filteredRestaurants: null,
-      filteredCuisines: '',
+      filteredCuisines: null,
       query: ''
     }
     // this.handleChange = this.handleChange.bind(this)
@@ -51,10 +51,10 @@ class Restaurants extends React.Component {
       const getRestaurantCuisine = this.state.filteredRestaurants.filter(restaurant => {
         console.log(getRestaurantCuisine)
         return restaurant.cuisine.includes(event.target.value)
-      })
+      }) 
       this.setState({ filteredRestaurants: getRestaurantCuisine })
     } else {
-      this.setState({ filteredRestaurants: this.state.filteredCuisines })
+      this.setState({ filteredRestaurants: this.state.filteredRestaurants })
     }
   }
 
@@ -72,12 +72,11 @@ class Restaurants extends React.Component {
             return <div key={restaurant._id} className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
               <div className="card">
                 <div className="card-image">
-                  {/* <figure className="image is-4by3">
+                  <figure className="image is-4by3">
                     <img src={restaurant.image} alt="Placeholder image" />
-                  </figure> */}
+                  </figure>
                 </div>
                 <div className="card-content">
-                  {/* if (this.filteredRestaurants(event) === this.handleSearch(event)) { */}
                   <Link className="subtitle" to={`/restaurant/${restaurant._id}`}>{restaurant.name}</Link>
                   <p className="has-text-grey-darker">{restaurant.address}</p>
                 </div>
