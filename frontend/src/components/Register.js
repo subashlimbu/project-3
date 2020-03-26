@@ -26,17 +26,19 @@ class Register extends React.Component {
     event.preventDefault()
     axios.post('/api/register',
       this.state.data)
-      .then(res => console.log(res))
-      .then(() => this.props.history.push('/login'))
+      .then(res => console.log('response ', res))
+      .then(() => {
+        console.log('hi')
+        this.props.history.push('/login')
+      })
       .catch(error => {
-        console.log(error)
         this.setState({ errors: error.response.data.errors })
       })
   }
 
   render() {
     const { errors } = this.state
-    console.log(errors)
+    console.log('ben ',errors)
     return <section className="section">
       <div className="container">
         <h1 className="title">Register</h1>
@@ -57,7 +59,7 @@ class Register extends React.Component {
               />
             </div>
             {errors.email && <small className="help is-danger">
-              {errors.email}
+              {errors.email.message}
             </small>}
           </div>
 
@@ -74,7 +76,7 @@ class Register extends React.Component {
               />
             </div>
             {errors.username && <small className="help is-danger">
-              {errors.username}
+              {errors.username.message}
             </small>}
           </div>
 
@@ -91,7 +93,7 @@ class Register extends React.Component {
               />
             </div>
             {errors.password && <small className="help is-danger">
-              {errors.password}
+              {errors.password.message}
             </small>}
           </div>
 
@@ -108,7 +110,7 @@ class Register extends React.Component {
               />
             </div>
             {errors.passwordConfirmation && <small className="help is-danger">
-              {errors.passwordConfirmation}
+              {errors.passwordConfirmation.message}
             </small>}
           </div>
           <button className="button is-success">
