@@ -9,62 +9,71 @@ class Restaurants extends React.Component {
   constructor() {
     super()
     this.state = {
-      // Allrestaurants: null,
-      // cuisine: '',
-      restaurants: null,
-      filteredRestaurants: null,
-      filteredCuisines: '',
-      query: ''
+      restaurants: null, //array of all restaurants, NEVER FILTERED!!! 
+      filteredRestaurants: null, //array of filtered restaurants, updates when either dropdown or searchbar is used (or both)
+      searchText: '',  //what's type into the searchbar 
+      // cuisine: 'Search All', //not used 
+      dropDownOption: ''
     }
-    // this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
     axios.get('/api/restaurants')
       .then((resp) => this.setState({
-        // Allrestaurants: resp.data,
         restaurants: resp.data,
-        filteredRestaurants: resp.data,
-        filteredCuisines: resp.data
+        filteredRestaurants: resp.data
       }))
       .catch(err => console.error(err))
   }
 
-  filterTheRestaurants(event) {
-
-    const searchQuery = event.target.value
-    console.log(searchQuery)
-    const filteredRestaurants = this.state.restaurants.filter((all) => {
-      const regex = new RegExp(searchQuery, 'i')
-      return all.name.match(regex)
-    })
-
-    this.setState({
-      filteredRestaurants: filteredRestaurants,
-      query: searchQuery
-    })
-  }
-
-  handleSearch(event) {
-    console.log(event.target.value)
-    if (event.target.value !== '') {
-      const getRestaurantCuisine = this.state.filteredRestaurants.filter(restaurant => {
-        console.log(getRestaurantCuisine)
-        return restaurant.cuisine.includes(event.target.value)
+  handleSearch(event) { //handles search bar
+    this.setState({ searchText: event.target.value.toLowerCase() }) //event.target.value is what's typed into the searchbar 
+    if (!this.state.dropDownOption) { //if only the searchbar is used 
+      const onlySearched = this.state.restaurants.filter(restaurant => {
+        return restaurant.name.toLowerCase().includes(event.target.value.toLowerCase())
       })
-      this.setState({ filteredRestaurants: getRestaurantCuisine })
-    } else {
-      this.setState({ filteredRestaurants: this.state.filteredCuisines })
+      this.setState({ filteredRestaurants: onlySearched })
+    } else { //if both searchbar and dropdown is used 
+      const bothUsed = this.state.restaurants.filter(restaurant => {
+        return (restaurant.cuisine.includes(this.state.dropDownOption) && restaurant.name.toLowerCase().includes(event.target.value))
+      })
+      this.setState({ filteredRestaurants: bothUsed })
     }
   }
 
-  render() {
-    // console.log(this.state.restaurants)
-    if (!this.state.restaurants) return <p>Waiting for Data</p>
+  handleDropdown(event) { //handles dropdowm 
 
+    this.setState({ dropDownOption: event.target.value })
+    if (!this.state.searchText) { //if only dropdown is used 
+      const onlyDropdownSelected = this.state.restaurants.filter(restaurant => {
+        return restaurant.cuisine.includes(event.target.value)
+      })
+      this.setState({ filteredRestaurants: onlyDropdownSelected })
+    } else { //if both dropdown and searchbar is USED 
+      const bothUsed = this.state.restaurants.filter(restaurant => {
+        return (restaurant.cuisine.includes(event.target.value) && restaurant.name.toLowerCase().includes(this.state.searchText))
+      })
+      this.setState({ filteredRestaurants: bothUsed })
+    }
+
+    if (event.target.value === 'Search All') {
+      if (!this.state.searchText) { //if nothing in both dropdown and searchtext 
+        this.setState({ filteredRestaurants: this.state.restaurants })
+      } else { //if nothing in dropdown and something in searchtext 
+        const onlySearched = this.state.restaurants.filter(restaurant => {
+          return restaurant.name.toLowerCase().includes(this.state.searchText.toLowerCase())
+        })
+        this.setState({ filteredRestaurants: onlySearched })
+      }
+    }
+
+  }
+
+  render() {
+    if (!this.state.restaurants) return <p>Waiting for Data</p>
     return <section className="section">
-      <SearchBar query={this.state.query} onChange={() => this.filterTheRestaurants(event)} />
-      <DropSearch handleSearch={() => this.handleSearch(event)} />
+      <SearchBar query={this.state.query} onChange={() => this.handleSearch(event)} />
+      <DropSearch handleDropdown={() => this.handleDropdown(event)} />
       <div className="container">
         <div className="columns is-centered is-mobile is-multiline">
 
@@ -77,7 +86,7 @@ class Restaurants extends React.Component {
                   </figure> */}
                 </div>
                 <div className="card-content">
-                  {/* if (this.filteredRestaurants(event) === this.handleSearch(event)) { */}
+                  {/* if (this.filteredRestaurants(event) === this.handleDropDown(event)) { */}
                   <Link className="subtitle" to={`/restaurant/${restaurant._id}`}>{restaurant.name}</Link>
                   <p className="has-text-grey-darker">{restaurant.address}</p>
                 </div>

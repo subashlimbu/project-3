@@ -6,6 +6,13 @@ const passwordComplexity = require('joi-password-complexity') //validate passwor
 
 
 function register(req, res) {
+  const validationResult = passwordComplexity().validate(req.body.password)
+  console.log(req.body)
+  if (validationResult.error) {//this means there is error {
+    return res.status(400).send({ errors: 'Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.' })
+  }
+  // console.log(passwordComplexity().validate(req.body.password))
+  // console.log(passwordComplexity().validate(req.body.password).error)
   // const validationResult = passwordComplexity().validate(req.body.password)
   // if (validationResult.error) {//this means there is error {
   //   console.log('hi')
