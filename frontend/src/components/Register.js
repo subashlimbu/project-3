@@ -28,11 +28,15 @@ class Register extends React.Component {
       this.state.data)
       .then(res => console.log(res))
       .then(() => this.props.history.push('/login'))
-      .catch(error => this.setState({ errors: error.response.data.errors }))
+      .catch(error => {
+        console.log(error)
+        this.setState({ errors: error.response.data.errors })
+      })
   }
 
   render() {
     const { errors } = this.state
+    console.log(errors)
     return <section className="section">
       <div className="container">
         <h1 className="title">Register</h1>

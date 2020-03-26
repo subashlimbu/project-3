@@ -54,7 +54,7 @@ class Restaurants extends React.Component {
       })
       this.setState({ filteredRestaurants: getRestaurantCuisine })
     } else {
-      this.setState({ filteredRestaurants: this.state.filteredRestaurants })
+      this.setState({ filteredRestaurants: this.state.filteredCuisines })
     }
   }
 
@@ -64,7 +64,7 @@ class Restaurants extends React.Component {
 
     return <section className="section">
       <SearchBar query={this.state.query} onChange={() => this.filterTheRestaurants(event)} />
-      <DropSearch handleSearch={() => this.handleSearch(event)}/>
+      <DropSearch handleSearch={() => this.handleSearch(event)} />
       <div className="container">
         <div className="columns is-centered is-mobile is-multiline">
 
