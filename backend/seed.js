@@ -465,7 +465,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":2,
             "user":users[2],
-            "image":""
+            "image":"https://s3-media0.fl.yelpcdn.com/bphoto/7cjpI9m-aRBcLn0MCa-Gew/o.jpg"
           },
           {
             "name":"Yum Yum",
@@ -480,7 +480,7 @@ mongoose.connect(
             "halalFriendly":true,
             "priceRange":3,
             "user":users[2],
-            "image":""
+            "image":"https://www.eastendreview.co.uk/wp-content/uploads/2015/02/Prawn_Tempura_Yum_Yum_620.jpg"
           },
           {
             "name":"Champor-Champor",
@@ -495,7 +495,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":3,
             "user":users[2],
-            "image":""
+            "image":"https://media.timeout.com/images/103331060/630/472/image.jpg"
           },
           {
             "name":"Patara",
@@ -510,7 +510,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":4,
             "user":users[2],
-            "image":""
+            "image":"https://www.fluidnetwork.co.uk/gfx/venues/19815/patara_thai_restaurant_mayfair_london_01.jpg"
           },
           {
             "name":"The Begging Bowl",
@@ -525,7 +525,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":3,
             "user":users[2],
-            "image":""
+            "image":"https://4.bp.blogspot.com/-2t7dBQ4LGMU/UDnnmYoH5xI/AAAAAAAAQnQ/2iqy-bWFPcw/s1600/DSC_0234.JPG"
           },
           {
             "name":"Rusty Bikes",
@@ -539,7 +539,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":2,
             "user":users[2],
-            "image":""
+            "image":"https://www.ordertakeaways.co.uk/media/images/deliveroo/rusty-bike-thai-kitchen.jpg"
           },
           {
             "name":"The Pineapple",
@@ -553,7 +553,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":2,
             "user":users[2],
-            "image":""
+            "image":"https://secretldn.com/wp-content/uploads/2019/01/best-thai-restaurants-london-13-666x666.jpg"
           },
           {
             "name":"The Churchill Arms",
@@ -568,7 +568,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":2,
             "user":users[2],
-            "image":""
+            "image":"https://www.churchillarmskensington.co.uk/-/media/Sites/Microsites/C/The-Churchill-Arms-_-P021/Images/2019/FOR-WEB/carousel/churchill-5.jpg"
           },
           {
             "name":"101 Thai Kitchen",
@@ -582,7 +582,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":2,
             "user":users[2],
-            "image":""
+            "image":"https://pbs.twimg.com/profile_images/959837983187841024/42niDl3Z.jpg"
           },
           {
             "name":"Kiln",
@@ -597,7 +597,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":3,
             "user":users[2],
-            "image":""
+            "image":"https://media.timeout.com/images/103545799/630/472/image.jpg"
           },
           {
             "name":"Antepliler",
@@ -612,7 +612,7 @@ mongoose.connect(
             "halalFriendly":true,
             "priceRange":2,
             "user":users[2],
-            "image":""
+            "image":"https://media.timeout.com/images/70988/630/472/image.jpg"
           },
           {
             "name":"Cirrik 19 Numara Bos",
@@ -627,7 +627,7 @@ mongoose.connect(
             "halalFriendly":true,
             "priceRange":3,
             "user":users[2],
-            "image":""
+            "image":"https://f3e6t7k9.stackpathcdn.com/wp-content/uploads/2018/04/Cirrik-table-LOTI.jpg"
           },
           {
             "name":"Diyarbakir",
@@ -641,7 +641,7 @@ mongoose.connect(
             "halalFriendly":true,
             "priceRange":2,
             "user":users[2],
-            "image":""
+            "image":"https://cdn.vox-cdn.com/thumbor/TkdJZVXVSKIk7hJsaqCeyRUzI6M=/0x0:1080x826/1200x900/filters:focal(454x327:626x499):no_upscale()/cdn.vox-cdn.com/uploads/chorus_image/image/62589714/hala.0.0.jpg"
           },
           {
             "name":"E. Mono",
@@ -655,7 +655,96 @@ mongoose.connect(
             "halalFriendly":true,
             "priceRange":1,
             "user":users[2],
-            "image":""
+            "image":"https://emono.co.uk/wp-content/uploads/2018/04/HOME1.jpg"
+          },
+          {
+            "name":"Fez Mangal",
+            "link":"http://www.fezmangal.com",
+            "address":"104 Ladbroke Grove",
+            "postcode":"W11 1PY",
+            "telephone":"+44 20 7229 3010",
+            "cuisine":["Turkish"],
+            "serveAlcohol":true,
+            "veggieFriendly":true,
+            "halalFriendly":false,
+            "priceRange":1,
+            "user":users[2],
+            "image":"https://f.roocdn.com/images/menus/66724/header-image.jpg"
+          },
+          {
+            "name":"Gökyüzü",
+            "link":"http://www.gokyuzurestaurant.co.uk/",
+            "address":"26-27 Grand Parade",
+            "postcode":"N4 1LG",
+            "telephone":"020 8211 8406",
+            "bookingLink":"http://www.gokyuzurestaurant.co.uk/",
+            "cuisine":["Turkish"],
+            "serveAlcohol":true,
+            "veggieFriendly":true,
+            "halalFriendly":true,
+            "priceRange":2,
+            "user":users[2],
+            "image":"https://gokyuzurestaurant.co.uk/harringay/wp-content/uploads/sites/5/2016/12/Gokyuzu-Chingford_455.jpg"
+          },
+          {
+            "name":"Iznik",
+            "link":"http://www.iznik.co.uk/",
+            "address":"19 Highbury Park",
+            "postcode":"N5 1QJ",
+            "telephone":"020 7704 8099",
+            "bookingLink":"http://www.iznik.co.uk/reservations.html",
+            "cuisine":["Turkish"],
+            "serveAlcohol":true,
+            "veggieFriendly":true,
+            "halalFriendly":false,
+            "priceRange":2,
+            "user":users[2],
+            "image":"https://media.timeout.com/images/102150009/630/472/image.jpg"
+          },
+          {
+            "name":"Kazan",
+            "link":"https://www.kazan-restaurant.com/",
+            "address":"93-94 Wilton Road",
+            "postcode":"SW1V 1DW",
+            "telephone":"020 7233 7100",
+            "bookingLink":"https://www.kazan-restaurant.com/reservation",
+            "cuisine":["Turkish"],
+            "serveAlcohol":true,
+            "veggieFriendly":true,
+            "halalFriendly":true,
+            "priceRange":3,
+            "user":users[2],
+            "image":"https://www.kazan-restaurant.com/Content/20/Kazan_0611_800.jpg"
+          },
+          {
+            "name":"Stone Cave",
+            "link":"https://www.stonecave.co.uk/",
+            "address":"111 Kingsland High St",
+            "postcode":"E8 2PB",
+            "telephone":"+44 (0)20 7241 4911",
+            "bookingLink":"https://www.stonecave.co.uk/booking",
+            "cuisine":["Turkish"],
+            "serveAlcohol":true,
+            "veggieFriendly":true,
+            "halalFriendly":true,
+            "priceRange":2,
+            "user":users[2],
+            "image":"https://www.stonecave.co.uk/wp-content/uploads/2018/02/03-1024x678.jpg"
+          },
+          {
+            "name":"Yeni",
+            "link":"https://www.yeni.london/",
+            "address":"55 Beak St",
+            "postcode":"W1F 9SH",
+            "telephone":"+44 (20) 3475-1903",
+            "bookingLink":"https://www.opentable.co.uk/r/yeni-london?ref=17849&refreshed=true",
+            "cuisine":["Turkish"],
+            "serveAlcohol":true,
+            "veggieFriendly":true,
+            "halalFriendly":false,
+            "priceRange":4,
+            "user":users[2],
+            "image":"https://lubelle.co.uk/wp-content/uploads/2019/04/Yeni-6-1600x906.jpg"
           }
         ])
       })
