@@ -63,3 +63,51 @@
 .disliked {
   color: red;
 }
+
+.single-background {
+  background-position: middle;
+  vertical-align: middle;
+  background-size: contain;
+  background-color: white;
+  // opacity: 50%;
+  margin-bottom: 20px;
+}
+
+.single-info {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.single-details {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.single-name-background {
+  background-color: white;
+  opacity: 80%;
+  width: 50%;
+  text-align: center;
+}
+
+.single-name {
+  font-weight: bold;
+  color: black;
+  font-size: 46px;
+  padding: 30px;
+}
+
+.smaller-details {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.single-link, .single-link-button, .single-address, .single-cuisine, .single-ticks {
+  padding: 10px;
+}
+
+div.dropdown {
+  margin-bottom: 20px !important;
+}

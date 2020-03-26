@@ -72,18 +72,23 @@ class Restaurants extends React.Component {
   render() {
     if (!this.state.restaurants) return <p>Waiting for Data</p>
     return <section className="section">
-      <SearchBar query={this.state.query} onChange={() => this.handleSearch(event)} />
-      <DropSearch handleDropdown={() => this.handleDropdown(event)} />
+
       <div className="container">
+        <SearchBar query={this.state.query} onChange={() => this.handleSearch(event)} />
+        <DropSearch handleDropdown={() => this.handleDropdown(event)} />
+        
         <div className="columns is-centered is-mobile is-multiline">
 
           {this.state.filteredRestaurants.map(restaurant => {
+            console.log(restaurant.name)
+            console.log(restaurant.image)
+            console.log(restaurant)
             return <div key={restaurant._id} className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
               <div className="card">
                 <div className="card-image">
-                  {/* <figure className="image is-4by3">
+                  <figure className="image is-4by3">
                     <img src={restaurant.image} alt="Placeholder image" />
-                  </figure> */}
+                  </figure>
                 </div>
                 <div className="card-content">
                   {/* if (this.filteredRestaurants(event) === this.handleDropDown(event)) { */}
