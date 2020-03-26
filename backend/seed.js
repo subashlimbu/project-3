@@ -17,26 +17,26 @@ mongoose.connect(
           {
             "username": "ben",
             "email": "ben@ben.com",
-            "password": "password",
-            "passwordConfirmation": "password"
+            "password": "Password1!",
+            "passwordConfirmation": "Password1!"
           },
           {
             "username": "denise",
             "email": "denise@denise.com",
-            "password": "password",
-            "passwordConfirmation": "password"
+            "password": "Password1!",
+            "passwordConfirmation": "Password1!"
           },
           {
             "username": "emma",
             "email": "emma@emma.com",
-            "password": "password",
-            "passwordConfirmation": "password"
+            "password": "Password1!",
+            "passwordConfirmation": "Password1!"
           },
           {
             "username": "subash",
             "email": "subash@subash.com",
-            "password": "password",
-            "passwordConfirmation": "password"
+            "password": "Password1!",
+            "passwordConfirmation": "Password1!"
           }
         ])
       })
