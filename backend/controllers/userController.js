@@ -41,10 +41,39 @@ function getProfile(req, res) {
   res.status(202).send(user)
 }
 
+// function changePassword(req, res) {
+//   User
+//     // find the user
+//     .findOne({ email: req.body.email })
+//     // check the 
+//     .then()
 
+//   // get the user based on who is currently logged in
+//   // check the email and currentPassword match - reject if not
+//   // update password to newPassword
+// }
+
+// changepassword should receive email, currentPassword, newPassword
+// function editARestaurant(req, res) {
+//   const id = req.params.id
+//   console.log('gets in here')
+//   Restaurant
+//     .findById(id)
+//     .then(restaurant => {
+//       if (!restaurant.user.equals(req.currentUser._id)) return res.status(401).send({ message: 'This restaurant does not belong to you! Please do not change other peopls restaurant' })
+//       return restaurant.set(req.body)
+//     })
+//     .then(restaurant => {
+//       return restaurant.save()
+//     })
+//     .then(restaurant => {
+//       res.status(202).send(restaurant)
+//     })
+// }
 
 module.exports = {
   register,
   login,
   getProfile
+  // changePassword
 }
