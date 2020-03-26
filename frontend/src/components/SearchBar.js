@@ -7,9 +7,10 @@ const SearchBar = ({ query, onChange }) => {
 
   return <div className="search">
     <div className="field">
-      <div className="control"><strong>Choose by restaurant</strong>
+      <label className="label is-flex"> <strong> Choose by restaurant </strong> </label>
+      <div className="control">
         <input
-          className="input is-info"
+          className="input is-rounded"
           type="text"
           placeholder="Search..."
           value={query}

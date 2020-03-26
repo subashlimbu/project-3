@@ -5,7 +5,7 @@ const DropSearch = ({ handleDropdown }) => {
   return (
     <div className="field is-flex dropdown">
       <div className="control">
-        <label className="label is-searchform"> <strong> Explore by cuisine </strong> </label>
+        <label className="label is-flex"> <strong> Explore by cuisine </strong> </label>
 
         <div className="select is-rounded">
           <select
