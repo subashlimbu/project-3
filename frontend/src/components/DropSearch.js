@@ -1,20 +1,18 @@
 import React from 'react'
 
-const DropSearch = ({ handleSearch }) => {
+const DropSearch = ({ handleDropdown }) => {
 
   return (
-    <div className="field is-flex">
+    <div className="field is-flex dropdown">
       <div className="control">
-        <label className="label is-searchform"> <strong> Explore by cuisine </strong> </label>
+        <label className="label is-flex"> <strong> Explore by cuisine </strong> </label>
 
         <div className="select is-rounded">
           <select
             name="cuisine"
-            defaultValue="Please Choose..."
-            onChange={handleSearch}
+            onChange={handleDropdown}
           >
-            <option disabled>Please Choose...</option>
-            <option value="" > Search All </option>
+            <option value="Search All" > Search All </option>
             <option> Chinese </option>
             <option> Japanese </option>
             <option> Italian </option>
