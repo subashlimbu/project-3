@@ -2,7 +2,8 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
-
+import { Spring } from 'react-spring/renderprops'
+import { Parallax } from 'react-parallax'
 
 
 const Home = (props) => {
@@ -25,10 +26,22 @@ const Home = (props) => {
   return <>
     <section className="hero is-large">
       <div className="hero-body">
-        <div className="container has-text-centered homepage-textbox">
-          <p className="title has-text-centered">Food, glorious food!</p>
-          <p className="subtitle has-text-centered">Hungry? Find tasty food near you.</p>
-        </div>
+        <Spring
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}
+          config={{ delay: 500, duration: 1000 }}
+        >
+          {props => (
+            <div style={props}>
+              <div className="container has-text-centered homepage-textbox">
+                <p className="title has-text-centered">Food, glorious food!</p>
+                <p className="subtitle has-text-centered">Hungry? Find tasty food in Central London.</p>
+              </div>
+
+            </div>
+          )}
+        </Spring>
+
       </div>
     </section>
     <section>
