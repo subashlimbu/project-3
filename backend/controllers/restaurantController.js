@@ -273,14 +273,19 @@ function emailRestaurantInfo(req, res) {
           ]
         })
       request
-        .then((result) => {
-          console.log(result.body)
+        .then(() => {
+          res.status(200).send(
+            'Email sent succesfully!'
+          )
         })
         .catch((err) => {
-          console.log(err.statusCode)
+          res.status(500).send(
+            'Email not sent, please contact administrator.'
+          )
         })
 
     })
+
 
 
 }
