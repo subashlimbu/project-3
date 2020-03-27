@@ -46,4 +46,7 @@ router.route('/profile')
 router.route('/random')
   .get(restaurantController.getRandomRestaurant)
 
+router.route('/restaurant/:id/email')
+  .get(secureRoute, restaurantController.emailRestaurantInfo)
+
 module.exports = router

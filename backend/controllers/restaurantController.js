@@ -61,8 +61,9 @@ function editARestaurant(req, res) {
 
 function CreateNewComment(req, res) {
   const currentUser = req.currentUser
+  console.log(currentUser)
   req.body.user = currentUser // really important line, this is essentially adding a user field to our req.body (in JSON left side in insomia)
-  console.log('comment ', req.body)
+  // console.log('comment ', req.body)
   Restaurant
     .findById(req.params.id)
     .then(restaurant => {
@@ -238,6 +239,52 @@ function getRandomRestaurant(req, res) {
 
 }
 
+function emailRestaurantInfo(req, res) {
+  const currentUser = req.currentUser
+
+
+  const mailjet = require('node-mailjet')
+    .connect('438fe491a39f0824a68b50344e07a4de', '235dbb4745cab0de363e67fdd200ca50')
+  Restaurant
+    .findById(req.params.id)
+    .then(restaurant => {
+      const veggieFriendly = restaurant.veggieFriendly ? '✅' : '❌'
+      const serveAlcohol = restaurant.serveAlcohol ? '✅' : '❌'
+      const request = mailjet
+        .post("send", { 'version': 'v3.1' })
+        .request({
+          "Messages": [
+            {
+              "From": {
+                "Email": "foodforthought0987@gmail.com",
+                "Name": "FoodForThought"
+              },
+              "To": [
+                {
+                  "Email": `${currentUser.email}`,
+                  "Name": `${currentUser.username}`
+                }
+              ],
+              "Subject": "Restaurant you are interested on FoodForThought",
+              "TextPart": "Email from FoodForThought",
+              "HTMLPart": `<h3> Thank you for using FoodForThought. Please find the restaurant information as requested. </h3> <br /> <img src="${restaurant.image}" style="max-width:400px"/> <br /> Name of restaurant: ${restaurant.name} <br /> Cuisine: ${restaurant.cuisine[0]} <br /> Restaurant link: ${restaurant.link} <br /> Address: ${restaurant.address} <br /> Postcode: ${restaurant.postcode} <br /> Telephone: ${restaurant.telephone} <br /> Veggie friendly: ${veggieFriendly} <br /> Serves alcohol: ${serveAlcohol} `
+
+            }
+          ]
+        })
+      request
+        .then((result) => {
+          console.log(result.body)
+        })
+        .catch((err) => {
+          console.log(err.statusCode)
+        })
+
+    })
+
+
+}
+
 module.exports = {
   index,
   createNewRestaurant,
@@ -251,5 +298,6 @@ module.exports = {
   toggleDislikeComment,
   getComments,
   getRandomRestaurant,
-  getLikeAndDislike
+  getLikeAndDislike,
+  emailRestaurantInfo
 }
