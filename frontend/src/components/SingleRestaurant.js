@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Map from './Map'
 import Comments from './Comments'
+import LoaderSpinner from './LoaderSpinner'
 import { Link } from 'react-router-dom'
 
 class SingleRestaurant extends React.Component {
@@ -33,7 +34,7 @@ class SingleRestaurant extends React.Component {
     console.log(this.props.match)
     console.log(this.state.restaurant)
     if (!this.state.restaurant) {
-      return <h1>Restaurant not ready...</h1>
+      return <LoaderSpinner />
     }
 
     const id = this.props.match.params.id
