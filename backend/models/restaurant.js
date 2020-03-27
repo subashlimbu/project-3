@@ -19,7 +19,8 @@ const restaurantSchema = mongoose.Schema({
   cuisine: { type: Array, required: true },
   serveAlcohol: { type: Boolean, required: false },
   veggieFriendly: { type: Boolean, required: false },
-  isHalal: { type: Boolean, required: false },
+  halalFriendly: { type: Boolean, required: false },
+  priceRange: { type: Number, required: true },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   comments: [commentSchema],
   image: { type: String, required: false }
