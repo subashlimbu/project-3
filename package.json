@@ -39,6 +39,7 @@
     "express": "^4.17.1",
     "joi-password-complexity": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
     "mongoose": "^5.7.12",
     "mongoose-custom-validators": "0.0.4",
     "mongoose-hidden": "^1.8.1",

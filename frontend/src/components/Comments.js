@@ -3,6 +3,7 @@ import Axios from 'axios'
 import CommentCard from './CommentCard';
 import auth from '../lib/auth';
 import NewComment from './NewComment';
+import { Link } from 'react-router-dom'
 
 class Comments extends React.Component {
   constructor() {
@@ -79,14 +80,14 @@ class Comments extends React.Component {
   }
 
   render() {
-    const loggedIn = auth.isLoggedIn
+    const isloggedIn = auth.isLoggedIn()
     const { comments } = this.state
     if (this.state.comments === null) return <h1>Comments loading...</h1>
     return <section className="section">
       <div className="container">
         <div className="comments">
-          <h1 className="title">Comments</h1>
-          {loggedIn &&
+          <h1 className="title">Comments ({comments.length})</h1>
+          {isloggedIn &&
             <NewComment
               onChange={(event) => this.handleChange(event)}
               onSubmit={(event) => this.handleSubmit(event)}
@@ -100,6 +101,9 @@ class Comments extends React.Component {
               update={() => this.updateComments()}
             />
           })}
+          {!isloggedIn && (
+            <h6 className="title is-6"> <Link to="/login">Login </Link> to leave your comments</h6>
+          )}
         </div>
       </div>
     </section>
