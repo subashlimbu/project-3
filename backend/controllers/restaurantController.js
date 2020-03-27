@@ -248,8 +248,8 @@ function emailRestaurantInfo(req, res) {
   Restaurant
     .findById(req.params.id)
     .then(restaurant => {
-      const veggieFriendly = restaurant.veggieFriendly ? 'Yes' : 'No'
-      const serveAlcohol = restaurant.serveAlcohol ? 'Yes' : 'No'
+      const veggieFriendly = restaurant.veggieFriendly ? '✅' : '❌'
+      const serveAlcohol = restaurant.serveAlcohol ? '✅' : '❌'
       const request = mailjet
         .post("send", { 'version': 'v3.1' })
         .request({
