@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurant')
 const User = require('./models/user')
-const dbURI = 'mongodb://localhost/restaurant-db'
+const uri = "mongodb+srv://benharris:Password-1@cluster0-kzea4.mongodb.net/restaurantdb?retryWrites=true&w=majority";
 
 mongoose.connect(
-  dbURI,
+  uri,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (error, db) => {
     if (error) {
@@ -310,11 +310,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":3,
             "user":users[1],
-<<<<<<< HEAD
-            "image":"https://media.timeout.com/images/105493995/630/472/image.jpg "
-=======
             "image":"https://media.timeout.com/images/105493995/630/472/image.jpg"
->>>>>>> development
           },
           {
             "name":"Roka Charlotte Street ",
@@ -359,11 +355,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":1,
             "user":users[2],
-<<<<<<< HEAD
-            "image":"https://media.timeout.com/images/105207339/image.jpg "
-=======
             "image":"https://media.timeout.com/images/105207339/image.jpg"
->>>>>>> development
           },
           {
             "name":"Rosso",
@@ -378,11 +370,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":2,
             "user":users[2],
-<<<<<<< HEAD
-            "image":"http://enotecarosso.com/wp-content/uploads/2016/09/IMG_2643.jpg "
-=======
             "image":"http://enotecarosso.com/wp-content/uploads/2016/09/IMG_2643.jpg"
->>>>>>> development
           },
           {
             "name":"Trullo",
