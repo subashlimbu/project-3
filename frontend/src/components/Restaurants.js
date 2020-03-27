@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 import DropSearch from './DropSearch'
+import LoaderSpinner from './LoaderSpinner'
 
 
 class Restaurants extends React.Component {
@@ -70,7 +71,7 @@ class Restaurants extends React.Component {
   }
 
   render() {
-    if (!this.state.restaurants) return <p>Waiting for Data</p>
+    if (!this.state.restaurants) return <LoaderSpinner />
     return <section className="section">
       <SearchBar query={this.state.query} onChange={() => this.handleSearch(event)} />
       <DropSearch handleDropdown={() => this.handleDropdown(event)} />
@@ -82,13 +83,14 @@ class Restaurants extends React.Component {
               <div className="card">
                 <div className="card-image">
                   <figure className="image is-4by3">
-                    <img src={restaurant.image} alt="Placeholder image" />
+                    <img src={restaurant.image} alt="Placeholder image" className="resImage" />
+
+
+                    <div className="card-content">
+                      <Link className="subtitle" to={`/restaurant/${restaurant._id}`}>{restaurant.name}</Link>
+                      <p className="subtitle">{restaurant.address}</p>
+                    </div>
                   </figure>
-                </div>
-                <div className="card-content">
-                  {/* if (this.filteredRestaurants(event) === this.handleDropDown(event)) { */}
-                  <Link className="subtitle" to={`/restaurant/${restaurant._id}`}>{restaurant.name}</Link>
-                  <p className="has-text-grey-darker">{restaurant.address}</p>
                 </div>
               </div>
             </div>
