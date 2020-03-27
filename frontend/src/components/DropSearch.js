@@ -3,7 +3,7 @@ import React from 'react'
 const DropSearch = ({ handleDropdown }) => {
 
   return (
-    <div className="field is-flex">
+    <div className="field is-flex dropdown">
       <div className="control">
         <label className="label is-flex"> <strong> Explore by cuisine </strong> </label>
 

@@ -145,7 +145,7 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":3,
             "user":users[1],
-            "image":"https://www.opentable.co.uk/r/the-good-earth-knightsbridge-london"
+            "image":"https://qul.imgix.net/e729d43f-3b04-4cd6-886f-ddf422ef5514/480419_sld.jpg"
           },
           {
             "name":"Hot May Pot Pot",

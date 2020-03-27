@@ -21,8 +21,8 @@ const restaurantSchema = mongoose.Schema({
   veggieFriendly: { type: Boolean, required: false },
   isHalal: { type: Boolean, required: false },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  image: { type: String, required: true },
-  comments: [commentSchema]
+  comments: [commentSchema],
+  image: { type: String, required: false }
 });
 
 
