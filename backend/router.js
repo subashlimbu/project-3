@@ -25,13 +25,22 @@ router.route('/restaurant/:id/comment/:commentId')
 
 //like and dislike toggles work but this is a tempory fix as I need to ask Nick about the requests/routes used for this
 router.route('/restaurant/:id/comment/:commentId/like')
-  .get(secureRoute, restaurantController.toggleLikeComment)
+  .put(secureRoute, restaurantController.likeComment)
+
+router.route('/restaurant/:id/comment/:commentId/unlike')
+  .put(secureRoute, restaurantController.unlikeComment)
 
 router.route('/restaurant/:id/comment/:commentId/dislike')
-  .get(secureRoute, restaurantController.toggleDislikeComment)
+  .put(secureRoute, restaurantController.dislikeComment)
+
+router.route('/restaurant/:id/comment/:commentId/undislike')
+  .put(secureRoute, restaurantController.undislikeComment)
 
 router.route('/restaurant/:id/comment/:commentId/likes')
   .get(secureRoute, restaurantController.getLikeAndDislike)
+
+router.route('/restaurant/:id/comment/:commentId/swaplike')
+  .put(secureRoute, restaurantController.swapLike)
 
 router.route('/register')
   .post(userController.register)
@@ -41,7 +50,7 @@ router.route('/login')
 
 router.route('/profile')
   .get(secureRoute, userController.getProfile)
-
+  .put(secureRoute, userController.changePassword)
 
 router.route('/random')
   .get(restaurantController.getRandomRestaurant)
