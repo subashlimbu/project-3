@@ -47,38 +47,55 @@ function getProfile(req, res) {
 }
 
 function changePassword(req, res) {
-  const user = req.currentUser
+  const user = req.currentUser._id
 
   User
-    .findOne(user)
-
-    // check the password first - this works! 🎉
+    .findById(user)
+    .then(user => {
+      return user
+    })
     .then(user => {
       if (!user.validatePassword(req.body.oldPassword)) {
-        return res.status(401).send({ error: 'bad naughty password' })
+        return res.status(401).send({ passwordValidation: { message: 'Wrong password' } })
       }
-      return user
-    })
-
-    // check newPassword and passwordConfirmation match, and throw error if not
-    // check password fits criteria and reject if not
-    .then(user => {
-      const validationResult = passwordComplexity().validate(req.body.newPassword)
-      if (validationResult.error) {
-        res.status(400).send({ error: 'Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.' })
-      }
-      if (req.body.passwordConfirmation !== req.body.newPassword) {
-        res.status(400).send({ error: 'passwords should match' })
-      }
-      return user
-    })
-
-    .then(user => {
       user.set({ password: req.body.newPassword, passwordConfirmation: req.body.passwordConfirmation })
-      user.save()
-      res.status(200).send({ message: 'password change successful' })
+      return user.save(function(error, user) {
+        if (error) {
+          console.log('line 64 error', error.errors)
+          return res.status(401).send(error.errors)
+        } 
+        return res.sendStatus(200)
+      })
     })
-    .catch(error => res.send({ errors: error.errors }))
+    // .catch(error => {
+    //   console.log('line 71', Object.entries(error)[0])
+    //   res.status(401).send(error)
+    // })
+
+    // // check newPassword and passwordConfirmation match, and throw error if not
+    // // check password fits criteria and reject if not
+
+    // .then(user => {
+    //   const validationResult = passwordComplexity().validate(req.body.newPassword)
+    //   if (validationResult.error) {
+    //     return res.send('Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.' )
+    //   }
+    //   if (req.body.passwordConfirmation !== req.body.newPassword) {
+    //     return res.send('passwords should match' )
+    //   }
+    //   return user
+    // })
+
+    // .then(user => {
+    //   // user.password = req.body.newPassword
+    //   // user.passwordConfirmation = req.body.passwordConfirmation
+    //   user.set({ password: req.body.newPassword, passwordConfirmation: req.body.passwordConfirmation })
+    //   console.log('hello', user.password)
+    //   user.save()
+    //   return res.send('password change successful' )
+    // })
+    // // .then(user => res.status(200).send(user))
+    // .catch(error => console.log(error))
 }
 
 
