@@ -27,7 +27,7 @@ const schema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'please enter a password'],
-    hide: true
+    hide: true 
     // validator: isValidPassword, //doesn't work because it's validating the HASHED password which is a complex string that passes this test! 
     // message: 'Password must have at least: 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.'
 
@@ -68,6 +68,5 @@ schema
 schema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password)
 }
-
 
 module.exports = mongoose.model('User', schema)

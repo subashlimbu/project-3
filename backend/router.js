@@ -41,7 +41,7 @@ router.route('/login')
 
 router.route('/profile')
   .get(secureRoute, userController.getProfile)
-
+  .put(secureRoute, userController.changePassword)
 
 router.route('/random')
   .get(restaurantController.getRandomRestaurant)

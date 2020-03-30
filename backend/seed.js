@@ -878,7 +878,6 @@ mongoose.connect(
             "halalFriendly":false,
             "priceRange":3,
             "image": "https://www.hot-dinners.com/images/stories/blog/2018/barrafinacoal/choux.jpg",
-            "user":users[3]
             "user":users[2],
             "image":"https://emono.co.uk/wp-content/uploads/2018/04/HOME1.jpg"
           },
