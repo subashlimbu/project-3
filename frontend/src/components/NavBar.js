@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import auth from '../lib/auth'
 import { withRouter } from 'react-router-dom'
+import { GiHotMeal } from 'react-icons/gi'
 
 class NavBar extends React.Component {
 
@@ -29,7 +30,7 @@ class NavBar extends React.Component {
       <nav className="navbar">
         <div className="container">
           <div className="navbar-brand">
-            <Link className="navbar-item" to="/">Food For Thought<i className="fas fa-camera"></i>
+            <Link className="navbar-item foodtitle" to="/">Food For Thought<GiHotMeal />
             </Link>
             <a
               role="button"

@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurant')
 const User = require('./models/user')
-const uri = "mongodb+srv://benharris:Password-1@cluster0-kzea4.mongodb.net/restaurantdb?retryWrites=true&w=majority";
+const uri = 'mongodb+srv://benharris:Password-1@cluster0-kzea4.mongodb.net/restaurantdb?retryWrites=true&w=majority'
+// const uri = 'mongodb://localhost/restaurant-db';
 
 mongoose.connect(
   uri,
