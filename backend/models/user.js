@@ -50,6 +50,7 @@ schema
     // console.log(this._passwordConfirmation)
     // console.log(this.password)
     const validationResult = passwordComplexity().validate(this.password)
+    // console.log('userjs validation result', validationResult)
     if (validationResult.error) {
       this.invalidate('password', 'Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.')
     }
