@@ -47,7 +47,7 @@ function deleteARestaurant(req, res) {
 
 function editARestaurant(req, res) {
   const id = req.params.id
-  console.log('gets in here')
+  console.log('gets in here edit resto')
   Restaurant
     .findById(id)
     .then(restaurant => {
@@ -61,6 +61,7 @@ function editARestaurant(req, res) {
       res.status(202).send(restaurant)
     })
 }
+
 
 function CreateNewComment(req, res) {
   const currentUser = req.currentUser
@@ -226,7 +227,7 @@ function swapLike(req, res) {
         comment.dislikedBy.push(currentUser._id)
       }
       restaurant.save()
-      return res.send({ 
+      return res.send({
         dislikedBy: comment.dislikedBy,
         likedBy: comment.likedBy
       })
@@ -377,9 +378,18 @@ function emailRestaurantInfo(req, res) {
 
     })
 
+}
 
+function getFavourites(req, res) {
+  const currentUser = req.currentUser
+  Restaurant
+    .find({ '_id': { $in: currentUser.favourites } })
+    .then(favRestos => {
+      res.status(200).send(favRestos)
+    })
 
 }
+
 
 module.exports = {
   index,
@@ -398,5 +408,6 @@ module.exports = {
   unlikeComment,
   undislikeComment,
   swapLike,
-  emailRestaurantInfo
+  emailRestaurantInfo,
+  getFavourites
 }
