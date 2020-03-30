@@ -57,7 +57,7 @@ class SingleRestaurant extends React.Component {
 
       <section className="section">
         <div className="container" >
-          <h1 className="title is-1 is-title-light">{name}</h1>
+          <h1 className="title is-2 is-title-light">{name}</h1>
           <hr />
           <div className="columns is-variable is-5" >
             <figure className="image is-4by2">
