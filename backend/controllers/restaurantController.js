@@ -8,6 +8,9 @@ function index(req, res) {
     .then(restaurants => {
       res.send(restaurants)
     })
+    .catch(error => {
+      console.log(error)
+    })
 }
 
 function createNewRestaurant(req, res) {
