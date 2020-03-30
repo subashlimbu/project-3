@@ -77,7 +77,7 @@ class Restaurants extends React.Component {
       <div className="container">
         <SearchBar query={this.state.query} onChange={() => this.handleSearch(event)} />
         <DropSearch handleDropdown={() => this.handleDropdown(event)} />
-        
+
         <div className="columns is-centered is-mobile is-multiline">
 
           {this.state.filteredRestaurants.map(restaurant => {
