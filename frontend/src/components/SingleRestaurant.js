@@ -4,6 +4,9 @@ import Map from './Map'
 import Comments from './Comments'
 import LoaderSpinner from './LoaderSpinner'
 import { Link } from 'react-router-dom'
+import Email from './Email'
+import auth from '../lib/auth'
+
 
 class SingleRestaurant extends React.Component {
 
@@ -31,15 +34,15 @@ class SingleRestaurant extends React.Component {
 
   render() {
 
-    console.log(this.props.match)
-    console.log(this.state.restaurant)
+    // console.log(this.props.match)
+    // console.log(this.state.restaurant)
     if (!this.state.restaurant) {
       return <LoaderSpinner />
     }
 
     const id = this.props.match.params.id
     const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, isHalal } = this.state.restaurant
-
+    const isLoggedIn = auth.isLoggedIn()
     return <>
 
       {/* <section className="hero is-medium">
@@ -58,7 +61,7 @@ class SingleRestaurant extends React.Component {
           <hr />
           <div className="columns is-variable is-5" >
             <figure className="image is-4by2">
-              <img src={image} alt={name} className="sImage"/>
+              <img src={image} alt={name} className="sImage" />
             </figure>
             <div className="column is-one-half single-info" >
               <div className="single-address">
@@ -83,6 +86,9 @@ class SingleRestaurant extends React.Component {
                 <p className="smaller-details">Serves alcohol: {this.crossTick(serveAlcohol)}</p>
                 <p className="smaller-details">Vegetarian-friendly: {this.crossTick(veggieFriendly)}</p>
                 <p className="smaller-details">Serves halal meat: {this.crossTick(isHalal)}</p>
+              </div>
+              <div className="email">
+                {isLoggedIn && <Email restaurantId={id} />}
               </div>
             </div>
           </div>
