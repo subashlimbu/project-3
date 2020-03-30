@@ -44,7 +44,7 @@ class SingleRestaurant extends React.Component {
     const id = this.props.match.params.id
     const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, isHalal } = this.state.restaurant
     const isLoggedIn = auth.isLoggedIn()
-    return <>
+    return <div className='main-container'>
 
       {/* <section className="hero is-medium">
         <div className="hero-body" style={{ backgroundImage: `url(${image})` }}>
@@ -56,62 +56,57 @@ class SingleRestaurant extends React.Component {
         </div>
       </section> */}
 
-      <section className="section">
-        <div className="container" >
-          <h1 className="title is-1 is-title-light">{name}</h1>
-          <hr />
-          <FavouriteButton />
-          <div className="columns is-variable is-5" >
-            <figure className="image is-4by2">
-              <img src={image} alt={name} className="sImage" />
-            </figure>
-            <div className="column is-one-half single-info" >
-              <div className="single-address">
-                <p className="single-details">{address}</p>
-                <p className="single-details">{postcode}</p>
-                <p className="single-details">{telephone}</p>
-              </div>
-              <div className="single-link">
-                <Link to={link}>{link}</Link>
-              </div>
-              <div className="single-link-button">
-                {bookingLink && <button className="button is-normal">
-                  <a target="_blank" rel="noopener noreferrer" href={bookingLink}>
-                    {'Book online'}
-                  </a>
-                </button>}
-              </div>
-              <div className="single-cuisine">
-                <p className="smaller-details">Cuisines served: {cuisine.join(', ')} </p>
-              </div>
-              <div className="single-ticks">
-                <p className="smaller-details">Serves alcohol: {this.crossTick(serveAlcohol)}</p>
-                <p className="smaller-details">Vegetarian-friendly: {this.crossTick(veggieFriendly)}</p>
-                <p className="smaller-details">Serves halal meat: {this.crossTick(isHalal)}</p>
-              </div>
-              <div className="email">
-                {isLoggedIn && <Email restaurantId={id} />}
-              </div>
-            </div>
+      <h1 className="title is-1 is-title-light">{name}</h1>
+      <hr />
+      <FavouriteButton />
+      <div className="columns is-variable is-5" >
+        <figure className="image is-4by2">
+          <img src={image} alt={name} className="sImage" />
+        </figure>
+        <div className="column is-one-half single-info" >
+          <div className="single-address">
+            <p className="single-details">{address}</p>
+            <p className="single-details">{postcode}</p>
+            <p className="single-details">{telephone}</p>
           </div>
-          <div className="container">
-            <hr />
-            <div className="columns is-one-half">
-              <div className="column">
-                <div className="content">
-                  <Map
-                    postcode={postcode}
-                  />
-                </div>
-              </div>
-              <div className="column">
-                <Comments restaurantId={id} />
-              </div>
-            </div>
+          <div className="single-link">
+            <Link to={link}>{link}</Link>
           </div>
-
+          <div className="single-link-button">
+            {bookingLink && <button className="button is-normal">
+              <a target="_blank" rel="noopener noreferrer" href={bookingLink}>
+                {'Book online'}
+              </a>
+            </button>}
+          </div>
+          <div className="single-cuisine">
+            <p className="smaller-details">Cuisines served: {cuisine.join(', ')} </p>
+          </div>
+          <div className="single-ticks">
+            <p className="smaller-details">Serves alcohol: {this.crossTick(serveAlcohol)}</p>
+            <p className="smaller-details">Vegetarian-friendly: {this.crossTick(veggieFriendly)}</p>
+            <p className="smaller-details">Serves halal meat: {this.crossTick(isHalal)}</p>
+          </div>
+          <div className="email">
+            {isLoggedIn && <Email restaurantId={id} />}
+          </div>
         </div>
-      </section>
+      </div>
+      <div className="container">
+        <hr />
+        <div className="columns is-full-mobile">
+          <div className="column is-one-third">
+            <div className="content">
+              <Map
+                postcode={postcode}
+              />
+            </div>
+          </div>
+          <div className="column is-two-thirds">
+            <Comments restaurantId={id} />
+          </div>
+        </div>
+      </div>
 
       {/* <section className="section">
         <div className="container">
@@ -119,7 +114,7 @@ class SingleRestaurant extends React.Component {
         </div>
       </section> */}
 
-    </>
+    </div>
     // end of playing with layout
 
   }

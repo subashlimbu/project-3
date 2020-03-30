@@ -256,3 +256,50 @@ div.dropdown {
   margin-right: 10px;
   margin-left: 2px;
 }
+
+.new-comment-textfield {
+  margin-left: -10px;
+}
+
+.white {
+  color: white;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .main-container {
+    padding: 15px 10px 10px 15px;
+  }
+  .homepage-textbox {
+    margin: 90px 0 0 0;
+    
+  }
+  .is-large {
+    height: 75vh;
+  }
+  .random-container {
+    height: 20vh;
+    .random-container-text {
+      max-height: 20vh;
+      display: block;
+      text-align: center;
+      .random-text {
+        font-size: 15px;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .mobile-padding {
+    padding-left: 30px
+  }
+
+  .comment-column {
+    margin-left: -100px;
+  }
+
+  .comment-text {
+    max-width: 80vw;
+    word-wrap: break-word;
+  }
+}

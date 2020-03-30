@@ -37,17 +37,15 @@ class AddRestaurant extends React.Component {
   }
   render() {
     const { errors, data } = this.state
-    return <section className="section">
-      <div className="container">
-        <h1 className="title">Add a new restaurant</h1>
-        <RestaurantForm
-          handleSubmit={(event) => this.handleSubmit(event)}
-          handleChange={(event) => this.handleChange(event)}
-          errors={errors}
-          data={data}
-        />
-      </div>
-    </section>
+    return <div className="main-container">
+      <h1 className="title">Add a new restaurant</h1>
+      <RestaurantForm
+        handleSubmit={(event) => this.handleSubmit(event)}
+        handleChange={(event) => this.handleChange(event)}
+        errors={errors}
+        data={data}
+      />
+    </div>
   }
 }
 export default AddRestaurant
