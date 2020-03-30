@@ -29,7 +29,8 @@ class NavBar extends React.Component {
       <nav className="navbar">
         <div className="container">
           <div className="navbar-brand">
-            <Link className="navbar-item" to="/">Home</Link>
+            <Link className="navbar-item" to="/">Food For Thought<i className="fas fa-camera"></i>
+            </Link>
             <a
               role="button"
               className={`navbar-burger burger ${this.state.navMobileOpen ? 'is-active' : ''}`}

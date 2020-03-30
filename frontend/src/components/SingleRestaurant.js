@@ -2,7 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import Map from './Map'
 import Comments from './Comments'
+import LoaderSpinner from './LoaderSpinner'
 import { Link } from 'react-router-dom'
+import Email from './Email'
+import auth from '../lib/auth'
+
 
 class SingleRestaurant extends React.Component {
 
@@ -30,47 +34,18 @@ class SingleRestaurant extends React.Component {
 
   render() {
 
-    console.log(this.props.match)
-    console.log(this.state.restaurant)
+    // console.log(this.props.match)
+    // console.log(this.state.restaurant)
     if (!this.state.restaurant) {
-      return <h1>Restaurant not ready...</h1>
+      return <LoaderSpinner />
     }
 
     const id = this.props.match.params.id
     const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, isHalal } = this.state.restaurant
-
-    // return <section className="section" >
-
-
-    //     <div className="container" >
-    //       <div className="columns" >
-    //         <div className="column is-one-half single-info" >
-    //           <h1 className="title">{name}</h1>
-    //           <p>{address}</p>
-    //           <p>{postcode}</p>
-    //           <p>{telephone}</p>
-    //         </div>
-    //         <div className="column is-one-half">
-    //           <Map
-    //             postcode={postcode}
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-
-
-    //   <section className="section">
-    //     <div className="container">
-    //       <Comments restaurantId={id} />
-    //     </div>
-    //   </section>
-
-    // </section>
-
-    // playing with layout
+    const isLoggedIn = auth.isLoggedIn()
     return <>
 
-      <section className="hero is-medium">
+      {/* <section className="hero is-medium">
         <div className="hero-body" style={{ backgroundImage: `url(${image})` }}>
           <div className="container single-name-background">
             <h1 className="title single-name">
@@ -78,11 +53,16 @@ class SingleRestaurant extends React.Component {
             </h1>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section >
+      <section className="section">
         <div className="container" >
-          <div className="columns" >
+          <h1 className="title is-1 is-title-light">{name}</h1>
+          <hr />
+          <div className="columns is-variable is-5" >
+            <figure className="image is-4by2">
+              <img src={image} alt={name} className="sImage" />
+            </figure>
             <div className="column is-one-half single-info" >
               <div className="single-address">
                 <p className="single-details">{address}</p>
@@ -107,21 +87,35 @@ class SingleRestaurant extends React.Component {
                 <p className="smaller-details">Vegetarian-friendly: {this.crossTick(veggieFriendly)}</p>
                 <p className="smaller-details">Serves halal meat: {this.crossTick(isHalal)}</p>
               </div>
-            </div>
-            <div className="column is-one-half single-info">
-              <Map
-                postcode={postcode}
-              />
+              <div className="email">
+                {isLoggedIn && <Email restaurantId={id} />}
+              </div>
             </div>
           </div>
+          <div className="container">
+            <hr />
+            <div className="columns is-one-half">
+              <div className="column">
+                <div className="content">
+                  <Map
+                    postcode={postcode}
+                  />
+                </div>
+              </div>
+              <div className="column">
+                <Comments restaurantId={id} />
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <section className="section">
+      {/* <section className="section">
         <div className="container">
           <Comments restaurantId={id} />
         </div>
-      </section>
+      </section> */}
 
     </>
     // end of playing with layout
