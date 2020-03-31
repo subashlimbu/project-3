@@ -8,6 +8,9 @@ function index(req, res) {
     .then(restaurants => {
       res.send(restaurants)
     })
+    .catch(error => {
+      console.log(error)
+    })
 }
 
 function createNewRestaurant(req, res) {
@@ -44,7 +47,7 @@ function deleteARestaurant(req, res) {
 
 function editARestaurant(req, res) {
   const id = req.params.id
-  console.log('gets in here')
+  console.log('gets in here edit resto')
   Restaurant
     .findById(id)
     .then(restaurant => {
@@ -58,6 +61,7 @@ function editARestaurant(req, res) {
       res.status(202).send(restaurant)
     })
 }
+
 
 function CreateNewComment(req, res) {
   const currentUser = req.currentUser
@@ -125,89 +129,177 @@ function getLikeAndDislike(req, res) {
     .then(restaurant => {
       if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
       // get the comment that I need to delete. We get it using the id method of mongoose 
-      console.log((restaurant.comments.id(req.params.commentId)))
       return restaurant.comments.id(req.params.commentId)
     })
     .then(comment => {
       const currentUser = req.currentUser
       return res.send({
-        isLiked: comment.likedBy.includes(currentUser._id),
-        isDisliked: comment.dislikedBy.includes(currentUser._id)
+        liked: comment.likedBy.includes(currentUser._id),
+        disliked: comment.dislikedBy.includes(currentUser._id)
       })
     })
     .catch(err => console.log(err))
 }
 
-//LIKES AND DISLIKES: this is temporary for the moment, unsure if this is the best possible implementation
-//it works though
-//need to add functionality to not allow user to like if they've disliked already and vice versa.
-
-function toggleLikeComment(req, res) {
-  //get current user from request
+//adds a user to the likes array
+function likeComment(req, res) {
   const currentUser = req.currentUser
   Restaurant
-    //find the restaurant from request
     .findById(req.params.id)
     .then(restaurant => {
-      if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
-      //get the comment from request
+      if (!restaurant) return res.status(404).send({ error: 'No restaurant found with this ID.' })
       const comment = restaurant.comments.id(req.params.commentId)
-      //if the user has liked the comment then remove them from the likes otherwise add them to the likes
-      if (comment.likedBy.includes(currentUser._id)) {
-        comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id, 1))
-      } else {
-        //if they are in the dislikedBy array the remove them
-        if (comment.dislikedBy.includes(currentUser._id)) {
-          comment.dislikedBy.splice(comment.dislikedBy.indexOf(currentUser._id, 1))
-        }
-        comment.likedBy.push(currentUser._id)
-      }
-      return restaurant.save()
+      if (comment.likedBy.includes(currentUser._id)) return res.status(401).send({ message: 'user already liked comment' })
+      if (comment.dislikedBy.includes(currentUser._id)) return res.status(401).send({ message: 'user has disliked comment' })
+      comment.likedBy.push(currentUser._id)
+      restaurant.save()
+      return res.send({ likes: comment.likedBy })
     })
-    .then(restaurant => {
-      const currentUser = req.currentUser
-      const comment = restaurant.comments.id(req.params.commentId)
-      //return a boolean telling the front end if the user has liked the comment or not
-      //this can be used for a button graphic to be filled in or not depending on if the user has liked the comment or not
-      res.status(200).send({
-        isLiked: comment.likedBy.includes(currentUser._id),
-        isDisliked: comment.dislikedBy.includes(currentUser._id)
-      })
-    })
-    .catch(err => res.send({ error: err }))
+    .catch(err => console.log('HI BEN ', err))
 }
 
-//repeat the above logic for dislikedBy
-function toggleDislikeComment(req, res) {
+//removes the user from the likes array
+function unlikeComment(req, res) {
   const currentUser = req.currentUser
   Restaurant
     .findById(req.params.id)
     .then(restaurant => {
-      if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
+      if (!restaurant) return res.status(404).send({ error: 'No restaurant found with this ID.' })
+      const comment = restaurant.comments.id(req.params.commentId)
+      if (!comment.likedBy.includes(currentUser._id)) return res.send({ liked: false })
+      comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id), 1)
+      restaurant.save()
+      return res.send({ likes: comment.likedBy })
+    })
+    .catch(err => console.log(err))
+}
+
+//adds the current user to the dislike array
+function dislikeComment(req, res) {
+  const currentUser = req.currentUser
+  Restaurant
+    .findById(req.params.id)
+    .then(restaurant => {
+      if (!restaurant) return res.status(404).send({ error: 'No restaurant found with this ID.' })
+      const comment = restaurant.comments.id(req.params.commentId)
+      if (comment.dislikedBy.includes(currentUser._id)) return res.status(401).send({ message: 'user already disliked comment' })
+      if (comment.likedBy.includes(currentUser._id)) return res.status(401).send({ message: 'user has liked comment' })
+      comment.dislikedBy.push(currentUser._id)
+      restaurant.save()
+      return res.send({ disliked: true })
+    })
+    .catch(err => console.log(err))
+}
+
+//removes the current user from the dislike array
+function undislikeComment(req, res) {
+  const currentUser = req.currentUser
+  Restaurant
+    .findById(req.params.id)
+    .then(restaurant => {
+      if (!restaurant) return res.status(404).send({ error: 'No restaurant found with this ID.' })
+      const comment = restaurant.comments.id(req.params.commentId)
+      if (!comment.dislikedBy.includes(currentUser._id)) return res.send({ liked: false })
+      comment.dislikedBy.splice(comment.dislikedBy.indexOf(currentUser._id), 1)
+      restaurant.save()
+      return res.send({ liked: false })
+    })
+    .catch(err => console.log(err))
+}
+
+//this is a specific end point for if the user already has a comment liked or disliked and they try to do the opposite
+//this method checks if the user is in the dislike array and if to removes them from the dislikes and adds them to the likes
+//then it checks for the opposite
+function swapLike(req, res) {
+  const currentUser = req.currentUser
+  Restaurant
+    .findById(req.params.id)
+    .then(restaurant => {
+      if (!restaurant) return res.status(404).send({ error: 'No restaurant found with this ID.' })
       const comment = restaurant.comments.id(req.params.commentId)
       if (comment.dislikedBy.includes(currentUser._id)) {
-        comment.dislikedBy.splice(comment.dislikedBy.indexOf(currentUser._id, 1))
-      } else {
-        if (comment.likedBy.includes(currentUser._id)) {
-          comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id, 1))
-        }
+        console.log('swapped from dislike to like')
+        comment.dislikedBy.splice(comment.dislikedBy.indexOf(currentUser._id), 1)
+        comment.likedBy.push(currentUser._id)
+      } else if (comment.likedBy.includes(currentUser._id)) {
+        console.log('swapped from like to dislike')
+        comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id), 1)
         comment.dislikedBy.push(currentUser._id)
       }
-      return restaurant.save()
-    })
-    .then(restaurant => {
-      const currentUser = req.currentUser
-      const comment = restaurant.comments.id(req.params.commentId)
-      res.status(200).send({
-        isLiked: comment.likedBy.includes(currentUser._id),
-        isDisliked: comment.dislikedBy.includes(currentUser._id)
+      restaurant.save()
+      return res.send({
+        dislikedBy: comment.dislikedBy,
+        likedBy: comment.likedBy
       })
     })
-    .catch(err => res.send({ error: err }))
+    .catch(err => console.log(err))
 }
 
+// function toggleLikeComment(req, res) {
+//   //get current user from request
+//   const currentUser = req.currentUser
+//   Restaurant
+//     //find the restaurant from request
+//     .findById(req.params.id)
+//     .then(restaurant => {
+//       if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
+//       //get the comment from request
+//       const comment = restaurant.comments.id(req.params.commentId)
+//       //if the user has liked the comment then remove them from the likes otherwise add them to the likes
+//       if (comment.likedBy.includes(currentUser._id)) {
+//         comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id, 1))
+//       } else {
+//         //if they are in the dislikedBy array the remove them
+//         if (comment.dislikedBy.includes(currentUser._id)) {
+//           comment.dislikedBy.splice(comment.dislikedBy.indexOf(currentUser._id, 1))
+//         }
+//         comment.likedBy.push(currentUser._id)
+//       }
+//       return restaurant.save()
+//     })
+//     .then(restaurant => {
+//       const currentUser = req.currentUser
+//       const comment = restaurant.comments.id(req.params.commentId)
+//       //return a boolean telling the front end if the user has liked the comment or not
+//       //this can be used for a button graphic to be filled in or not depending on if the user has liked the comment or not
+//       res.status(200).send({
+//         isLiked: comment.likedBy.includes(currentUser._id),
+//         isDisliked: comment.dislikedBy.includes(currentUser._id)
+//       })
+//     })
+//     .catch(err => res.send({ error: err }))
+// }
+
+// //repeat the above logic for dislikedBy
+// function toggleDislikeComment(req, res) {
+//   const currentUser = req.currentUser
+//   Restaurant
+//     .findById(req.params.id)
+//     .then(restaurant => {
+//       if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID' })
+//       const comment = restaurant.comments.id(req.params.commentId)
+//       if (comment.dislikedBy.includes(currentUser._id)) {
+//         comment.dislikedBy.splice(comment.dislikedBy.indexOf(currentUser._id, 1))
+//       } else {
+//         if (comment.likedBy.includes(currentUser._id)) {
+//           comment.likedBy.splice(comment.likedBy.indexOf(currentUser._id, 1))
+//         }
+//         comment.dislikedBy.push(currentUser._id)
+//       }
+//       return restaurant.save()
+//     })
+//     .then(restaurant => {
+//       const currentUser = req.currentUser
+//       const comment = restaurant.comments.id(req.params.commentId)
+//       res.status(200).send({
+//         isLiked: comment.likedBy.includes(currentUser._id),
+//         isDisliked: comment.dislikedBy.includes(currentUser._id)
+//       })
+//     })
+//     .catch(err => res.send({ error: err }))
+// }
+
 function getComments(req, res) {
-  console.log(req)
   Restaurant
     .findById(req.params.id)
     .populate('comments.user').exec()
@@ -286,9 +378,18 @@ function emailRestaurantInfo(req, res) {
 
     })
 
+}
 
+function getFavourites(req, res) {
+  const currentUser = req.currentUser
+  Restaurant
+    .find({ '_id': { $in: currentUser.favourites } })
+    .then(favRestos => {
+      res.status(200).send(favRestos)
+    })
 
 }
+
 
 module.exports = {
   index,
@@ -299,10 +400,14 @@ module.exports = {
   CreateNewComment,
   EditAComment,
   DeleteAComment,
-  toggleLikeComment,
-  toggleDislikeComment,
   getComments,
   getRandomRestaurant,
   getLikeAndDislike,
-  emailRestaurantInfo
+  likeComment,
+  dislikeComment,
+  unlikeComment,
+  undislikeComment,
+  swapLike,
+  emailRestaurantInfo,
+  getFavourites
 }

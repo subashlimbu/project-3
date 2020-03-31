@@ -18,6 +18,8 @@ import Login from './components/Login'
 import Register from './components/Register'
 import AddRestaurant from './components/AddRestaurant'
 import Profile from './components/Profile'
+import FavouritedRestaurants from './components/FavouritedRestaurants'
+import ChangePassword from './components/ChangePassword'
 
 const App = () => (
   <BrowserRouter>
@@ -30,7 +32,8 @@ const App = () => (
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/profile" component={Profile} />
-      {/* <Route exact path="/profile" component={ChangePassword} /> */}
+      <Route exact path="/favourites" component={FavouritedRestaurants} />
+      <Route exact path="/profile/changePassword" component={ChangePassword} />
 
 
     </Switch>

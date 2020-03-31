@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import auth from '../lib/auth'
 import { withRouter } from 'react-router-dom'
+import { GiHotMeal } from 'react-icons/gi'
 
 class NavBar extends React.Component {
 
@@ -29,7 +30,8 @@ class NavBar extends React.Component {
       <nav className="navbar">
         <div className="container">
           <div className="navbar-brand">
-            <Link className="navbar-item" to="/">Home</Link>
+            <Link className="navbar-item foodtitle" to="/">Food For Thought<GiHotMeal />
+            </Link>
             <a
               role="button"
               className={`navbar-burger burger ${this.state.navMobileOpen ? 'is-active' : ''}`}
@@ -60,6 +62,9 @@ class NavBar extends React.Component {
                 <Link className="navbar-item" to="/login">Login</Link>
               </div>}
 
+              {isLoggedIn && <div className="navbar-item">
+                <Link className="navbar-item" to="/favourites">Favourites</Link>
+              </div>}
 
               {isLoggedIn && <div className="navbar-item has-dropdown is-hoverable">
 

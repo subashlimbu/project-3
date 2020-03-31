@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+}
+
 .section {
   display: flex;
   padding: 20px 100px 20px;
@@ -11,15 +15,16 @@
   padding: 20px;
 }
 
-.hero-body {
+div.hero-body {
   background-image: url('https://www.9-elephants.co.uk/wp-content/uploads/thai-food.jpg');
   background-size: cover;
-  background-color: black;
+  // background-color: black;
   // opacity: 80%;
 }
 
 .homepage-textbox {
-  background-color: rgba(255, 255, 255, 0.5);
+  // background-color: rgba(255, 255, 255, 0.5);
+  color: white;
   margin: auto 200px;
 }
 
@@ -39,22 +44,38 @@
   color: black;
 }
 
-.navbar {
+nav.navbar {
   background-color: paleturquoise;
 }
 
 .navbar-item {
   color: black;
   font-weight: bold;
+  
 }
-.navbar-item.has-dropdown:hover {
-  .navbar-link {
-    background-color: rgba(256, 256, 256, 0.5);
-    }
+.foodtitle {
+  font-size: 40px;
+  font-variant: unset;;
+  margin-bottom: 0.5rem;
+  color: red;
+  margin-bottom: 1px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+a.navbar-item{
+  transition: 0.2s ease;
+  border-bottom: 2px solid transparent;
+  &:hover {
+    border-bottom: 2px solid white;
+    background-color: transparent;
+  }
 }
 
 .dropdown-item {
   color: black;
+}
+.navbar-dropdown, .navbar-divider{
+  background-color: rgba(256, 256, 265, 0.5);
 }
 
 .map {
@@ -70,13 +91,8 @@
     font-size: 20px;
     color: violet;
   }
-  // p{
-  //   font-size: 20px;
-  // }
-  
 
 }
-
 .liked {
   color: rgb(5, 207, 5);
 }
@@ -228,17 +244,6 @@ div.dropdown {
   text-align: center;
 }
 
-
-
-// .input, .textarea {
-//   width: 400px
-
-// }
-
-// .label {
-//   margin: 10px
-// }
-
 .field {
   padding: 10px;
 }
@@ -248,4 +253,11 @@ div.dropdown {
   // border-color: transparent;
   color: #fff;
   margin: 29px 11px -15px -50px;
+  margin-top: 10px;
+  
+}
+
+#comment-rating {
+  margin-right: 10px;
+  margin-left: 2px;
 }

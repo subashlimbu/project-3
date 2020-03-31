@@ -9,6 +9,13 @@ router.route('/restaurants')
   .get(restaurantController.index) //tested and works 
   .post(secureRoute, restaurantController.createNewRestaurant) //tested and works for logged-in user 
 
+router.route('/restaurant/favourite')
+  .put(secureRoute, userController.favourite)
+
+router.route('/restaurant/unfavourite')
+  .put(secureRoute, userController.unfavourite)
+
+
 router.route('/restaurant/:id')
   .get(restaurantController.viewARestaurant) //tested and works 
   .delete(secureRoute, restaurantController.deleteARestaurant) //tested and works for logged-in user who created that resto 
@@ -25,13 +32,22 @@ router.route('/restaurant/:id/comment/:commentId')
 
 //like and dislike toggles work but this is a tempory fix as I need to ask Nick about the requests/routes used for this
 router.route('/restaurant/:id/comment/:commentId/like')
-  .get(secureRoute, restaurantController.toggleLikeComment)
+  .put(secureRoute, restaurantController.likeComment)
+
+router.route('/restaurant/:id/comment/:commentId/unlike')
+  .put(secureRoute, restaurantController.unlikeComment)
 
 router.route('/restaurant/:id/comment/:commentId/dislike')
-  .get(secureRoute, restaurantController.toggleDislikeComment)
+  .put(secureRoute, restaurantController.dislikeComment)
+
+router.route('/restaurant/:id/comment/:commentId/undislike')
+  .put(secureRoute, restaurantController.undislikeComment)
 
 router.route('/restaurant/:id/comment/:commentId/likes')
   .get(secureRoute, restaurantController.getLikeAndDislike)
+
+router.route('/restaurant/:id/comment/:commentId/swaplike')
+  .put(secureRoute, restaurantController.swapLike)
 
 router.route('/register')
   .post(userController.register)
@@ -41,12 +57,16 @@ router.route('/login')
 
 router.route('/profile')
   .get(secureRoute, userController.getProfile)
-
+  .put(secureRoute, userController.changePassword)
 
 router.route('/random')
   .get(restaurantController.getRandomRestaurant)
 
 router.route('/restaurant/:id/email')
   .get(secureRoute, restaurantController.emailRestaurantInfo)
+
+router.route('/favourites')
+  .get(secureRoute, restaurantController.getFavourites)
+
 
 module.exports = router

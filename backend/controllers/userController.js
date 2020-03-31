@@ -46,39 +46,103 @@ function getProfile(req, res) {
   res.status(202).send(user)
 }
 
-// function changePassword(req, res) {
-//   User
-//     // find the user
-//     .findOne({ email: req.body.email })
-//     // check the 
-//     .then()
+function changePassword(req, res) {
+  const user = req.currentUser._id
 
-//   // get the user based on who is currently logged in
-//   // check the email and currentPassword match - reject if not
-//   // update password to newPassword
-// }
+  User
+    .findById(user)
+    .then(user => {
+      return user
+    })
+    .then(user => {
+      if (!user.validatePassword(req.body.oldPassword)) {
+        return res.status(401).send({ passwordValidation: { message: 'Wrong password' } })
+      }
+      user.set({ password: req.body.newPassword, passwordConfirmation: req.body.passwordConfirmation })
+      return user.save(function(error, user) {
+        if (error) {
+          console.log('line 64 error', error.errors)
+          return res.status(401).send(error.errors)
+        } 
+        return res.sendStatus(200)
+      })
+    })
+    // .catch(error => {
+    //   console.log('line 71', Object.entries(error)[0])
+    //   res.status(401).send(error)
+    // })
 
-// changepassword should receive email, currentPassword, newPassword
-// function editARestaurant(req, res) {
-//   const id = req.params.id
-//   console.log('gets in here')
-//   Restaurant
-//     .findById(id)
-//     .then(restaurant => {
-//       if (!restaurant.user.equals(req.currentUser._id)) return res.status(401).send({ message: 'This restaurant does not belong to you! Please do not change other peopls restaurant' })
-//       return restaurant.set(req.body)
-//     })
-//     .then(restaurant => {
-//       return restaurant.save()
-//     })
-//     .then(restaurant => {
-//       res.status(202).send(restaurant)
-//     })
-// }
+    // // check newPassword and passwordConfirmation match, and throw error if not
+    // // check password fits criteria and reject if not
+
+    // .then(user => {
+    //   const validationResult = passwordComplexity().validate(req.body.newPassword)
+    //   if (validationResult.error) {
+    //     return res.send('Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.' )
+    //   }
+    //   if (req.body.passwordConfirmation !== req.body.newPassword) {
+    //     return res.send('passwords should match' )
+    //   }
+    //   return user
+    // })
+
+    // .then(user => {
+    //   // user.password = req.body.newPassword
+    //   // user.passwordConfirmation = req.body.passwordConfirmation
+    //   user.set({ password: req.body.newPassword, passwordConfirmation: req.body.passwordConfirmation })
+    //   console.log('hello', user.password)
+    //   user.save()
+    //   return res.send('password change successful' )
+    // })
+    // // .then(user => res.status(200).send(user))
+    // .catch(error => console.log(error))
+}
+
+function favourite(req, res) {
+  const user = req.currentUser
+
+  // try {
+
+  //   User
+  //     .findOneAndUpdate(user, { $push: { favourites: { _id: req.body.restaurantId } } })
+  //     .then(user => console.log(user))
+  // } catch (e) {
+  //   console.log(e)
+  // }
+
+
+  User
+    .findOne(user)
+    .then(user => {
+      // console.log(req.body.restaurantId)
+      user.favourites.push(req.body.restaurantId) //make sure i name it restuarantId when i axios.post in frontend
+      // console.log(user)
+      user.save()
+      res.status(200).send({ message: 'added restaurant to user favourites field/array' })
+    })
+    .catch(error => res.send({ errors: error.errors })) //unsure of this 
+
+
+}
+
+function unfavourite(req, res) {
+  const user = req.currentUser
+  User
+    .findOne(user)
+    .then(user => {
+      user.favourites.pull(req.body.restaurantId)
+      console.log(user)
+      user.save()
+      res.status(200).send({ message: 'removed restaurant from users favourites array' })
+    })
+
+}
 
 module.exports = {
   register,
   login,
-  getProfile
-  // changePassword
+  getProfile,
+  changePassword,
+  favourite,
+  unfavourite
 }

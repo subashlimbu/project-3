@@ -6,6 +6,7 @@ import LoaderSpinner from './LoaderSpinner'
 import { Link } from 'react-router-dom'
 import Email from './Email'
 import auth from '../lib/auth'
+import FavouriteButton from './FavouriteButton'
 
 
 class SingleRestaurant extends React.Component {
@@ -13,14 +14,37 @@ class SingleRestaurant extends React.Component {
   constructor() {
     super()
     this.state = {
-      restaurant: null
+      restaurant: null,
+      isFavourited: null
     }
   }
 
   componentDidMount() {
     const id = this.props.match.params.id
+    // if user.favourites includes id, then setState this.state.isFavourited: true. else false 
+
+    // COMMENTED OUT HERE 
+    // const isLoggedIn = auth.isLoggedIn()
+    // isLoggedIn && axios.get('/api/profile',
+    //   { headers: { Authorization: `Bearer ${auth.getToken()}` } }
+    // )
+    //   .then(resp => {
+    //     const favedRestoArray = resp.data.favourites
+    //     // console.log(favedRestoArray)
+    //     if (favedRestoArray.includes(id)) {
+    //       this.setState({ isFavourited: true })
+    //     } else {
+    //       this.setState({ isFavourited: false })
+    //     }
+    //   })
+
+
     axios.get(`/api/restaurant/${id}`)
-      .then(resp => this.setState({ restaurant: resp.data }))
+      .then(resp => {
+        // console.log(resp)
+        this.setState({ restaurant: resp.data })
+
+      })
       .catch(err => console.error(err))
   }
 
@@ -57,8 +81,9 @@ class SingleRestaurant extends React.Component {
 
       <section className="section">
         <div className="container" >
-          <h1 className="title is-1 is-title-light">{name}</h1>
+          <h1 className="title is-2 is-title-light">{name}</h1>
           <hr />
+          {isLoggedIn && <FavouriteButton restaurantId={id} isFavourited={this.state.isFavourited} />}
           <div className="columns is-variable is-5" >
             <figure className="image is-4by2">
               <img src={image} alt={name} className="sImage" />
