@@ -32,7 +32,8 @@ function secureRoute(req, res, next) {
         // if we get here it means we found user using the user ID and we can pinpoint exactly which user! 
 
         // Attach our user to our request, so that our routes can access the user
-        req.currentUser = user //user is what we have  from line 28
+        req.currentUser = user //user is what we have  from line 27
+        console.log(req.currentUser)
 
         next()   // Finish this middleware, let express know we're done
       })

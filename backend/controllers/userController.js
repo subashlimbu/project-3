@@ -98,10 +98,51 @@ function changePassword(req, res) {
     // .catch(error => console.log(error))
 }
 
+function favourite(req, res) {
+  const user = req.currentUser
+
+  // try {
+
+  //   User
+  //     .findOneAndUpdate(user, { $push: { favourites: { _id: req.body.restaurantId } } })
+  //     .then(user => console.log(user))
+  // } catch (e) {
+  //   console.log(e)
+  // }
+
+
+  User
+    .findOne(user)
+    .then(user => {
+      // console.log(req.body.restaurantId)
+      user.favourites.push(req.body.restaurantId) //make sure i name it restuarantId when i axios.post in frontend
+      // console.log(user)
+      user.save()
+      res.status(200).send({ message: 'added restaurant to user favourites field/array' })
+    })
+    .catch(error => res.send({ errors: error.errors })) //unsure of this 
+
+
+}
+
+function unfavourite(req, res) {
+  const user = req.currentUser
+  User
+    .findOne(user)
+    .then(user => {
+      user.favourites.pull(req.body.restaurantId)
+      console.log(user)
+      user.save()
+      res.status(200).send({ message: 'removed restaurant from users favourites array' })
+    })
+
+}
 
 module.exports = {
   register,
   login,
   getProfile,
-  changePassword
+  changePassword,
+  favourite,
+  unfavourite
 }
