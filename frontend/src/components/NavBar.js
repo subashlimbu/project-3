@@ -62,6 +62,9 @@ class NavBar extends React.Component {
                 <Link className="navbar-item" to="/login">Login</Link>
               </div>}
 
+              {isLoggedIn && <div className="navbar-item">
+                <Link className="navbar-item" to="/favourites">Favourites</Link>
+              </div>}
 
               {isLoggedIn && <div className="navbar-item has-dropdown is-hoverable">
 

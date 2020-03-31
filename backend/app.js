@@ -7,11 +7,12 @@ const uri = 'mongodb+srv://benharris:Password-1@cluster0-kzea4.mongodb.net/resta
 
 
 mongoose.connect(uri,
-  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false },
   (err) => {
     if (err) console.log(err)
     else console.log('Mongoose connected!')
   })
+
 
 const expressServer = express()
 
