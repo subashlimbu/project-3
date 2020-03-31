@@ -1,6 +1,28 @@
 const Restaurant = require('../models/restaurant')
 const User = require('../models/user')
+const mongoose = require('mongoose')
 
+const GridFsStorage = require('multer-gridfs-storage')
+const Grid = require('gridfs-stream')
+const connection = mongoose.connection
+let gfs;
+
+//initialised grid file system stream with mongoose
+connection.once('open', function () {
+  gfs = Grid(connection.db, mongoose.mongo)
+  gfs.collection('images')
+})
+
+function getImage(imageArray) {
+  const outputArray = []
+  gfs.files.find().toArray((err, files) => {
+    files.forEach(file => {
+      if (imageArray.includes(file._id)) outputArray.push(file)
+    })
+  })
+  return outputArray
+}
+ 
 function index(req, res) {
   // Find all our pancakes (asynchronous!) and send them back when done
   Restaurant
@@ -15,6 +37,7 @@ function index(req, res) {
 
 function createNewRestaurant(req, res) {
   req.body.user = req.currentUser
+  console.log(req.body)
   Restaurant
     .create(req.body) //create restaurant using the JSON body inside insomnia / frontend form 
     .then(restaurant => {
@@ -398,5 +421,6 @@ module.exports = {
   unlikeComment,
   undislikeComment,
   swapLike,
-  emailRestaurantInfo
+  emailRestaurantInfo,
+  getImage
 }

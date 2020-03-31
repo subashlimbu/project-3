@@ -216,6 +216,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
       </small>}
     </div>
 
+
     <button className="button is-success">
       Submit restaurant
     </button>
