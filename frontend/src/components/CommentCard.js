@@ -128,10 +128,12 @@ class CommentCard extends React.Component {
       <p className="time">{moment(comment.createdAt).format('DD/MM/YYYY')}</p>
       <i className="far fa-thumbs-up"></i>
       <i className="far fa-thumbs-down"></i>
-      <span>{likeCount}</span>
-      <FontAwesomeIcon className={isLiked ? 'liked' : ''} icon={faThumbsUp} onClick={() => this.handleLike()} />
-      <span>{dislikeCount}</span>
-      <FontAwesomeIcon className={isDisliked ? 'disliked' : ''} icon={faThumbsDown} onClick={() => this.handleDislike()} />
+      <div>
+        <span id='comment-rating-counter'>{likeCount}</span>
+        <FontAwesomeIcon id='comment-rating' className={isLiked ? 'liked' : ''} icon={faThumbsUp} onClick={() => this.handleLike()} />
+        <span id='comment-rating-counter'>{dislikeCount}</span>
+        <FontAwesomeIcon id='comment-rating' className={isDisliked ? 'disliked' : ''} icon={faThumbsDown} onClick={() => this.handleDislike()} />
+      </div>
       {isloggedIn && user === comment.user.username && <button className="button is-danger is-round" onClick={this.props.onClick}>Delete</button>}
       <hr />
     </div>

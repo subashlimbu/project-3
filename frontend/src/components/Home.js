@@ -34,7 +34,7 @@ const Home = (props) => {
           {props => (
             <div style={props}>
               <div className="container has-text-centered homepage-textbox">
-                <p className="title has-text-centered">Food, glorious food!</p>
+                <p className="title has-text-centered has-text-white">Food, glorious food!</p>
                 <p className="subtitle has-text-centered">Hungry? Find tasty food in Central London.</p>
               </div>
 

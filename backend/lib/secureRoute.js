@@ -7,9 +7,10 @@ const jwt = require('jsonwebtoken')
 
 function secureRoute(req, res, next) {
   const authToken = req.headers.authorization
-
+  console.log(authToken)
   if (!authToken || !authToken.startsWith('Bearer')) {
     // if in here that means either no token at all or auth token doesn't start with bearer so bye 
+    console.log('failed')
     return res.status(401).send({ message: 'No token provided or token does not start with Bearer! ' })
   }
 

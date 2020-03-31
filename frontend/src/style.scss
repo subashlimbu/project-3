@@ -23,7 +23,8 @@ div.hero-body {
 }
 
 .homepage-textbox {
-  background-color: rgba(255, 255, 255, 0.5);
+  // background-color: rgba(255, 255, 255, 0.5);
+  color: white;
   margin: auto 200px;
 }
 
@@ -43,12 +44,6 @@ div.hero-body {
   color: black;
 }
 
-// i.fas {
-//   font-size: 30px;
-//     border: 1px solid red;
-//   }
-
-
 nav.navbar {
   background-color: paleturquoise;
 }
@@ -56,10 +51,19 @@ nav.navbar {
 .navbar-item {
   color: black;
   font-weight: bold;
+  
+}
+.foodtitle {
+  font-size: 40px;
+  font-variant: unset;;
+  margin-bottom: 0.5rem;
+  color: red;
+  margin-bottom: 1px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 a.navbar-item{
-  transition: 0.6s ease;
+  transition: 0.2s ease;
   border-bottom: 2px solid transparent;
   &:hover {
     border-bottom: 2px solid white;
@@ -249,6 +253,11 @@ div.dropdown {
   // border-color: transparent;
   color: #fff;
   margin: 29px 11px -15px -50px;
+  margin-top: 10px;
+  
 }
 
-
+#comment-rating {
+  margin-right: 10px;
+  margin-left: 2px;
+}

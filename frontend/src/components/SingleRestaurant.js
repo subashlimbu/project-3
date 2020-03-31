@@ -81,7 +81,7 @@ class SingleRestaurant extends React.Component {
 
       <section className="section">
         <div className="container" >
-          <h1 className="title is-1 is-title-light">{name}</h1>
+          <h1 className="title is-2 is-title-light">{name}</h1>
           <hr />
           {isLoggedIn && <FavouriteButton restaurantId={id} isFavourited={this.state.isFavourited} />}
           <div className="columns is-variable is-5" >
