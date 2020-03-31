@@ -83,7 +83,7 @@ class SingleRestaurant extends React.Component {
         <div className="container" >
           <h1 className="title is-1 is-title-light">{name}</h1>
           <hr />
-          <FavouriteButton restaurantId={id} isFavourited={this.state.isFavourited} />
+          {isLoggedIn && <FavouriteButton restaurantId={id} isFavourited={this.state.isFavourited} />}
           <div className="columns is-variable is-5" >
             <figure className="image is-4by2">
               <img src={image} alt={name} className="sImage" />

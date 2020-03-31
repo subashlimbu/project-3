@@ -67,4 +67,6 @@ router.route('/restaurant/:id/email')
 
 router.route('/favourites')
   .get(secureRoute, restaurantController.getFavourites)
+
+
 module.exports = router

@@ -97,9 +97,9 @@ function favourite(req, res) {
   User
     .findOne(user)
     .then(user => {
-      console.log(req.body.restaurantId)
+      // console.log(req.body.restaurantId)
       user.favourites.push(req.body.restaurantId) //make sure i name it restuarantId when i axios.post in frontend
-      console.log(user)
+      // console.log(user)
       user.save()
       res.status(200).send({ message: 'added restaurant to user favourites field/array' })
     })

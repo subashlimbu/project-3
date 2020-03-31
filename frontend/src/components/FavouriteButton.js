@@ -58,15 +58,14 @@ class FavouriteButton extends React.Component {
       axios.put('/api/restaurant/favourite',
         { restaurantId },
         { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-        .then(this.setState({ isFavourited: true }))
-
-      // .catch(err => this.setState({ errors: err.response.data.errors }))
+        .then(() => this.setState({ isFavourited: true }))
+        .catch(err => console.log(err))
     } else {
       axios.put('/api/restaurant/unfavourite',
         { restaurantId },
         { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-        .then(this.setState({ isFavourited: false }))
-      // .catch(err => this.setState({ errors: err.response.data.errors }))
+        .then(() => this.setState({ isFavourited: false }))
+        .catch(err => console.log(err))
     }
   }
 
@@ -74,7 +73,6 @@ class FavouriteButton extends React.Component {
 
   render() {
     return <button className="button is-normal" onClick={(event) => this.handleFavouriteButton(event)}>
-      {/* <FontAwesomeIcon icon={faStar} /> */}
       <FontAwesomeIcon icon={this.state.isFavourited ? faStar : faStarEmpty} />
       {'Favourite'}
     </button>

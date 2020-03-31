@@ -47,8 +47,6 @@ schema.
 
 schema
   .pre('validate', function checkPassword(next) {
-    // console.log(this._passwordConfirmation)
-    // console.log(this.password)
     if (this.isModified('password')) {
       const validationResult = passwordComplexity().validate(this.password)
       if (validationResult.error) {
