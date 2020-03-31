@@ -20,13 +20,8 @@ class AddRestaurant extends React.Component {
         cuisine: [],
         serveAlcohol: null,
         veggieFriendly: null,
-<<<<<<< HEAD
-        isHalal: null,
-        imageGallery: []
-=======
         halalFriendly: null,
         priceRange: null
->>>>>>> development
       },
       imageUploaded: false,
       errors: {}
