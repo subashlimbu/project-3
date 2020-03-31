@@ -56,7 +56,6 @@ class SingleRestaurant extends React.Component {
         </div>
       </section> */}
 
-<<<<<<< HEAD
       <h1 className="title is-1 is-title-light">{name}</h1>
       <hr />
       <FavouriteButton />
@@ -87,45 +86,6 @@ class SingleRestaurant extends React.Component {
             <p className="smaller-details">Serves alcohol: {this.crossTick(serveAlcohol)}</p>
             <p className="smaller-details">Vegetarian-friendly: {this.crossTick(veggieFriendly)}</p>
             <p className="smaller-details">Serves halal meat: {this.crossTick(isHalal)}</p>
-=======
-      <section className="section">
-        <div className="container" >
-          <h1 className="title is-2 is-title-light">{name}</h1>
-          <hr />
-          <FavouriteButton />
-          <div className="columns is-variable is-5" >
-            <figure className="image is-4by2">
-              <img src={image} alt={name} className="sImage" />
-            </figure>
-            <div className="column is-one-half single-info" >
-              <div className="single-address">
-                <p className="single-details">{address}</p>
-                <p className="single-details">{postcode}</p>
-                <p className="single-details">{telephone}</p>
-              </div>
-              <div className="single-link">
-                <Link to={link}>{link}</Link>
-              </div>
-              <div className="single-link-button">
-                {bookingLink && <button className="button is-normal">
-                  <a target="_blank" rel="noopener noreferrer" href={bookingLink}>
-                    {'Book online'}
-                  </a>
-                </button>}
-              </div>
-              <div className="single-cuisine">
-                <p className="smaller-details">Cuisines served: {cuisine.join(', ')} </p>
-              </div>
-              <div className="single-ticks">
-                <p className="smaller-details">Serves alcohol: {this.crossTick(serveAlcohol)}</p>
-                <p className="smaller-details">Vegetarian-friendly: {this.crossTick(veggieFriendly)}</p>
-                <p className="smaller-details">Serves halal meat: {this.crossTick(isHalal)}</p>
-              </div>
-              <div className="email">
-                {isLoggedIn && <Email restaurantId={id} />}
-              </div>
-            </div>
->>>>>>> development
           </div>
           <div className="email">
             {isLoggedIn && <Email restaurantId={id} />}
