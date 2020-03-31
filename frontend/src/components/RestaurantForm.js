@@ -120,6 +120,24 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
 
     <div className="field">
       <label className="label">
+        Image (link to image hosted online)
+      </label>
+      <div className="control">
+        <input
+          onChange={(event) => handleChange(event)}
+          type="text"
+          name="image"
+          className="input"
+        // value={image}
+        />
+      </div>
+      {errors.image && <small className="help is-danger">
+        {errors.image}
+      </small>}
+    </div>
+
+    <div className="field">
+      <label className="label">
         Cuisine
       </label>
       <div className="control">
@@ -201,9 +219,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
         <select
           onChange={(event) => handleChange(event)}
           type="text"
-          name="isHalal"
+          name="halalFriendly"
           className="input"
-        // value={isHalal}
+        // value={halalFriendly}
         >
           <option disabled selected value> -- select an option -- </option>
           <option value="true">Yes</option>
@@ -211,8 +229,28 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           <option value="false">Unsure</option>
         </select>
       </div>
-      {errors.isHalal && <small className="help is-danger">
-        {errors.isHalal}
+      {errors.halalFriendly && <small className="help is-danger">
+        {errors.halalFriendly}
+      </small>}
+    </div>
+
+    <div className="field">
+      <label className="label">
+        Price (low-high)
+      </label>
+      <div className="control">
+        <input
+          onChange={(event) => handleChange(event)}
+          type="range"
+          name="priceRange"
+          className="input"
+          min="1"
+          max="4"
+        // value={priceRange}
+        />
+      </div>
+      {errors.image && <small className="help is-danger">
+        {errors.image}
       </small>}
     </div>
 

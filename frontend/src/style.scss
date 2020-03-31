@@ -252,8 +252,9 @@ div.dropdown {
   background-color: #f14668;
   // border-color: transparent;
   color: #fff;
+  margin: 29px 11px -15px -50px;
   margin-top: 10px;
-  // margin: 29px 11px -15px -50px;
+  
 }
 
 #comment-rating {
@@ -261,6 +262,7 @@ div.dropdown {
   margin-left: 2px;
 }
 
+<<<<<<< HEAD
 .new-comment-textfield {
   margin-left: -10px;
 }
@@ -307,3 +309,24 @@ div.dropdown {
     word-wrap: break-word;
   }
 }
+=======
+.include-eye {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  width: 35%;
+}
+
+.change {
+ border-color: transparent !important;
+}
+
+.eye {
+  margin: 0px 10px;
+}
+
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons')
+
+>>>>>>> development

@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
+import PasswordField from './PasswordField'
 
 class changePassword extends React.Component {
   constructor() {
@@ -39,7 +40,6 @@ class changePassword extends React.Component {
   }
 
   render() {
-
     const { errors } = this.state
     return <>
       <section className="section">
@@ -49,55 +49,29 @@ class changePassword extends React.Component {
             className="form"
             onSubmit={(event) => this.handleSubmit(event)}
           >
-            <div className="field">
-              <label className="label">
-                Current Password
-              </label>
-              <div className="control">
-                <input
-                  onChange={(event) => this.handleChange(event)}
-                  // type="password"
-                  type="text"
-                  name="oldPassword"
-                  className="input"
-                />
-              </div>
-            </div>
 
-            <div className="field">
-              <label className="label">
-                New Password
-              </label>
-              <div className="control">
-                <input
-                  onChange={(event) => this.handleChange(event)}
-                  // type="password"
-                  type="text"
-                  name="newPassword"
-                  className="input"
-                />
-              </div>
-            </div>
+            <PasswordField
+              name='oldPassword'
+              title='Current Password'
+              handleChange={(event) => this.handleChange(event)}
+            />
 
-            <div className="field">
-              <label className="label">
-                Confirm New Password
-              </label>
-              <div className="control">
-                <input
-                  onChange={(event) => this.handleChange(event)}
-                  // type="password"
-                  type="text"
-                  name="passwordConfirmation"
-                  className="input"
-                />
-              </div>
-            </div>
+            <PasswordField
+              name='newPassword'
+              title='New Password'
+              handleChange={(event) => this.handleChange(event)}
+            />
 
-
+            <PasswordField
+              name='passwordConfirmation'
+              title='Confirm new Password'
+              handleChange={(event) => this.handleChange(event)}
+            />
+            
             <button className="button is-success">
               Change password
             </button>
+
             {errors.password && <small className="help is-danger">
               {errors.password.message}
             </small>}
@@ -107,6 +81,7 @@ class changePassword extends React.Component {
             {errors.passwordValidation && <small className="help is-danger">
               {errors.passwordValidation.message}
             </small>}
+
           </form>
         </div>
       </section>

@@ -9,6 +9,13 @@ router.route('/restaurants')
   .get(restaurantController.index) //tested and works 
   .post(secureRoute, restaurantController.createNewRestaurant) //tested and works for logged-in user 
 
+router.route('/restaurant/favourite')
+  .put(secureRoute, userController.favourite)
+
+router.route('/restaurant/unfavourite')
+  .put(secureRoute, userController.unfavourite)
+
+
 router.route('/restaurant/:id')
   .get(restaurantController.viewARestaurant) //tested and works 
   .delete(secureRoute, restaurantController.deleteARestaurant) //tested and works for logged-in user who created that resto 
@@ -57,5 +64,9 @@ router.route('/random')
 
 router.route('/restaurant/:id/email')
   .get(secureRoute, restaurantController.emailRestaurantInfo)
+
+router.route('/favourites')
+  .get(secureRoute, restaurantController.getFavourites)
+
 
 module.exports = router

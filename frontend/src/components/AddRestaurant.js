@@ -11,6 +11,7 @@ class AddRestaurant extends React.Component {
       restaurant: {
         name: '',
         link: '',
+        image: '',
         address: '',
         postcode: '',
         telephone: '',
@@ -18,13 +19,15 @@ class AddRestaurant extends React.Component {
         cuisine: [],
         serveAlcohol: null,
         veggieFriendly: null,
-        isHalal: null
+        halalFriendly: null,
+        priceRange: null
       },
       errors: {}
     }
   }
   handleChange(event) {
     const data = { ...this.state.data, [event.target.name]: event.target.value }
+    console.log(data)
     this.setState({ data })
   }
   handleSubmit(event) {
@@ -33,6 +36,7 @@ class AddRestaurant extends React.Component {
       this.state.data,
       { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => this.props.history.push(`/restaurant/${res.data._id}`))
+      .then(res => console.log('line 37', res))
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
   render() {
