@@ -23,7 +23,7 @@ class AddRestaurant extends React.Component {
         halalFriendly: null,
         priceRange: null
       },
-      imageUploaded: false,
+      uploading: false,
       errors: {}
     }
   }
@@ -44,10 +44,15 @@ class AddRestaurant extends React.Component {
 
   uploadImages(event) {
     event.preventDefault()
+    const { uploading } = this.state
+    if (uploading) return console.log('go away')
     //gets the image form from the dom
     const imageForm = document.getElementById('image-form')
     //gets the formdata in a way the backend will understand
     const imageFormData = new FormData(imageForm)
+
+    this.setState({ uploading: true })
+    console.log('HI BEN ', this.state)
     //sets the content type for the request
     const config = {
       headers: {
@@ -56,8 +61,9 @@ class AddRestaurant extends React.Component {
     }
     axios.post('/api/upload', imageFormData, config)
       .then(res => {
-        console.log(res.data.files)
-        this.setState({ restaurant: { imageGallery: res.data.files } })
+        const data = { ...this.state.data, ['imageGallery']: res.data.files }
+        this.setState({ uploading: false })
+        this.setState({ data })
       })
       .catch(err => console.log('borked ', Object.entries(err)))
   }

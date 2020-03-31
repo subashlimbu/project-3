@@ -23,9 +23,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
         // value={name}
         />
       </div>
-      {errors.name && <small className="help is-danger">
+      {/* {errors.name && <small className="help is-danger">
         {errors.name}
-      </small>}
+      </small>} */}
     </div>
 
     <div className="field">
@@ -41,9 +41,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
         // value={link}
         />
       </div>
-      {errors.link && <small className="help is-danger">
+      {/* {errors.link && <small className="help is-danger">
         {errors.link}
-      </small>}
+      </small>} */}
     </div>
 
     <div className="field">
@@ -59,9 +59,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
         // value={address}
         />
       </div>
-      {errors.address && <small className="help is-danger">
+      {/* {errors.address && <small className="help is-danger">
         {errors.address}
-      </small>}
+      </small>} */}
     </div>
 
     <div className="field">
@@ -77,9 +77,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
         // value={postcode}
         />
       </div>
-      {errors.postcode && <small className="help is-danger">
+      {/* {errors.postcode && <small className="help is-danger">
         {errors.postcode}
-      </small>}
+      </small>} */}
     </div>
 
     <div className="field">
@@ -95,9 +95,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
         // value={telephone}
         />
       </div>
-      {errors.telephone && <small className="help is-danger">
+      {/* {errors.telephone && <small className="help is-danger">
         {errors.telephone}
-      </small>}
+      </small>} */}
     </div>
 
     <div className="field">
@@ -113,27 +113,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
         // value={bookingLink}
         />
       </div>
-      {errors.bookingLink && <small className="help is-danger">
+      {/* {errors.bookingLink && <small className="help is-danger">
         {errors.bookingLink}
-      </small>}
-    </div>
-
-    <div className="field">
-      <label className="label">
-        Image (link to image hosted online)
-      </label>
-      <div className="control">
-        <input
-          onChange={(event) => handleChange(event)}
-          type="text"
-          name="image"
-          className="input"
-        // value={image}
-        />
-      </div>
-      {errors.image && <small className="help is-danger">
-        {errors.image}
-      </small>}
+      </small>} */}
     </div>
 
     <div className="field">
@@ -160,9 +142,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           <option value="Turkish">Turkish</option>
         </select>
       </div>
-      {errors.cuisine && <small className="help is-danger">
+      {/* {errors.cuisine && <small className="help is-danger">
         {errors.cuisine}
-      </small>}
+      </small>} */}
     </div>
 
     <div className="field">
@@ -183,9 +165,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           <option value="false">Unsure</option>
         </select>
       </div>
-      {errors.serveAlcohol && <small className="help is-danger">
+      {/* {errors.serveAlcohol && <small className="help is-danger">
         {errors.serveAlcohol}
-      </small>}
+      </small>} */}
     </div>
 
     <div className="field">
@@ -206,9 +188,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           <option value="false">Unsure</option>
         </select>
       </div>
-      {errors.veggieFriendly && <small className="help is-danger">
+      {/* {errors.veggieFriendly && <small className="help is-danger">
         {errors.veggieFriendly}
-      </small>}
+      </small>} */}
     </div>
 
     <div className="field">
@@ -219,9 +201,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
         <select
           onChange={(event) => handleChange(event)}
           type="text"
-          name="halalFriendly"
+          name="isHalal"
           className="input"
-        // value={halalFriendly}
+        // value={isHalal}
         >
           <option disabled selected value> -- select an option -- </option>
           <option value="true">Yes</option>
@@ -229,29 +211,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           <option value="false">Unsure</option>
         </select>
       </div>
-      {errors.halalFriendly && <small className="help is-danger">
-        {errors.halalFriendly}
-      </small>}
-    </div>
-
-    <div className="field">
-      <label className="label">
-        Price (low-high)
-      </label>
-      <div className="control">
-        <input
-          onChange={(event) => handleChange(event)}
-          type="range"
-          name="priceRange"
-          className="input"
-          min="1"
-          max="4"
-        // value={priceRange}
-        />
-      </div>
-      {errors.image && <small className="help is-danger">
-        {errors.image}
-      </small>}
+      {/* {errors.isHalal && <small className="help is-danger">
+        {errors.isHalal}
+      </small>} */}
     </div>
 
 
