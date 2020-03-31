@@ -261,3 +261,24 @@ div.dropdown {
   margin-right: 10px;
   margin-left: 2px;
 }
+
+.include-eye {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  width: 35%;
+}
+
+.change {
+ border-color: transparent !important;
+}
+
+.eye {
+  margin: 0px 10px;
+  cursor: default;
+}
+
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons')
+
