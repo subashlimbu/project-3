@@ -14,9 +14,26 @@ function isLoggedIn() {
   return !!localStorage.getItem('token')
 }
 
+
 function getToken() {
   return localStorage.getItem('token')
 }
+
+function getPayload() {
+  const token = this.getToken() //why do we need "this."
+  if (!token) return false
+  const parts = token.split('.')
+  if (parts.length < 3) return false
+  return JSON.parse(atob(parts[1]))
+}
+
+function isAuthenticated() {
+  const payload = this.getPayload()
+  if (!payload) return false
+  const now = Math.round(Date.now() / 1000)
+  return now < payload.exp //will return true if token is still valid and false if not 
+}
+
 
 function logout() {
   localStorage.removeItem('token')
@@ -36,5 +53,7 @@ export default {
   getToken,
   getName,
   getUserId,
-  logout
+  logout,
+  getPayload,
+  isAuthenticated
 }

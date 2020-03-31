@@ -4,6 +4,11 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import 'bulma'
 import './style.scss'
+// import auth from './lib/auth'
+
+// if (!auth.isAuthenticated()) {
+//   auth.logout()
+// }
 
 import Home from './components/Home'
 import Restaurants from './components/Restaurants'
@@ -19,9 +24,9 @@ const App = () => (
     <NavBar />
     <Switch>
       <Route exact path="/restaurant/new" component={AddRestaurant} />
-      <Route exact path="/" component={Home}/>
-      <Route exact path="/restaurants" component={Restaurants}/>
-      <Route path="/restaurant/:id" component={SingleRestaurant}/>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/restaurants" component={Restaurants} />
+      <Route path="/restaurant/:id" component={SingleRestaurant} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/profile" component={Profile} />
