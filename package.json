@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "test": "mocha backend/test/**/*_spec.js --require backend/test/helper --recursive --exit",
     "seed": "node backend/seed.js",
     "serve:back": "nodemon backend/app.js",
     "serve:front": "webpack-dev-server --mode-development"
@@ -38,9 +39,11 @@
     "bcrypt": "^3.0.8",
     "body-parser": "^1.19.0",
     "bulma": "^0.8.0",
+    "chai": "^4.2.0",
     "express": "^4.17.1",
     "joi-password-complexity": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^7.1.1",
     "moment": "^2.24.0",
     "mongoose": "^5.7.12",
     "mongoose-custom-validators": "0.0.4",
@@ -57,6 +60,7 @@
     "react-router-dom": "^5.1.2",
     "react-scroll-parallax": "^2.3.2",
     "react-spring": "^8.0.27",
+    "supertest": "^4.0.2",
     "validator": "^13.0.0"
   }
 }

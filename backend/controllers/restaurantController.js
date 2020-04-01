@@ -311,23 +311,31 @@ function getComments(req, res) {
 
 function getRandomRestaurant(req, res) {
   Restaurant
-    .find({})
-    .distinct('_id')
-    .then(restaurants => {
-      const arrayofRestaurantIds = restaurants
-      const randomNumber = Math.floor((Math.random() * arrayofRestaurantIds.length))
-      const idOfOneRandomRestaurant = arrayofRestaurantIds[randomNumber]
-      return idOfOneRandomRestaurant
-      // console.log(idOfOneRandomRestaurant)
+    .find() //find all restaurants
+    .then(arrayofAllRestaurants => {
+      const randomNumber = Math.floor((Math.random() * arrayofAllRestaurants.length)) //generate random number
+      return res.send(arrayofAllRestaurants[randomNumber]) //returns a random restaurant
     })
-    .then(singleRestaurantId => {
-      Restaurant
-        .findById(singleRestaurantId)
-        .then(restaurant => {
-          return res.send(restaurant)
-        })
-        .catch(err => res.send({ error: err }))
-    })
+    .catch(err => res.send({ error: err }))
+
+  //old way that took extra step
+  // .find() //find all restaurrnts
+  // .distinct('_id') //get only the ids of all the restaurants as an array
+  // .then(restaurants => {
+  //   const arrayofRestaurantIds = restaurants
+  //   const randomNumber = Math.floor((Math.random() * arrayofRestaurantIds.length))
+  //   const idOfOneRandomRestaurant = arrayofRestaurantIds[randomNumber]
+  //   return idOfOneRandomRestaurant
+  //   // console.log(idOfOneRandomRestaurant)
+  // })
+  // .then(singleRestaurantId => {
+  //   Restaurant
+  //     .findById(singleRestaurantId)
+  //     .then(restaurant => {
+  //       return res.send(restaurant)
+  //     })
+  //     .catch(err => res.send({ error: err }))
+  // })
 
 }
 
