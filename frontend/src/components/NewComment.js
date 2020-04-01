@@ -5,7 +5,7 @@ const NewComment = ({ onSubmit, onChange }) => {
     <div className="field">
       <div className="control">
         <textarea
-          className="textarea"
+          className="textarea new-comment-textfield"
           placeholder="Insert comment here"
           onChange={onChange}
         />
