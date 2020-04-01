@@ -35,7 +35,7 @@ function login(req, res) {
       if (!user || !user.validatePassword(req.body.password)) {
         return res.status(401).send({ message: 'Unauthorized' })
       }
-      const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '1m' })
+      const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
       res.status(202).send({ message: `${user.username}`, token })
     })
     .catch(error => res.send({ errors: error.errors }))

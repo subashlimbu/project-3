@@ -6,7 +6,8 @@ function index(req, res) {
   Restaurant
     .find()
     .then(restaurants => {
-      res.send(restaurants)
+      // res.send(restaurants)
+      res.status(200).send(restaurants)
     })
     .catch(error => {
       console.log(error)

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const router = require('./router')
 // const uri = 'mongodb://localhost/restaurant-db'
+
 const uri = 'mongodb+srv://benharris:Password-1@cluster0-kzea4.mongodb.net/restaurantdb?retryWrites=true&w=majority';
 
 
@@ -26,5 +27,5 @@ expressServer.use((req, res, next) => {
 
 expressServer.use('/api', router)
 
-
+// module.exports = expressServer.listen(8000)
 expressServer.listen(8000)

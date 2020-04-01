@@ -35,16 +35,16 @@ class Profile extends React.Component {
             <img src="https://s3.amazonaws.com/37assets/svn/765-default-avatar.png" />
             <p className="subtitle"> Username: {username} </p>
             <p className="subtitle"> Email: {email} </p>
-            <button
+            {/* <button
               onClick={() => this.handleDelete()}
               className="button is-danger">
               {'Delete Account (Are you sure?) [This button DOES NOT WORK] '}
-            </button>
+            </button> */}
             <button
               className="button is-warning"
             >
               <Link to={'/profile/changePassword'}>
-                Change password [THIS button DOES NOT WORK]
+                Change password
               </Link>
             </button>
           </div>
