@@ -7,11 +7,11 @@ export default class App extends React.Component {
     return (
       <Loader
         type="Puff"
-        color="#00BFFF"
+        color="#F2C782"
         height={100}
         width={100}
         timeout={10000} //3 secs
-
+        className="loading"
       />
     )
   }

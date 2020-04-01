@@ -27,10 +27,10 @@ class NavBar extends React.Component {
   render() {
     const isLoggedIn = auth.isLoggedIn()
     return <>
-      <nav className="navbar">
-        <div className="container">
+      <nav className="navbar is-black">
+        <div className="container navbar-container">
           <div className="navbar-brand">
-            <Link className="navbar-item foodtitle" to="/">Food For Thought<GiHotMeal />
+            <Link className="navbar-item foodtitle" to="/"><GiHotMeal />
             </Link>
             <a
               role="button"
@@ -47,33 +47,33 @@ class NavBar extends React.Component {
           <div className={`navbar-menu ${this.state.navMobileOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
               <div className="navbar-item">
-                <Link className="navbar-item" to="/restaurants">Restaurants</Link>
+                <Link className="navbar-edited" to="/restaurants">Restaurants</Link>
               </div>
 
               {isLoggedIn && <div className="navbar-item">
-                <Link className="navbar-item" to="/restaurant/new">Add a restaurant</Link>
+                <Link className="navbar-edited" to="/restaurant/new">Add a restaurant</Link>
               </div>}
 
               {!isLoggedIn && <div className="navbar-item">
-                <Link className="navbar-item" to="/register">Register</Link>
+                <Link className="navbar-edited" to="/register">Register</Link>
               </div>}
 
               {!isLoggedIn && <div className="navbar-item">
-                <Link className="navbar-item" to="/login">Login</Link>
+                <Link className="navbar-edited" to="/login">Login</Link>
               </div>}
 
               {isLoggedIn && <div className="navbar-item">
-                <Link className="navbar-item" to="/favourites">Favourites</Link>
+                <Link className="navbar-edited" to="/favourites">Favourites</Link>
               </div>}
 
-              {isLoggedIn && <div className="navbar-item has-dropdown is-hoverable">
+              {isLoggedIn && <div className="navbar-item has-dropdown is-hoverable navbar-name">
 
                 <div className="navbar-link">
-                  <Link className="navbar-item" to="/profile">{auth.getName()}</Link>
+                  <Link className="navbar-edited" to="/profile">{auth.getName()}</Link>
                 </div>
 
                 <div className="navbar-dropdown">
-                  <div className="navbar-item">
+                  <div className="navbar-edited">
                     <div
                       onClick={() => this.handleLogout()}
                       className="navbar-item dropdown-item"
