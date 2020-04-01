@@ -46,7 +46,7 @@ mongoose.connect(
           {
             "name": "Sichuan Chef",
             "link": "http://sichuanchef.co.uk/",
-            "address": "15 Kenway Rd, Earl's Cour",
+            "address": "15 Kenway Rd, Earl's Court",
             "postcode": "SW5 0RP",
             "telephone": "020 7244 7888",
             "bookingLink": "https://www.opentable.co.uk/r/sichuan-chef-london",

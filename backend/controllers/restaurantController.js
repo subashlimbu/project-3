@@ -1,5 +1,32 @@
 const Restaurant = require('../models/restaurant')
 const User = require('../models/user')
+const mongoose = require('mongoose')
+
+const GridFsStorage = require('multer-gridfs-storage')
+const Grid = require('gridfs-stream')
+const connection = mongoose.connection
+let gfs;
+
+//initialised grid file system stream with mongoose
+connection.once('open', function () {
+  gfs = Grid(connection.db, mongoose.mongo)
+  gfs.collection('images')
+})
+
+function getImage(req, res) {
+  const filename = req.params.filename
+  var readstream = gfs.createReadStream({ filename: filename })
+  readstream.on('error', function (err) {
+    res.send({ error: 'not found' })
+  })
+  readstream.pipe(res)
+}
+
+function getImages(req, res) {
+  gfs.files.find().toArray((err, files) => {
+    res.send({ files: files })
+  })
+}
 
 function index(req, res) {
   // Find all our pancakes (asynchronous!) and send them back when done
@@ -15,6 +42,7 @@ function index(req, res) {
 
 function createNewRestaurant(req, res) {
   req.body.user = req.currentUser
+  console.log(req.body)
   Restaurant
     .create(req.body) //create restaurant using the JSON body inside insomnia / frontend form 
     .then(restaurant => {
@@ -311,23 +339,31 @@ function getComments(req, res) {
 
 function getRandomRestaurant(req, res) {
   Restaurant
-    .find({})
-    .distinct('_id')
-    .then(restaurants => {
-      const arrayofRestaurantIds = restaurants
-      const randomNumber = Math.floor((Math.random() * arrayofRestaurantIds.length))
-      const idOfOneRandomRestaurant = arrayofRestaurantIds[randomNumber]
-      return idOfOneRandomRestaurant
-      // console.log(idOfOneRandomRestaurant)
+    .find() //find all restaurants
+    .then(arrayofAllRestaurants => {
+      const randomNumber = Math.floor((Math.random() * arrayofAllRestaurants.length)) //generate random number
+      return res.send(arrayofAllRestaurants[randomNumber]) //returns a random restaurant
     })
-    .then(singleRestaurantId => {
-      Restaurant
-        .findById(singleRestaurantId)
-        .then(restaurant => {
-          return res.send(restaurant)
-        })
-        .catch(err => res.send({ error: err }))
-    })
+    .catch(err => res.send({ error: err }))
+
+  //old way that took extra step
+  // .find() //find all restaurrnts
+  // .distinct('_id') //get only the ids of all the restaurants as an array
+  // .then(restaurants => {
+  //   const arrayofRestaurantIds = restaurants
+  //   const randomNumber = Math.floor((Math.random() * arrayofRestaurantIds.length))
+  //   const idOfOneRandomRestaurant = arrayofRestaurantIds[randomNumber]
+  //   return idOfOneRandomRestaurant
+  //   // console.log(idOfOneRandomRestaurant)
+  // })
+  // .then(singleRestaurantId => {
+  //   Restaurant
+  //     .findById(singleRestaurantId)
+  //     .then(restaurant => {
+  //       return res.send(restaurant)
+  //     })
+  //     .catch(err => res.send({ error: err }))
+  // })
 
 }
 
@@ -382,9 +418,12 @@ function emailRestaurantInfo(req, res) {
 
 function getFavourites(req, res) {
   const currentUser = req.currentUser
+  console.log(currentUser)
+  console.log('getFavourites function is called!')
   Restaurant
     .find({ '_id': { $in: currentUser.favourites } })
     .then(favRestos => {
+      console.log(favRestos)
       res.status(200).send(favRestos)
     })
 
@@ -409,5 +448,6 @@ module.exports = {
   undislikeComment,
   swapLike,
   emailRestaurantInfo,
-  getFavourites
+  getImage,
+  getImages
 }
