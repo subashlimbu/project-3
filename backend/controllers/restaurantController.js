@@ -417,12 +417,12 @@ function emailRestaurantInfo(req, res) {
 
 function getFavourites(req, res) {
   const currentUser = req.currentUser
-  console.log(currentUser)
-  console.log('getFavourites function is called!')
+  // console.log(currentUser)
+  // console.log('getFavourites function is called!')
   Restaurant
     .find({ '_id': { $in: currentUser.favourites } })
     .then(favRestos => {
-      console.log(favRestos)
+      // console.log(favRestos)
       res.status(200).send(favRestos)
     })
 
@@ -447,6 +447,8 @@ module.exports = {
   undislikeComment,
   swapLike,
   emailRestaurantInfo,
+  getFavourites,
   getImage,
   getImages
+
 }

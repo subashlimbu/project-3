@@ -27,7 +27,7 @@ class FavouritedRestaurants extends React.Component {
     if (!this.state.favouritedRestos) return 'Favourite some restaurants!'
     console.log(this.state)
     return <div className="main-container">
-      <h1 className="title">Favourites</h1>
+      <h1 className="title">Favourited Restaurants</h1>
       <div className="columns is-full-mobile is-multiline is-centered mobile-padding">
 
         {this.state.favouritedRestos.map(restaurant => {

@@ -116,9 +116,9 @@ function favourite(req, res) {
     .findOne(user)
     .then(user => {
       // console.log(req.body.restaurantId)
-      console.log(user, 'line 118')
+      // console.log(user, 'line 118')
       user.favourites.push(req.body.restaurantId) //make sure i name it restuarantId when i axios.post in frontend
-      console.log('gets in user push')
+      // console.log('gets in user push')
       return user.save()
     })
     .then((user) => {
@@ -135,7 +135,7 @@ function unfavourite(req, res) {
     .findOne(user)
     .then(user => {
       user.favourites.pull(req.body.restaurantId)
-      console.log(user)
+      // console.log(user)
       user.save()
       res.status(200).send({ message: 'removed restaurant from users favourites array' })
     })

@@ -15,7 +15,6 @@ class FavouriteButton extends React.Component {
   }
 
   componentDidMount() {
-
     const isLoggedIn = auth.isLoggedIn()
     isLoggedIn && axios.get('/api/profile',
       { headers: { Authorization: `Bearer ${auth.getToken()}` } }
