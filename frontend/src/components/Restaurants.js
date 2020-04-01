@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 import DropSearch from './DropSearch'
 import LoaderSpinner from './LoaderSpinner'
+// import auth from '../lib/auth'
 
 
 class Restaurants extends React.Component {
@@ -19,6 +20,9 @@ class Restaurants extends React.Component {
   }
 
   componentDidMount() {
+    // if (!auth.isAuthenticated()) {
+    //   auth.logout()
+    // }
     axios.get('/api/restaurants')
       .then((resp) => this.setState({
         restaurants: resp.data,

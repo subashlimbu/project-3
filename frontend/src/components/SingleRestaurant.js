@@ -68,7 +68,7 @@ class SingleRestaurant extends React.Component {
       return <LoaderSpinner />
     }
     const id = this.props.match.params.id
-    const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, isHalal, imageGallery } = this.state.restaurant
+    const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, halalFriendly, priceRange, imageGallery } = this.state.restaurant
     const isLoggedIn = auth.isLoggedIn()
     const urlList = imageGallery.map(image => {
       return {
@@ -88,7 +88,7 @@ class SingleRestaurant extends React.Component {
       </section> */}
       <h1 className="title is-1 is-title-light">{name}</h1>
       <hr />
-      <FavouriteButton />
+      <FavouriteButton restaurantId={id} isFavourited={this.state.isFavourited} />
       <div className="columns is-variable is-5" >
         <figure className="image is-4by2">
           <img src={image} alt={name} className="sImage" />
@@ -118,6 +118,9 @@ class SingleRestaurant extends React.Component {
             <p className="smaller-details">Serves alcohol: {this.crossTick(serveAlcohol)}</p>
             <p className="smaller-details">Vegetarian-friendly: {this.crossTick(veggieFriendly)}</p>
             <p className="smaller-details">Serves halal meat: {this.crossTick(isHalal)}</p>
+            <div className="single-price">
+              <p className="smaller-details">Price range: {'£'.repeat(priceRange)} </p>
+            </div>
           </div>
           <div className="email">
             {isLoggedIn && <Email restaurantId={id} />}

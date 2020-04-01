@@ -35,7 +35,7 @@ function login(req, res) {
       if (!user || !user.validatePassword(req.body.password)) {
         return res.status(401).send({ message: 'Unauthorized' })
       }
-      const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
+      const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '1m' })
       res.status(202).send({ message: `${user.username}`, token })
     })
     .catch(error => res.send({ errors: error.errors }))
@@ -59,47 +59,48 @@ function changePassword(req, res) {
         return res.status(401).send({ passwordValidation: { message: 'Wrong password' } })
       }
       user.set({ password: req.body.newPassword, passwordConfirmation: req.body.passwordConfirmation })
-      return user.save(function(error, user) {
+      return user.save(function (error, user) {
         if (error) {
           console.log('line 64 error', error.errors)
           return res.status(401).send(error.errors)
-        } 
+        }
         return res.sendStatus(200)
       })
     })
-    // .catch(error => {
-    //   console.log('line 71', Object.entries(error)[0])
-    //   res.status(401).send(error)
-    // })
+  // .catch(error => {
+  //   console.log('line 71', Object.entries(error)[0])
+  //   res.status(401).send(error)
+  // })
 
-    // // check newPassword and passwordConfirmation match, and throw error if not
-    // // check password fits criteria and reject if not
+  // // check newPassword and passwordConfirmation match, and throw error if not
+  // // check password fits criteria and reject if not
 
-    // .then(user => {
-    //   const validationResult = passwordComplexity().validate(req.body.newPassword)
-    //   if (validationResult.error) {
-    //     return res.send('Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.' )
-    //   }
-    //   if (req.body.passwordConfirmation !== req.body.newPassword) {
-    //     return res.send('passwords should match' )
-    //   }
-    //   return user
-    // })
+  // .then(user => {
+  //   const validationResult = passwordComplexity().validate(req.body.newPassword)
+  //   if (validationResult.error) {
+  //     return res.send('Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.' )
+  //   }
+  //   if (req.body.passwordConfirmation !== req.body.newPassword) {
+  //     return res.send('passwords should match' )
+  //   }
+  //   return user
+  // })
 
-    // .then(user => {
-    //   // user.password = req.body.newPassword
-    //   // user.passwordConfirmation = req.body.passwordConfirmation
-    //   user.set({ password: req.body.newPassword, passwordConfirmation: req.body.passwordConfirmation })
-    //   console.log('hello', user.password)
-    //   user.save()
-    //   return res.send('password change successful' )
-    // })
-    // // .then(user => res.status(200).send(user))
-    // .catch(error => console.log(error))
+  // .then(user => {
+  //   // user.password = req.body.newPassword
+  //   // user.passwordConfirmation = req.body.passwordConfirmation
+  //   user.set({ password: req.body.newPassword, passwordConfirmation: req.body.passwordConfirmation })
+  //   console.log('hello', user.password)
+  //   user.save()
+  //   return res.send('password change successful' )
+  // })
+  // // .then(user => res.status(200).send(user))
+  // .catch(error => console.log(error))
 }
 
 function favourite(req, res) {
   const user = req.currentUser
+  console.log(user)
 
   // try {
 
@@ -115,9 +116,12 @@ function favourite(req, res) {
     .findOne(user)
     .then(user => {
       // console.log(req.body.restaurantId)
+      console.log(user, 'line 118')
       user.favourites.push(req.body.restaurantId) //make sure i name it restuarantId when i axios.post in frontend
-      // console.log(user)
-      user.save()
+      console.log('gets in user push')
+      return user.save()
+    })
+    .then((user) => {
       res.status(200).send({ message: 'added restaurant to user favourites field/array' })
     })
     .catch(error => res.send({ errors: error.errors })) //unsure of this 
