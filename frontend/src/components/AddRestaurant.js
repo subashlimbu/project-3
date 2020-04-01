@@ -24,6 +24,7 @@ class AddRestaurant extends React.Component {
         priceRange: null
       },
       uploading: false,
+      uploaded: false,
       errors: {}
     }
   }
@@ -62,27 +63,35 @@ class AddRestaurant extends React.Component {
     axios.post('/api/upload', imageFormData, config)
       .then(res => {
         const data = { ...this.state.data, ['imageGallery']: res.data.files }
-        this.setState({ uploading: false })
+        this.setState({ uploading: false, uploaded: true })
         this.setState({ data })
       })
       .catch(err => console.log('borked ', Object.entries(err)))
   }
 
   render() {
-    const { errors, data } = this.state
+    const { errors, data, uploading, uploaded } = this.state
     return <div className="main-container">
       <h1 className="title">Add a new restaurant</h1>
-      <RestaurantForm
-        handleSubmit={(event) => this.handleSubmit(event)}
-        handleChange={(event) => this.handleChange(event)}
-        uploadImages={(event) => this.uploadImages(event)}
-        addImages={(event) => this.addImages(event)}
-        errors={errors}
-        data={data}
-      />
-      <ImageUploader
-        handleSubmit={(event) => this.uploadImages(event)}
-      />
+      <div className="columns is-full-mobile">
+        <div className="column is-one-third-desktop">
+          <RestaurantForm
+            handleSubmit={(event) => this.handleSubmit(event)}
+            handleChange={(event) => this.handleChange(event)}
+            uploadImages={(event) => this.uploadImages(event)}
+            addImages={(event) => this.addImages(event)}
+            errors={errors}
+            data={data}
+          />
+          {uploading && <small className="is-danger">Uploading...</small>}
+          {uploaded && <small className="is-danger">Uploaded!</small>}
+        </div>
+        <div className="column is-two-thirds-desktop">
+          <ImageUploader
+            handleSubmit={(event) => this.uploadImages(event)}
+          />
+        </div>
+      </div>
     </div>
   }
 }

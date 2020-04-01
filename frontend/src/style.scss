@@ -270,10 +270,26 @@ div.dropdown {
   color: white;
 }
 
+.main-container {
+  padding: 15px 10px 10px 40px;
+}
+
+.form-submit {
+  margin-left: 10px;
+}
 
 @media only screen and (max-width: 600px) {
+
   .main-container {
     padding: 15px 10px 10px 15px;
+  }
+
+  //profile page
+  .profile-page {
+    text-align: center;
+  }
+  .profile-image {
+    height: 20vh;
   }
   .homepage-textbox {
     margin: 90px 0 0 0;
@@ -294,6 +310,9 @@ div.dropdown {
         margin-bottom: 10px;
       }
     }
+  }
+  .foodtitle {
+    font-size: 30px;
   }
   .mobile-padding {
     padding-left: 30px
@@ -323,6 +342,11 @@ div.dropdown {
 
 .eye {
   margin: 0px 10px;
+}
+
+.image-uploader{
+  right:0px;
+  position: absolute;
 }
 
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons')

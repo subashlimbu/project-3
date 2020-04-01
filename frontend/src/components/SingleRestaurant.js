@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import Email from './Email'
 import auth from '../lib/auth'
 import FavouriteButton from './FavouriteButton'
+import ImageSlider from './ImageSlider'
 
 
 class SingleRestaurant extends React.Component {
@@ -69,6 +70,11 @@ class SingleRestaurant extends React.Component {
     const id = this.props.match.params.id
     const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, isHalal, imageGallery } = this.state.restaurant
     const isLoggedIn = auth.isLoggedIn()
+    const urlList = imageGallery.map(image => {
+      return {
+        url: `http://localhost:8000/api/image/${image.filename}`
+      }
+    })
     return <div className='main-container'>
 
       {/* <section className="hero is-medium">
@@ -80,18 +86,14 @@ class SingleRestaurant extends React.Component {
           </div>
         </div>
       </section> */}
-
-      {imageGallery.map((ele, key) => {
-        const url = `http://localhost:8000/api/image/${ele.filename}`
-        console.log('URL ', url)
-        return <img src={url} key={key} alt="placeholder" />
-      })}
       <h1 className="title is-1 is-title-light">{name}</h1>
       <hr />
       <FavouriteButton />
       <div className="columns is-variable is-5" >
         <figure className="image is-4by2">
           <img src={image} alt={name} className="sImage" />
+          {imageGallery.length !== 0 && <ImageSlider urlList={urlList} />}
+
         </figure>
         <div className="column is-one-half single-info" >
           <div className="single-address">
