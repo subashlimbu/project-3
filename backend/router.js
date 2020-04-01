@@ -21,6 +21,9 @@ router.route('/restaurant/favourite')
 router.route('/restaurant/unfavourite')
   .put(secureRoute, userController.unfavourite)
 
+router.route('/favourites')
+  .get(secureRoute, userController.getFavourites)
+
 
 router.route('/restaurant/:id')
   .get(restaurantController.viewARestaurant) //tested and works 
