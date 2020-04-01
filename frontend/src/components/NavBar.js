@@ -27,10 +27,10 @@ class NavBar extends React.Component {
   render() {
     const isLoggedIn = auth.isLoggedIn()
     return <>
-      <nav className="navbar">
-        <div className="container">
+      <nav className="navbar is-black">
+        <div className="container navbar-container">
           <div className="navbar-brand">
-            <Link className="navbar-item foodtitle" to="/">Food For Thought<GiHotMeal />
+            <Link className="navbar-item foodtitle" to="/"><GiHotMeal />
             </Link>
             <a
               role="button"
@@ -66,7 +66,7 @@ class NavBar extends React.Component {
                 <Link className="navbar-item" to="/favourites">Favourites</Link>
               </div>}
 
-              {isLoggedIn && <div className="navbar-item has-dropdown is-hoverable">
+              {isLoggedIn && <div className="navbar-item has-dropdown is-hoverable navbar-name">
 
                 <div className="navbar-link">
                   <Link className="navbar-item" to="/profile">{auth.getName()}</Link>
