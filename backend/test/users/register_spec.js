@@ -18,10 +18,10 @@ const testUserIncorrect = {
 describe('POST /register', () => {
   beforeEach(done => { //why do we need to create a user then delete it in line 29
     User.create({
-      username: 'denise02',
-      email: 'denise02@denise.com',
-      password: 'Password1!',
-      passwordConfirmation: 'Password1!'
+      username: 'denise09',
+      email: 'denise09@denise.com',
+      password: 'Password9!',
+      passwordConfirmation: 'Password9!'
     }).then(() => done())
   })
 
@@ -30,20 +30,20 @@ describe('POST /register', () => {
       .then(() => done())
   })
 
-  it('should return a 200 response if request is valid', done => {
+  it('should return a 201 response if request is valid', done => {
     api.post('/api/register')
       .send(testUserCorrect)
       .end((err, res) => {
-        expect(res.status).to.eq(200)
+        expect(res.status).to.eq(201)
         done()
       })
   })
 
-  it('should return a 422 response if password !== passwordConfirmation', done => {
+  it('should return a 401 response if password !== passwordConfirmation', done => {
     api.post('/api/register')
       .send(testUserIncorrect)
       .end((err, res) => {
-        expect(res.status).to.eq(422)
+        expect(res.status).to.eq(401)
         done()
       })
   })

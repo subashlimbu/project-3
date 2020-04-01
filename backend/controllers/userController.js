@@ -142,11 +142,24 @@ function unfavourite(req, res) {
 
 }
 
+function getFavourites(req, res) {
+  const user = req.currentUser
+  User
+    .findOne(user)
+    .populate('favourites').exec()
+    .then(user => {
+      console.log(user)
+      res.status(200).send(user.favourites)
+    })
+    .catch(err => console.log(err))
+}
+
 module.exports = {
   register,
   login,
   getProfile,
   changePassword,
   favourite,
-  unfavourite
+  unfavourite,
+  getFavourites
 }

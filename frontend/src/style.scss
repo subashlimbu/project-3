@@ -262,6 +262,94 @@ div.dropdown {
   margin-left: 2px;
 }
 
+.new-comment-textfield {
+  margin-left: -10px;
+}
+
+.white {
+  color: white;
+}
+
+.main-container {
+  padding: 15px 10px 10px 40px;
+}
+
+.form-submit {
+  margin-left: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .login-top {
+    height: 20vh;
+    h1{
+      font-size: 30px;
+    }
+    p{
+      font-size: 15px;
+    }
+  }
+
+  .login-container {
+    height: 80vh !important;
+  }
+
+  .box {
+    max-width: 80vw;
+    max-height: 70vh;
+  }
+
+  .login-button {
+    max-height: 60px;
+  }
+
+  .main-container {
+    padding: 15px 10px 10px 15px;
+  }
+
+  //profile page
+  .profile-page {
+    text-align: center;
+  }
+  .profile-image {
+    height: 20vh;
+  }
+  .homepage-textbox {
+    margin: 90px 0 0 0;
+    
+  }
+  .is-large {
+    height: 75vh;
+  }
+  .random-container {
+    height: 20vh;
+    .random-container-text {
+      max-height: 20vh;
+      display: block;
+      text-align: center;
+      .random-text {
+        font-size: 15px;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .foodtitle {
+    font-size: 30px;
+  }
+  .mobile-padding {
+    padding-left: 30px
+  }
+
+  .comment-column {
+    margin-left: -100px;
+  }
+
+  .comment-text {
+    max-width: 80vw;
+    word-wrap: break-word;
+  }
+}
 .include-eye {
   border: 1px solid lightgray;
   border-radius: 5px;
@@ -280,5 +368,9 @@ div.dropdown {
   cursor: default;
 }
 
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons')
+.image-uploader{
+  right:0px;
+  position: absolute;
+}
 
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons')

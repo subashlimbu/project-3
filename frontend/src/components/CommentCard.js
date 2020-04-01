@@ -124,7 +124,7 @@ class CommentCard extends React.Component {
 
     return <div className="comment">
       <h2>{comment.user.username}</h2>
-      <p><strong>{comment.text}</strong></p>
+      <p className="comment-text"><strong>{comment.text}</strong></p>
       <p className="time">{moment(comment.createdAt).format('DD/MM/YYYY')}</p>
       <i className="far fa-thumbs-up"></i>
       <i className="far fa-thumbs-down"></i>

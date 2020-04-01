@@ -42,7 +42,7 @@ const Home = (props) => {
 
       </div>
     </section>
-    <section>
+    <section className="footer-container">
       <div className="container is-fluid random-container">
         <div className="notification random-container-text">
           <p className="random-text">Cant decide? Click to find a random restaurant!</p>
