@@ -23,6 +23,7 @@ class AddRestaurant extends React.Component {
         halalFriendly: null,
         priceRange: null
       },
+      data: {},
       uploading: false,
       uploaded: false,
       errors: {}
@@ -45,13 +46,14 @@ class AddRestaurant extends React.Component {
 
   uploadImages(event) {
     event.preventDefault()
-    const { uploading } = this.state
-    if (uploading) return console.log('go away')
+    const { uploading, uploaded } = this.state
+    if (uploading) return
+    if (uploaded) this.setState({ uploaded: false })
     //gets the image form from the dom
     const imageForm = document.getElementById('image-form')
     //gets the formdata in a way the backend will understand
     const imageFormData = new FormData(imageForm)
-
+    if (imageFormData.get('image').name === '') return console.log('empty')
     this.setState({ uploading: true })
     console.log('HI BEN ', this.state)
     //sets the content type for the request
@@ -62,7 +64,17 @@ class AddRestaurant extends React.Component {
     }
     axios.post('/api/upload', imageFormData, config)
       .then(res => {
-        const data = { ...this.state.data, ['imageGallery']: res.data.files }
+        let files = res.data.files
+        console.log('RES ', res.data)
+        if (this.state.data.imageGallery !== undefined) {
+          const temp = this.state.data.imageGallery
+          files.forEach(file => { 
+            console.log('hi')
+            temp.push(file)
+          })
+          files = temp
+        }
+        const data = { ...this.state.data, ['imageGallery']: files }
         this.setState({ uploading: false, uploaded: true })
         this.setState({ data })
       })
@@ -83,13 +95,13 @@ class AddRestaurant extends React.Component {
             errors={errors}
             data={data}
           />
-          {uploading && <small className="is-danger">Uploading...</small>}
-          {uploaded && <small className="is-danger">Uploaded!</small>}
         </div>
         <div className="column is-two-thirds-desktop">
           <ImageUploader
             handleSubmit={(event) => this.uploadImages(event)}
           />
+          {uploading && <small className="is-danger">Uploading...</small>}
+          {uploaded && <small className="is-danger">Uploaded!</small>}
         </div>
       </div>
     </div>

@@ -48,6 +48,24 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
 
     <div className="field">
       <label className="label">
+        Banner Image URL
+      </label>
+      <div className="control">
+        <input
+          onChange={(event) => handleChange(event)}
+          type="text"
+          name="image"
+          className="input"
+        // value={address}
+        />
+      </div>
+      {/* {errors.address && <small className="help is-danger">
+        {errors.address}
+      </small>} */}
+    </div>
+
+    <div className="field">
+      <label className="label">
         Street address - e.g. 42 Warton Road
       </label>
       <div className="control">
