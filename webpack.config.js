@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const dotenv = require('dotenv-webpack') //required dotenv webpack. makes dotenv available on frontend 
 
 module.exports = {
   entry: './frontend/src/app.js',
@@ -32,6 +33,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new dotenv(), //added dotenv plugin 
     new HtmlWebpackPlugin({
       template: 'frontend/src/index.html',
       filename: 'index.html',

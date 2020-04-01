@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const router = require('./router')
 // const uri = 'mongodb://localhost/restaurant-db'
 const uri = 'mongodb+srv://benharris:Password-1@cluster0-kzea4.mongodb.net/restaurantdb?retryWrites=true&w=majority';
-
+require('dotenv').config()
 
 mongoose.connect(uri,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false },
@@ -25,6 +25,5 @@ expressServer.use((req, res, next) => {
 })
 
 expressServer.use('/api', router)
-
 
 expressServer.listen(8000)

@@ -341,10 +341,8 @@ function getRandomRestaurant(req, res) {
 
 function emailRestaurantInfo(req, res) {
   const currentUser = req.currentUser
-
-
   const mailjet = require('node-mailjet')
-    .connect('438fe491a39f0824a68b50344e07a4de', '235dbb4745cab0de363e67fdd200ca50')
+    .connect(process.env.MJ_API_KEY1, process.env.MJ_API_KEY2)
   Restaurant
     .findById(req.params.id)
     .then(restaurant => {
@@ -375,7 +373,7 @@ function emailRestaurantInfo(req, res) {
       request
         .then(() => {
           res.status(200).send(
-            'Email sent succesfully!'
+            'Email sent successfully!'
           )
         })
         .catch((err) => {
