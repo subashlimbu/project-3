@@ -239,15 +239,19 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
         Price (low-high)
       </label>
       <div className="control">
-        <input
+        <select
           onChange={(event) => handleChange(event)}
-          type="range"
+          type="text"
           name="priceRange"
           className="input"
-          min="1"
-          max="4"
         // value={priceRange}
-        />
+        >
+          <option disabled selected value> -- select an option -- </option>
+          <option value="1">£</option>
+          <option value="2">££</option>
+          <option value="3">£££</option>
+          <option value="4">££££</option>
+        </select>
       </div>
       {errors.image && <small className="help is-danger">
         {errors.image}

@@ -65,7 +65,7 @@ class SingleRestaurant extends React.Component {
     }
 
     const id = this.props.match.params.id
-    const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, isHalal } = this.state.restaurant
+    const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, halalFriendly, priceRange } = this.state.restaurant
     const isLoggedIn = auth.isLoggedIn()
     return <>
 
@@ -110,7 +110,10 @@ class SingleRestaurant extends React.Component {
               <div className="single-ticks">
                 <p className="smaller-details">Serves alcohol: {this.crossTick(serveAlcohol)}</p>
                 <p className="smaller-details">Vegetarian-friendly: {this.crossTick(veggieFriendly)}</p>
-                <p className="smaller-details">Serves halal meat: {this.crossTick(isHalal)}</p>
+                <p className="smaller-details">Serves halal meat: {this.crossTick(halalFriendly)}</p>
+              </div>
+              <div className="single-price">
+                <p className="smaller-details">Price range: {'£'.repeat(priceRange)} </p>
               </div>
               <div className="email">
                 {isLoggedIn && <Email restaurantId={id} />}
