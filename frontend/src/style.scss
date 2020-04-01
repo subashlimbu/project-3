@@ -123,36 +123,24 @@ margin-right: 15px;
 }
 
 .navbar-link {
+  background-color: black !important;
+  color: gainsboro !important;
   &:hover {
     // border-bottom: 2px solid white;
-    background-color: transparent;
+    background-color: black;
     color: #F2C782;
   }
 }
 
-
-
 .is-active {
   background-color: black;
 }
-
 
 div.navbar-menu.is-active {
   background-color: black;
   margin-right: 15px;
 }
 
-.navbar-item {
-  color: gainsboro;
-  font-weight: bold;
-  font-size: large;
-  font-family: 'Alegreya Sans SC';
-  &:hover {
-    color: #F2C782 !important;
-    background-color: black !important;
-  }
-
-}
 .foodtitle {
   font-size: 40px;
   font-variant: unset;
@@ -164,23 +152,43 @@ div.navbar-menu.is-active {
 div.navbar-container {
   margin: auto 15px !important;
   max-width: 100vw;
+  background-color: black;
 }
 
 a.navbar-item{
   transition: 0.2s ease;
+  // border-bottom: 2px solid transparent;
+  color: gainsboro;
+  font-weight: bold;
+  font-size: large;
+  font-family: 'Alegreya Sans SC';
+  &:hover {
+    color: #F2C782 !important;
+    background-color: black !important;
+  }
+}
+
+.navbar-edited {
+  transition: 0.2s ease;
   border-bottom: 2px solid transparent;
+  padding: 10px;
+  color: gainsboro;
+  font-weight: bold;
+  font-size: large;
+  font-family: 'Alegreya Sans SC';
   &:hover {
     border-bottom: 2px solid white;
-    background-color: transparent !important;
+    color: #F2C782 !important;
+    background-color: black !important;
   }
 }
 
 .dropdown-item {
   color: gainsboro;
   cursor: pointer;
+  font-family: 'Alegreya Sans SC';
 }
 .navbar-dropdown, .navbar-divider{
-  // background-color: rgba(256, 256, 265, 0.8);
   background-color: black;
 }
 

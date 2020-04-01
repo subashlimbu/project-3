@@ -4,11 +4,7 @@ const mongoose = require('mongoose')
 const router = require('./router')
 // const uri = 'mongodb://localhost/restaurant-db'
 const uri = 'mongodb+srv://benharris:Password-1@cluster0-kzea4.mongodb.net/restaurantdb?retryWrites=true&w=majority';
-<<<<<<< HEAD
-
-=======
 require('dotenv').config()
->>>>>>> development
 const path = require('path')
 
 const multer = require('multer')
