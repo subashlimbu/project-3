@@ -7,22 +7,20 @@ import { Parallax } from 'react-parallax'
 
 
 const Home = (props) => {
-  console.log(this)
-  console.log(props)
+
   let randomRestaurantId
   function getRandomRestaurant() {
     axios.get('/api/random')
       .then((resp) => {
-
         randomRestaurantId = resp.data._id
         return randomRestaurantId
       })
       .then((randomRestaurantId) => {
-        console.log(randomRestaurantId)
         props.history.push(`/restaurant/${randomRestaurantId}`)
       })
 
   }
+
   return <>
     <section className="hero is-large">
       <div className="hero-body">
