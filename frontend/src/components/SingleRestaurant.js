@@ -15,12 +15,14 @@ class SingleRestaurant extends React.Component {
     super()
     this.state = {
       restaurant: null,
-      isFavourited: null
+      isFavourited: null,
+      images: null
     }
   }
 
   componentDidMount() {
     const id = this.props.match.params.id
+    console.log('hello')
     // if user.favourites includes id, then setState this.state.isFavourited: true. else false 
 
     // COMMENTED OUT HERE 
@@ -43,6 +45,7 @@ class SingleRestaurant extends React.Component {
       .then(resp => {
         // console.log(resp)
         this.setState({ restaurant: resp.data })
+        console.log(resp.data)
 
       })
       .catch(err => console.error(err))
@@ -63,9 +66,8 @@ class SingleRestaurant extends React.Component {
     if (!this.state.restaurant) {
       return <LoaderSpinner />
     }
-
     const id = this.props.match.params.id
-    const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, isHalal } = this.state.restaurant
+    const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, isHalal, imageGallery } = this.state.restaurant
     const isLoggedIn = auth.isLoggedIn()
     return <div className='main-container'>
 
@@ -79,6 +81,11 @@ class SingleRestaurant extends React.Component {
         </div>
       </section> */}
 
+      {imageGallery.map((ele, key) => {
+        const url = `http://localhost:8000/api/image/${ele.filename}`
+        console.log('URL ', url)
+        return <img src={url} key={key} alt="placeholder" />
+      })}
       <h1 className="title is-1 is-title-light">{name}</h1>
       <hr />
       <FavouriteButton />

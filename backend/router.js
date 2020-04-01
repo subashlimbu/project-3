@@ -5,6 +5,12 @@ const userController = require('./controllers/userController')
 // add secureRoute in front of private routes to activate middleware
 const secureRoute = require('./lib/secureRoute')
 
+router.route('/images')
+  .get(restaurantController.getImages)
+
+router.route('/image/:filename')
+  .get(restaurantController.getImage)
+
 router.route('/restaurants')
   .get(restaurantController.index) //tested and works 
   .post(secureRoute, restaurantController.createNewRestaurant) //tested and works for logged-in user 

@@ -216,6 +216,26 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
       </small>} */}
     </div>
 
+    <div className="field">
+      <label className="label">
+        Price (low-high)
+      </label>
+      <div className="control">
+        <input
+          onChange={(event) => handleChange(event)}
+          type="range"
+          name="priceRange"
+          className="input"
+          min="1"
+          max="4"
+        // value={priceRange}
+        />
+      </div>
+      {/* {errors.image && <small className="help is-danger">
+        {errors.image}
+      </small>} */}
+    </div>
+
 
     <button className="button is-success">
       Submit restaurant

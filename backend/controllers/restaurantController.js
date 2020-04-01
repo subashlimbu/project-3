@@ -13,16 +13,21 @@ connection.once('open', function () {
   gfs.collection('images')
 })
 
-function getImage(imageArray) {
-  const outputArray = []
-  gfs.files.find().toArray((err, files) => {
-    files.forEach(file => {
-      if (imageArray.includes(file._id)) outputArray.push(file)
-    })
+function getImage(req, res) {
+  const filename = req.params.filename
+  var readstream = gfs.createReadStream({ filename: filename })
+  readstream.on('error', function (err) {
+    res.send({ error: 'not found' })
   })
-  return outputArray
+  readstream.pipe(res)
 }
- 
+
+function getImages(req, res) {
+  gfs.files.find().toArray((err, files) => {
+    res.send({ files: files })
+  })
+}
+
 function index(req, res) {
   // Find all our pancakes (asynchronous!) and send them back when done
   Restaurant
@@ -432,5 +437,6 @@ module.exports = {
   undislikeComment,
   swapLike,
   emailRestaurantInfo,
-  getImage
+  getImage,
+  getImages
 }
