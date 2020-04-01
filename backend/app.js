@@ -85,9 +85,5 @@ expressServer.use((req, res, next) => {
 
 expressServer.use('/api', router)
 
-<<<<<<< HEAD
-expressServer.listen(8000)
-=======
 // module.exports = expressServer.listen(8000)
 expressServer.listen(8000)
->>>>>>> eacb1ee7b8211188a8e155c7feaf885fd42becce
