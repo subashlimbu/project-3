@@ -56,7 +56,7 @@ class Login extends React.Component {
               </div>
               <div className="box">
                 <figure className="avatar">
-                  <img src="https://www.astleypark.lancs.sch.uk/images/blog/welcome-back.jpg" />
+                  <img src="https://cdn.webshopapp.com/shops/251281/files/208187906/muddaritaville-mu-welcome-small.jpg" />
                 </figure>
                 <form
                   className="form"

@@ -5,6 +5,33 @@
   font-family: 'Noto Sans', cursive;
 }
 
+.frontpagetitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px;
+  font-weight: 700;
+}
+
+.frontpagesubtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+
+.randomrestosection {
+  margin-right: 5px;
+}
+
+.flexhome {
+  display: flex;
+  align-items: center;
+}
+
+.flexhomerandom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 body {
   margin: 0;
 }
@@ -19,8 +46,12 @@ body {
 }
 
 div.hero-body {
-  background-image: url('https://www.9-elephants.co.uk/wp-content/uploads/thai-food.jpg');
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.7), 
+    rgba(0, 0, 0, 0.7)
+  ),url('https://fast.clickbooq.com/94f233-986/071412_TOC_BlackBull_3615_FF-lg.jpg');
   background-size: cover;
+  height: 85vh;
   // background-color: black;
   // opacity: 80%;
 }
@@ -31,20 +62,52 @@ div.hero-body {
   margin: auto 200px;
 }
 
+.randombutton {
+    cursor: pointer;
+    text-transform: uppercase;
+    // width:120px;
+    // height:60px;
+    // margin-left:35px;
+    display:block;
+    background-color:black;
+    color: #f2c782;
+    border: none;
+    outline:none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    // padding-bottom: 7px;
+    transition: color .3s ease-in-out .05s;
+    // text-decoration: underline;
+
+}
+
+.randombutton:hover {
+  color: white;
+}
+
 .random-container {
-  background-color: darkred;
+  background-color: black;
+  opacity: 92%
 }
 
 .random-container-text {
-  background-color: darkred;
+  background-color:black;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
+  min-height: 500px;
+}
+
+.random-text1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  color: white;
 }
 
 .random-text {
+  font-family: 'Cormorant Garamond', serif;
   font-size: 24px;
-  color: black;
+  color: white;
 }
 
 nav.navbar {
