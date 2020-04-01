@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
 import RestaurantForm from './RestaurantForm'
+import ImageUploader from './ImageUploader'
 
 
 class AddRestaurant extends React.Component {
@@ -22,6 +23,8 @@ class AddRestaurant extends React.Component {
         halalFriendly: null,
         priceRange: null
       },
+      uploading: false,
+      uploaded: false,
       errors: {}
     }
   }
@@ -39,19 +42,57 @@ class AddRestaurant extends React.Component {
       .then(res => console.log('line 37', res))
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
+
+  uploadImages(event) {
+    event.preventDefault()
+    const { uploading } = this.state
+    if (uploading) return console.log('go away')
+    //gets the image form from the dom
+    const imageForm = document.getElementById('image-form')
+    //gets the formdata in a way the backend will understand
+    const imageFormData = new FormData(imageForm)
+
+    this.setState({ uploading: true })
+    console.log('HI BEN ', this.state)
+    //sets the content type for the request
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    }
+    axios.post('/api/upload', imageFormData, config)
+      .then(res => {
+        const data = { ...this.state.data, ['imageGallery']: res.data.files }
+        this.setState({ uploading: false, uploaded: true })
+        this.setState({ data })
+      })
+      .catch(err => console.log('borked ', Object.entries(err)))
+  }
+
   render() {
-    const { errors, data } = this.state
-    return <section className="section">
-      <div className="container">
-        <h1 className="title">Add a new restaurant</h1>
-        <RestaurantForm
-          handleSubmit={(event) => this.handleSubmit(event)}
-          handleChange={(event) => this.handleChange(event)}
-          errors={errors}
-          data={data}
-        />
+    const { errors, data, uploading, uploaded } = this.state
+    return <div className="main-container">
+      <h1 className="title">Add a new restaurant</h1>
+      <div className="columns is-full-mobile">
+        <div className="column is-one-third-desktop">
+          <RestaurantForm
+            handleSubmit={(event) => this.handleSubmit(event)}
+            handleChange={(event) => this.handleChange(event)}
+            uploadImages={(event) => this.uploadImages(event)}
+            addImages={(event) => this.addImages(event)}
+            errors={errors}
+            data={data}
+          />
+          {uploading && <small className="is-danger">Uploading...</small>}
+          {uploaded && <small className="is-danger">Uploaded!</small>}
+        </div>
+        <div className="column is-two-thirds-desktop">
+          <ImageUploader
+            handleSubmit={(event) => this.uploadImages(event)}
+          />
+        </div>
       </div>
-    </section>
+    </div>
   }
 }
 export default AddRestaurant

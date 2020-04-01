@@ -5,6 +5,12 @@ const userController = require('./controllers/userController')
 // add secureRoute in front of private routes to activate middleware
 const secureRoute = require('./lib/secureRoute')
 
+router.route('/images')
+  .get(restaurantController.getImages)
+
+router.route('/image/:filename')
+  .get(restaurantController.getImage)
+
 router.route('/restaurants')
   .get(restaurantController.index) //tested and works 
   .post(secureRoute, restaurantController.createNewRestaurant) //tested and works for logged-in user 
@@ -14,6 +20,9 @@ router.route('/restaurant/favourite')
 
 router.route('/restaurant/unfavourite')
   .put(secureRoute, userController.unfavourite)
+
+router.route('/favourites')
+  .get(secureRoute, userController.getFavourites)
 
 
 router.route('/restaurant/:id')
@@ -25,6 +34,8 @@ router.route('/restaurant/:id/comments')
   .post(secureRoute, restaurantController.CreateNewComment) //tested and works for logged-in user 
   .get(restaurantController.getComments)
 
+router.route('/image1')
+  .get(restaurantController.getImage)
 
 router.route('/restaurant/:id/comment/:commentId')
   .delete(secureRoute, restaurantController.DeleteAComment) //tested and works for logged-in user who created that comment 
@@ -64,9 +75,6 @@ router.route('/random')
 
 router.route('/restaurant/:id/email')
   .get(secureRoute, restaurantController.emailRestaurantInfo)
-
-router.route('/favourites')
-  .get(secureRoute, restaurantController.getFavourites)
 
 
 module.exports = router

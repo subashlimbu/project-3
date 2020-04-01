@@ -23,7 +23,8 @@ const restaurantSchema = mongoose.Schema({
   priceRange: { type: Number, required: true },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   comments: [commentSchema],
-  image: { type: String, required: false }
+  image: { type: String, required: false },
+  imageGallery: { type: Array, required: false }
 });
 
 
