@@ -373,4 +373,17 @@ div.dropdown {
   position: absolute;
 }
 
+.image-slider {
+  max-width: 30vw;
+}
+
+.comment-delete {
+  float: right;
+  margin: 0 0 10px 0 !important;
+}
+
+.map-and-gallery {
+  align-self: center !important;
+}
+
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons')
