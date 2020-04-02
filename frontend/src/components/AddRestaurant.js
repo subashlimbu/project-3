@@ -89,7 +89,7 @@ class AddRestaurant extends React.Component {
         <hr className="login-hr" />
       </div>
       <div className="columns is-full-mobile">
-        <div className="column is-half-desktop is-full-mobile">
+        <div className="column is-half-desktop is-full-tablet is-full-mobile">
           <div className="box add-restaurant-box box-override">
             <div className="transparent-background">
               <RestaurantForm
@@ -103,7 +103,7 @@ class AddRestaurant extends React.Component {
             </div>
           </div>
         </div>
-        <div className="column is-half-desktop">
+        <div className="column is-half-desktop is-full-mobile is-full-tablet">
           <ImageUploader
             handleSubmit={(event) => this.uploadImages(event)}
           />
