@@ -37,11 +37,11 @@ body {
   margin: 0;
 }
 
-.section {
-  display: flex;
-  padding: 20px 100px 20px;
-  background-image: url('https://i.pinimg.com/originals/db/82/81/db82812eecaea9306e889e262514e7fc.jpg');
-}
+// .section {
+//   display: flex;
+//   padding: 20px 100px 20px;
+//   background-image: url('https://i.pinimg.com/originals/db/82/81/db82812eecaea9306e889e262514e7fc.jpg');
+// }
 
 .column {
   padding: 20px;
@@ -72,7 +72,7 @@ div.hero-body {
     // margin-left:35px;
     display:block;
     background-color:black;
-    color: #f2c782;
+    color: #f2c782 !important;
     border: none;
     outline:none;
     font-family: 'Cormorant Garamond', serif;
@@ -85,6 +85,7 @@ div.hero-body {
 
 .randombutton:hover {
   color: white;
+  border-bottom: 1px solid white;
 }
 
 .random-container {
@@ -118,32 +119,64 @@ div.hero-body {
   }
 }
 
+.allrestaurantsbackground {
+  padding-top: 50px;
+  background-image: url("https://i.imgur.com/3TsyQv4.jpg");
+  background-size: cover;
+}
+
+.button.is-success {
+    background-color:  #F2C782;
+}
+
+// .favrestaurantsbackground {
+//     padding-top: 50px;
+//     background-image: url("https://i.imgur.com/3TsyQv4.jpg");
+//     background-size: cover;
+//     height: 100vh;
+// }
+
+.defaultfont {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+}
+
+.formfont {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+
+.searchfont {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
 nav.navbar {
   background-color: black;
 }
 
 .foodtitle {
   font-size: 40px;
+  // margin-bottom: 0.5rem;
+    font-variant: unset;
+    color: gainsboro;
+    margin-bottom: 1px;
+  
+
+  // &:hover {
+    // box-shadow: 0 4px 5px 0 rgba(0,0,0,.3);
+    // color: red;
+    // transition: 0.9s;
+    // transform: rotateY(180deg);
+      // transition: all 1.5s linear;
+      // padding: 0 5px 0 5px;
+  
+    // margin: 5px;
+  // }
 }
-//   // margin-bottom: 0.5rem;
-
-
-//     font-variant: unset;
-//     color: gainsboro;
-//     margin-bottom: 1px;
-  
-
-//   &:hover {
-//     // box-shadow: 0 4px 5px 0 rgba(0,0,0,.3);
-//     // color: red;
-//     transition: 0.9s;
-//     transform: rotateY(180deg);
-//       // transition: all 1.5s linear;
-//       // padding: 0 5px 0 5px;
-  
-//     // margin: 5px;
-//   }
-
 
 .navbar-brand {
 margin-right: 15px;
@@ -182,10 +215,8 @@ div.navbar-container {
 
 
 a.navbar-item{
-  
-  &:hover {
     // border-bottom: 2px solid;//line below navbar restaurants, login etc..
-    background-color: transparent;//hides the navbar background box on login, restaurants..
+  background-color: transparent;//hides the navbar background box on login, restaurants..
   transition: 0.2s ease;
   // border-bottom: 2px solid transparent;
   color: gainsboro;
@@ -199,7 +230,6 @@ a.navbar-item{
     color: #F2C782 !important;
     background-color: black !important;
   }
-}
 }
 
 .navbar-edited {
@@ -249,22 +279,22 @@ a.navbar-item{
   color: red;
 }
 
-.card {
-  height: 200px;
-  text-align: center;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
-  border-radius: 10px;
-  margin: 10px;
-  transition: all .2s ease-out;
-  img{
-    height: 300px;
-    border-radius: 8px;
-  }
-  &:hover {
-    box-shadow: 0 4px 5px 0 rgba(0,0,0,.3);
-    margin: 5px;
-  }
-}
+// .card {
+//   height: 200px;
+//   text-align: center;
+//   box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+//   border-radius: 10px;
+//   margin: 10px;
+//   transition: all .2s ease-out;
+//   img{
+//     height: 300px;
+//     border-radius: 8px;
+//   }
+//   &:hover {
+//     box-shadow: 0 4px 5px 0 rgba(0,0,0,.3);
+//     margin: 5px;
+//   }
+// }
 
 .card-content {
   display: flex;
@@ -369,6 +399,39 @@ img.sImage {
 div.dropdown {
   margin-bottom: 20px !important;
 }
+.card {
+  width: 300px;
+  height: 185px;
+  // background-color: #73AD21;
+  // border-radius: 20px;
+  text-align: center;
+  // max-height: 400px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+  background: rgba(89, 197, 146, 0.8);
+  border-radius: 10px;
+  margin: 10px;
+  transition: all .2s ease-in-out;
+  img{
+    height: 300px;
+    border-radius: 8px;
+  }
+  &:hover {
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.3);
+    margin: 5px;
+  }
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
 
 .field {
   padding: 10px;
@@ -404,7 +467,102 @@ div.dropdown {
   margin-left: 10px;
 }
 
+.include-eye {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  width: 35%;
+}
+
+.change {
+ border-color: transparent !important;
+}
+
+.eye {
+  margin: 0px 10px;
+  cursor: default;
+}
+
+.image-uploader{
+  right:0px;
+  position: absolute;
+}
+
+.image-slider {
+  max-width: 30vw;
+}
+
+.comment-delete {
+  float: right;
+  margin: 0 0 10px 0 !important;
+}
+
+.map-and-gallery {
+  align-self: center !important;
+.loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+}
+
+.page-background {
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.7), 
+    rgba(0, 0, 0, 0.7)
+  ),url('https://fast.clickbooq.com/94f233-986/071412_TOC_BlackBull_3615_FF-lg.jpg');
+  * {
+    color: white;
+    button {
+      color: black;
+    }
+  }
+}
+
+.page-title {
+  text-align: center;
+  padding-top: 50px
+}
+
+
+.transparent-background {
+  background-color: white;
+  opacity: 0.8;
+  border-radius: 6px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+  padding: 30px;
+}
+
+.box-override {
+  background-color: transparent !important;
+}
+
+.add-restaurant-box {
+  height: 70vh;
+  overflow-y: auto;
+  *{
+    color: black;
+  }
+  margin-left: 20vh;
+  width: fit-content;
+}
+
+.image-upload-button {
+  margin-left: 10px;
+}
+
+
 @media only screen and (max-width: 600px) {
+
+  .add-restaurant-box {
+    margin-left: 0;
+  }
 
   .login-top {
     height: 20vh;
@@ -428,6 +586,7 @@ div.dropdown {
     max-width: 80vw;
     max-height: 70vh;
   }
+
 
   .login-button {
     max-height: 60px;
@@ -464,9 +623,7 @@ div.dropdown {
       }
     }
   }
-  .foodtitle {
-    font-size: 30px;
-  }
+
   .mobile-padding {
     padding-left: 20px
   }
@@ -516,10 +673,53 @@ div.dropdown {
 
 .map-and-gallery {
   align-self: center !important;
+}
+
 .loading {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.profile-page {
+  text-align: center;
+  background-image: url('https://i.imgur.com/3TsyQv4.jpg');
+  background-size: cover;
+  // height: 100vh;
 }
+
+.profile-image {
+  height: 40vh;
+  // padding: 10px;
+  margin-top: 20px;
+}
+
+.profile-text {
+  font-weight: bold;
+  font-size: 22px;
+  color: white;
+  margin: 15px;
+}
+
+.flexparent {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+}
+
+.profile-box {
+  background-color: black;
+  opacity: 70%;
+  // height: 40vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  padding: 20px 50px;
+  margin-top: 20px;
+
+}
+
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');

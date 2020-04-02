@@ -61,7 +61,6 @@ function changePassword(req, res) {
       user.set({ password: req.body.newPassword, passwordConfirmation: req.body.passwordConfirmation })
       return user.save(function (error, user) {
         if (error) {
-          console.log('line 64 error', error.errors)
           return res.status(401).send(error.errors)
         }
         return res.sendStatus(200)
@@ -116,9 +115,9 @@ function favourite(req, res) {
     .findOne(user)
     .then(user => {
       // console.log(req.body.restaurantId)
-      // console.log(user, 'line 118')
+      console.log(user, 'line 118')
       user.favourites.push(req.body.restaurantId) //make sure i name it restuarantId when i axios.post in frontend
-      // console.log('gets in user push')
+      console.log('gets in user push')
       return user.save()
     })
     .then((user) => {
@@ -135,18 +134,10 @@ function unfavourite(req, res) {
     .findOne(user)
     .then(user => {
       user.favourites.pull(req.body.restaurantId)
-      // console.log(user)
+      console.log(user)
       user.save()
       res.status(200).send({ message: 'removed restaurant from users favourites array' })
     })
-    .catch(error => res.send({ errors: error.errors }))
-
-    // function getImageUpload {
-    //   const currentUser = req.currentUser
-    //   User
-    //   .findOne(user)
-    //   .then
-    // }    
 
 }
 
