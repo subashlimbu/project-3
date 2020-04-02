@@ -36,11 +36,11 @@ body {
   margin: 0;
 }
 
-.section {
-  display: flex;
-  padding: 20px 100px 20px;
-  background-image: url('https://i.pinimg.com/originals/db/82/81/db82812eecaea9306e889e262514e7fc.jpg');
-}
+// .section {
+//   display: flex;
+//   padding: 20px 100px 20px;
+//   background-image: url('https://i.pinimg.com/originals/db/82/81/db82812eecaea9306e889e262514e7fc.jpg');
+// }
 
 .column {
   padding: 20px;
@@ -141,23 +141,21 @@ nav.navbar {
 .foodtitle {
   font-size: 40px;
   // margin-bottom: 0.5rem;
-
-
     font-variant: unset;
     color: gainsboro;
     margin-bottom: 1px;
   
 
-  &:hover {
+  // &:hover {
     // box-shadow: 0 4px 5px 0 rgba(0,0,0,.3);
     // color: red;
-    transition: 0.9s;
-    transform: rotateY(180deg);
+    // transition: 0.9s;
+    // transform: rotateY(180deg);
       // transition: all 1.5s linear;
       // padding: 0 5px 0 5px;
   
     // margin: 5px;
-  }
+  // }
 }
 
 .navbar-brand {
@@ -197,10 +195,8 @@ div.navbar-container {
 
 
 a.navbar-item{
-  
-  &:hover {
     // border-bottom: 2px solid;//line below navbar restaurants, login etc..
-    background-color: transparent;//hides the navbar background box on login, restaurants..
+  background-color: transparent;//hides the navbar background box on login, restaurants..
   transition: 0.2s ease;
   // border-bottom: 2px solid transparent;
   color: gainsboro;
@@ -211,7 +207,6 @@ a.navbar-item{
     color: #F2C782 !important;
     background-color: black !important;
   }
-}
 }
 
 .navbar-edited {
@@ -471,9 +466,7 @@ div.dropdown {
       }
     }
   }
-  .foodtitle {
-    font-size: 30px;
-  }
+
   .mobile-padding {
     padding-left: 30px
   }
@@ -521,13 +514,50 @@ div.dropdown {
 
 .map-and-gallery {
   align-self: center !important;
+}
+
 .loading {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.profile-page {
+  text-align: center;
+  background-image: url('https://i.imgur.com/3TsyQv4.jpg');
+  background-size: cover;
+  // height: 100vh;
 }
 
+.profile-image {
+  height: 40vh;
+  padding: 10px;
+}
+
+.profile-text {
+  font-weight: bold;
+  font-size: 22px;
+  color: white;
+  margin: 15px;
+}
+
+.flexparent {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.profile-box {
+  background-color: black;
+  opacity: 70%;
+  // height: 40vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  padding: 20px 50px;
+}
 
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');

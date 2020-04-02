@@ -27,37 +27,36 @@ class Profile extends React.Component {
       return <h1> Still getting profile </h1>
     }
     const { username, email } = this.state.profile
-    return <div className="profile-page">
-      <div className="columns is-centered">
-        <div className="column is-half flexparent">
-          <h2 className="title is-centered"> Your Profile </h2>
-          <img className="profile-image" src="https://s3.amazonaws.com/37assets/svn/765-default-avatar.png" />
-          {/* <button
-            onClick={() => this.handleDelete()}
-            className="button is-danger">
-            {'Delete Account (Are you sure?) [This button DOES NOT WORK] '}
-          </button> */}
-          <section className="section">
-            <div className="container">
-              <p className=""> Username: {username} </p>
-              <p className=""> Email: {email} </p>
-            </div>
-          </section>
-          <section className="section">
-            <div className="container">
+    return <>
+      <div className="profile-page">
+        <h2 className="title is-centered your-profile"> Your Profile </h2>
+
+        <div className="columns is-centered">
+
+          <div className="column is-half flexparent">
+
+            <img className="profile-image" src="https://s3.amazonaws.com/37assets/svn/765-default-avatar.png" />
+          </div>
+
+          <div className="column is-half flexparent">
+
+            <div className="profile-box">
+              <p className="profile-text"> Username: {username} </p>
+              <p className="profile-text"> Email: {email} </p>
               <button
-                className="button is-warning"
+                className="randombutton profile-text"
               >
-                <Link to={'/profile/changePassword'}>
+                <Link to={'/profile/changePassword'} className="randombutton">
                   Change password
-                </Link>
+                  </Link>
               </button>
             </div>
-          </section>
+
+          </div>
+
         </div>
       </div>
-    </div>
-
+    </>
   }
 
 }

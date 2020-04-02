@@ -100,7 +100,10 @@ class SingleRestaurant extends React.Component {
             <p className="single-details">{telephone}</p>
           </div>
           <div className="single-link">
-            <Link to={link}>{link}</Link>
+            {/* <Link to={link}>{link}</Link> */}
+            <a target="_blank" rel="noopener noreferrer" href={link}>
+              {link}
+            </a>
           </div>
           <div className="single-link-button">
             {bookingLink && <button className="button is-normal">
