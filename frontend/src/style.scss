@@ -132,17 +132,28 @@ div.hero-body {
   background-size: cover;
 }
 
-.favrestaurantsbackground {
-    padding-top: 50px;
-    background-image: url("https://i.imgur.com/3TsyQv4.jpg");
-    background-size: cover;
-    height: 100vh;
+.button.is-success {
+    background-color:  #F2C782;
 }
 
-.favrestaurantfont {
+// .favrestaurantsbackground {
+//     padding-top: 50px;
+//     background-image: url("https://i.imgur.com/3TsyQv4.jpg");
+//     background-size: cover;
+//     height: 100vh;
+// }
+
+.defaultfont {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
 }
+
+.formfont {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
 
 .searchfont {
   font-family: 'Cormorant Garamond', serif;
@@ -516,6 +527,7 @@ div.dropdown {
 }
 
 .page-background {
+  background-size: cover;
   height: 100vh;
   width: 100vw;
   background-image: linear-gradient(

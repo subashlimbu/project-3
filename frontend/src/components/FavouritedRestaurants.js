@@ -28,7 +28,7 @@ class FavouritedRestaurants extends React.Component {
     console.log(this.state)
     return <div className="page-background main-container">
       <div className="page-title">
-        <h1 className="title favrestaurantfont">Favourited Restaurants</h1>
+        <h1 className="title defaultfont">Favourited Restaurants</h1>
         <hr className="login-hr" />
       </div>
       <div className="columns is-full-mobile is-multiline is-centered mobile-padding">
@@ -48,8 +48,8 @@ class FavouritedRestaurants extends React.Component {
                 </figure>
               </div>
             </div>
-            })}
-        </div>
+          </div>
+        })}
       </div>
     </div>
   }

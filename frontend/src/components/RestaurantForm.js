@@ -11,7 +11,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
   >
 
     <div className="field">
-      <label className="label">
+      <label className="label formfont">
         Name
       </label>
       <div className="control">
@@ -29,7 +29,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
     <div className="field">
-      <label className="label">
+      <label className="label formfont">
         Website
       </label>
       <div className="control">
@@ -47,7 +47,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
     <div className="field">
-      <label className="label">
+      <label className="label formfont">
         Banner Image URL
       </label>
       <div className="control">
@@ -65,7 +65,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
     <div className="field">
-      <label className="label">
+      <label className="label formfont">
         Street address - e.g. 42 Warton Road
       </label>
       <div className="control">
@@ -83,7 +83,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
     <div className="field">
-      <label className="label">
+      <label className="label formfont">
         Postcode
       </label>
       <div className="control">
@@ -101,7 +101,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
     <div className="field">
-      <label className="label">
+      <label className="label formfont">
         Telephone
       </label>
       <div className="control">
@@ -119,7 +119,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
     <div className="field">
-      <label className="label">
+      <label className="label formfont">
         Link to online booking (optional)
       </label>
       <div className="control">
@@ -137,7 +137,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
     <div className="field">
-      <label className="label">
+      <label className="label formfont">
         Cuisine
       </label>
       <div className="control">
@@ -166,7 +166,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
     <div className="field">
-      <label className="label">
+      <label className="label formfont">
         Does the restaurant serve alcohol?
       </label>
       <div className="control">
@@ -189,7 +189,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
     <div className="field">
-      <label className="label">
+      <label className="label formfont">
         Does the restaurant offer vegetarian options?
       </label>
       <div className="control">
@@ -212,7 +212,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
     <div className="field">
-      <label className="label">
+      <label className="label formfont">
         Does the restaurant offer halal meat?
       </label>
       <div className="control">
@@ -235,8 +235,8 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
     <div className="field">
-      <label className="label">
-        Price (low-high)
+      <label className="label formfont">
+        Price (Low-High)
       </label>
       <div className="control">
         <select
@@ -259,7 +259,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
 
-    <button className="button form-submit is-success is-large">
+    <button className="button form-submit is-success is-large defaultfont">
       Submit restaurant
     </button>
   </form>
