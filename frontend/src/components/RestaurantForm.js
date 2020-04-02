@@ -257,7 +257,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
     </div>
 
 
-    <button className="button form-submit is-success">
+    <button className="button form-submit is-success is-large">
       Submit restaurant
     </button>
   </form>

@@ -10,7 +10,7 @@ const ImageUploader = ({ handleSubmit }) => {
         <input type="file" name='image' multiple/>
       </div>
     </div>
-    <button className="button" type='submit'>
+    <button className="button image-upload-button" type='submit'>
       Upload
     </button>
   </form>

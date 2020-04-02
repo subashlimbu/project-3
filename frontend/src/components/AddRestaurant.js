@@ -68,7 +68,7 @@ class AddRestaurant extends React.Component {
         console.log('RES ', res.data)
         if (this.state.data.imageGallery !== undefined) {
           const temp = this.state.data.imageGallery
-          files.forEach(file => { 
+          files.forEach(file => {
             console.log('hi')
             temp.push(file)
           })
@@ -83,20 +83,27 @@ class AddRestaurant extends React.Component {
 
   render() {
     const { errors, data, uploading, uploaded } = this.state
-    return <div className="main-container">
-      <h1 className="title">Add a new restaurant</h1>
+    return <div className="page-background main-container">
+      <div className="page-title">
+        <h1 className="title">Add Restaurant</h1>
+        <hr className="login-hr" />
+      </div>
       <div className="columns is-full-mobile">
-        <div className="column is-one-third-desktop">
-          <RestaurantForm
-            handleSubmit={(event) => this.handleSubmit(event)}
-            handleChange={(event) => this.handleChange(event)}
-            uploadImages={(event) => this.uploadImages(event)}
-            addImages={(event) => this.addImages(event)}
-            errors={errors}
-            data={data}
-          />
+        <div className="column is-half-desktop is-full-mobile">
+          <div className="box add-restaurant-box box-override">
+            <div className="transparent-background">
+              <RestaurantForm
+                handleSubmit={(event) => this.handleSubmit(event)}
+                handleChange={(event) => this.handleChange(event)}
+                uploadImages={(event) => this.uploadImages(event)}
+                addImages={(event) => this.addImages(event)}
+                errors={errors}
+                data={data}
+              />
+            </div>
+          </div>
         </div>
-        <div className="column is-two-thirds-desktop">
+        <div className="column is-half-desktop">
           <ImageUploader
             handleSubmit={(event) => this.uploadImages(event)}
           />

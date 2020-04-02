@@ -76,32 +76,34 @@ class Restaurants extends React.Component {
 
   render() {
     if (!this.state.restaurants) return <LoaderSpinner />
-    return    <div className="container">
-      <SearchBar query={this.state.query} onChange={() => this.handleSearch(event)} />
-      <DropSearch handleDropdown={() => this.handleDropdown(event)} />
+    return <div className="allrestaurantsbackground">
+      <div className="container">
+        <SearchBar query={this.state.query} onChange={() => this.handleSearch(event)} />
+        <DropSearch handleDropdown={() => this.handleDropdown(event)} />
 
-      <div className="columns is-full-mobile is-multiline is-centered mobile-padding">
+        <div className="columns is-full-mobile is-multiline is-centered mobile-padding">
 
-        {this.state.filteredRestaurants.map(restaurant => {
-          console.log(restaurant.name)
-          console.log(restaurant.image)
-          console.log(restaurant)
-          return <Link key={restaurant._id} className="column is-one-quarter-desktop is-one-third-tablet is-full-mobile" to={`/restaurant/${restaurant._id}`}>
-            <div className="card">
-              <div className="card-image">
-                <figure className="image is-4by3">
-                  <img src={restaurant.image} alt="Placeholder image" className="resImage" />
+          {this.state.filteredRestaurants.map(restaurant => {
+            console.log(restaurant.name)
+            console.log(restaurant.image)
+            console.log(restaurant)
+            return <Link key={restaurant._id} className="column is-one-quarter-desktop is-one-third-tablet is-full-mobile" to={`/restaurant/${restaurant._id}`}>
+              <div className="card">
+                <div className="card-image">
+                  <figure className="image is-4by3">
+                    <img src={restaurant.image} alt="Placeholder image" className="resImage" />
 
 
-                  <div className="card-content">
-                    <div className="white">{restaurant.name}</div>
-                    <p className="subtitle">{restaurant.address}</p>
-                  </div>
-                </figure>
+                    <div className="card-content">
+                      <div className="white">{restaurant.name}</div>
+                      <p className="subtitle">{restaurant.address}</p>
+                    </div>
+                  </figure>
+                </div>
               </div>
-            </div>
-          </Link>
-        })}
+            </Link>
+          })}
+        </div>
       </div>
     </div>
   }
