@@ -26,27 +26,29 @@ class FavouritedRestaurants extends React.Component {
   render() {
     if (!this.state.favouritedRestos) return 'Favourite some restaurants!'
     console.log(this.state)
-    return <div className="main-container">
-      <h1 className="title">Favourited Restaurants</h1>
-      <div className="columns is-full-mobile is-multiline is-centered mobile-padding">
+    return <div className="favrestaurantsbackground">
+      <div className="main-container">
+        <h1 className="title favrestaurantfont">Your Favourited Restaurants</h1>
+        <div className="columns is-full-mobile is-multiline is-centered mobile-padding">
 
-        {this.state.favouritedRestos.map(restaurant => {
-          return <div key={restaurant._id} className="column is-one-quarter-desktop is-one-third-tablet is-full-mobile">
-            <div className="card">
-              <div className="card-image">
-                <figure className="image is-4by3">
-                  <img src={restaurant.image} alt="Placeholder image" className="resImage" />
+          {this.state.favouritedRestos.map(restaurant => {
+            return <div key={restaurant._id} className="column is-one-quarter-desktop is-one-third-tablet is-full-mobile">
+              <div className="card">
+                <div className="card-image">
+                  <figure className="image is-4by3">
+                    <img src={restaurant.image} alt="Placeholder image" className="resImage" />
 
 
-                  <div className="card-content">
-                    <Link className="subtitle" to={`/restaurant/${restaurant._id}`}>{restaurant.name}</Link>
-                    <p className="subtitle">{restaurant.address}</p>
-                  </div>
-                </figure>
+                    <div className="card-content">
+                      <Link className="subtitle" to={`/restaurant/${restaurant._id}`}>{restaurant.name}</Link>
+                      <p className="subtitle">{restaurant.address}</p>
+                    </div>
+                  </figure>
+                </div>
               </div>
             </div>
-          </div>
-        })}
+          })}
+        </div>
       </div>
     </div>
   }
