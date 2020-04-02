@@ -3,7 +3,7 @@ import React from 'react'
 // few commented bits which can be used when we create the 'edit restaurant' feature
 
 const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
-  // const { name, link, address, postcode, telephone, bookingLink, cuisine, serveAlcohol, veggieFriendly, isHalal } = data
+  // const { name, link, address, postcode, telephone, bookingLink, cuisine, serveAlcohol, veggieFriendly, halalFriendly } = data
   console.log(data)
   return <form
     className="form"
@@ -180,7 +180,6 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="veggieFriendly"
           className="input"
-        // value={veggieFriendly}
         >
           <option disabled selected value> -- select an option -- </option>
           <option value="true">Yes</option>
@@ -201,9 +200,8 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
         <select
           onChange={(event) => handleChange(event)}
           type="text"
-          name="isHalal"
+          name="halalFriendly"
           className="input"
-        // value={isHalal}
         >
           <option disabled selected value> -- select an option -- </option>
           <option value="true">Yes</option>
@@ -211,8 +209,8 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           <option value="false">Unsure</option>
         </select>
       </div>
-      {/* {errors.isHalal && <small className="help is-danger">
-        {errors.isHalal}
+      {/* {errors.halalFriendly && <small className="help is-danger">
+        {errors.halalFriendly}
       </small>} */}
     </div>
 
