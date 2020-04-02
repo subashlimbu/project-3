@@ -32,6 +32,7 @@ const Email = (props) => {
       {'Email restaurant info to me! '}
     </button>
     <p> {message} </p>
+    {/* //message can be error message or success message  */}
 
   </>
 }
