@@ -377,6 +377,8 @@ function emailRestaurantInfo(req, res) {
     .then(restaurant => {
       const veggieFriendly = restaurant.veggieFriendly ? '✅' : '❌'
       const serveAlcohol = restaurant.serveAlcohol ? '✅' : '❌'
+      const halalFriendly = restaurant.serveAlcohol ? '✅' : '❌'
+      const priceRange = '£'.repeat(restaurant.priceRange)
       const request = mailjet
         .post("send", { 'version': 'v3.1' })
         .request({
@@ -394,7 +396,7 @@ function emailRestaurantInfo(req, res) {
               ],
               "Subject": "Restaurant you are interested on FoodForThought",
               "TextPart": "Email from FoodForThought",
-              "HTMLPart": `<h3> Thank you for using FoodForThought. Please find the restaurant information as requested. </h3> <br /> <img src="${restaurant.image}" style="max-width:400px"/> <br /> Name of restaurant: ${restaurant.name} <br /> Cuisine: ${restaurant.cuisine[0]} <br /> Restaurant link: ${restaurant.link} <br /> Address: ${restaurant.address} <br /> Postcode: ${restaurant.postcode} <br /> Telephone: ${restaurant.telephone} <br /> Veggie friendly: ${veggieFriendly} <br /> Serves alcohol: ${serveAlcohol} `
+              "HTMLPart": `<h3> Thank you for using FoodForThought. Please find the restaurant information as requested. </h3> <br /> <img src="${restaurant.image}" style="max-width:400px"/> <br /> Name of restaurant: ${restaurant.name} <br /> Cuisine: ${restaurant.cuisine[0]} <br /> Restaurant link: ${restaurant.link} <br /> Address: ${restaurant.address} <br /> Postcode: ${restaurant.postcode} <br /> Telephone: ${restaurant.telephone} <br /> Veggie friendly: ${veggieFriendly} <br /> Serves alcohol: ${serveAlcohol} <br /> Halal friendly: ${halalFriendly} <br /> Price range: ${priceRange}`
 
             }
           ]
