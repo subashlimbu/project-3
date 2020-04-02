@@ -4,6 +4,7 @@ import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import { Spring } from 'react-spring/renderprops'
 import { Parallax } from 'react-parallax'
+import NavBar from './NavBar'
 
 
 const Home = (props) => {
@@ -25,7 +26,7 @@ const Home = (props) => {
   }
   return <>
     <section className="hero is-large">
-      <div className="hero-body">
+      <div className="hero-body is-large">
         <Spring
           from={{ opacity: 0 }}
           to={{ opacity: 1 }}

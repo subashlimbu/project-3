@@ -57,6 +57,7 @@
     "react-router-dom": "^5.1.2",
     "react-scroll-parallax": "^2.3.2",
     "react-spring": "^8.0.27",
+    "svg-icon": "^0.8.2",
     "validator": "^13.0.0"
   }
 }

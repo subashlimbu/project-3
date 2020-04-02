@@ -72,7 +72,7 @@ class SingleRestaurant extends React.Component {
                 <p className="single-details">{telephone}</p>
               </div>
               <div className="single-link">
-                <Link to={link}>{link}</Link>
+                <a target="blank" href={link}>{link}</a>
               </div>
               <div className="single-link-button">
                 {bookingLink && <button className="button is-normal">
@@ -109,7 +109,6 @@ class SingleRestaurant extends React.Component {
               </div>
             </div>
           </div>
-
         </div>
       </section>
 

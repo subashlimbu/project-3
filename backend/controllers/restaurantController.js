@@ -376,9 +376,6 @@ function emailRestaurantInfo(req, res) {
         })
 
     })
-
-
-
 }
 
 module.exports = {

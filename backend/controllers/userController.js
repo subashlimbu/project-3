@@ -79,6 +79,14 @@ function changePassword(req, res) {
       res.status(200).send({ message: 'password change successful' })
     })
     .catch(error => res.send({ errors: error.errors }))
+
+    // function getImageUpload {
+    //   const currentUser = req.currentUser
+    //   User
+    //   .findOne(user)
+    //   .then
+    // }    
+
 }
 
 
@@ -87,4 +95,5 @@ module.exports = {
   login,
   getProfile,
   changePassword
+  // getImageUpload
 }

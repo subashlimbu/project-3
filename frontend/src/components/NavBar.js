@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import auth from '../lib/auth'
 import { withRouter } from 'react-router-dom'
 import { GiHotMeal } from 'react-icons/gi'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignInAlt, faUtensils } from '@fortawesome/free-solid-svg-icons'
 
 class NavBar extends React.Component {
 
@@ -30,7 +32,8 @@ class NavBar extends React.Component {
       <nav className="navbar">
         <div className="container">
           <div className="navbar-brand">
-            <Link className="navbar-item foodtitle" to="/">Food For Thought<GiHotMeal />
+            <Link className="navbar-item foodtitle" to="/">
+              <FontAwesomeIcon icon={faUtensils} /> 
             </Link>
             <a
               role="button"

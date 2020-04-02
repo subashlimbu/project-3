@@ -78,7 +78,7 @@ class Restaurants extends React.Component {
         <SearchBar query={this.state.query} onChange={() => this.handleSearch(event)} />
         <DropSearch handleDropdown={() => this.handleDropdown(event)} />
 
-        <div className="columns is-centered is-mobile is-multiline">
+        <div className="columns is-mobile is-multiline">
 
           {this.state.filteredRestaurants.map(restaurant => {
             console.log(restaurant.name)
@@ -86,17 +86,17 @@ class Restaurants extends React.Component {
             console.log(restaurant)
             return <div key={restaurant._id} className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
               <div className="card">
-                <div className="card-image">
+                <Link to={`/restaurant/${restaurant._id}`} className="card-image">
                   <figure className="image is-4by3">
                     <img src={restaurant.image} alt="Placeholder image" className="resImage" />
 
 
                     <div className="card-content">
-                      <Link className="subtitle" to={`/restaurant/${restaurant._id}`}>{restaurant.name}</Link>
+                      <p className="subtitle" >{restaurant.name}</p>
                       <p className="subtitle">{restaurant.address}</p>
                     </div>
                   </figure>
-                </div>
+                </Link>
               </div>
             </div>
           })}

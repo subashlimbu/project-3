@@ -39,85 +39,87 @@ class Register extends React.Component {
 
   render() {
     const { errors } = this.state
-    console.log('ben ',errors)
+    console.log('ben ', errors)
     return <section className="section">
       <div className="container">
-        <h1 className="title">Register</h1>
-        <form
-          className="form"
-          onSubmit={(event) => this.handleSubmit(event)}
-        >
-          <div className="field">
-            <label className="label">
-              Email
-            </label>
-            <div className="control">
-              <input
-                onChange={(event) => this.handleChange(event)}
-                type="text"
-                name="email"
-                className="input"
-              />
+        <div className="Reg">
+          <h1 className="title has-text-centered">Register</h1>
+          <form
+            className="form"
+            onSubmit={(event) => this.handleSubmit(event)}
+          >
+            <div className="field">
+              <label className="label">
+                Email
+              </label>
+              <div className="control">
+                <input
+                  onChange={(event) => this.handleChange(event)}
+                  type="text"
+                  name="email"
+                  className="input"
+                />
+              </div>
+              {errors.email && <small className="help is-danger">
+                {errors.email.message}
+              </small>}
             </div>
-            {errors.email && <small className="help is-danger">
-              {errors.email.message}
-            </small>}
-          </div>
 
-          <div className="field">
-            <label className="label">
-              Username
-            </label>
-            <div className="control">
-              <input
-                onChange={(event) => this.handleChange(event)}
-                type="text"
-                name="username"
-                className="input"
-              />
+            <div className="field">
+              <label className="label">
+                Username
+              </label>
+              <div className="control">
+                <input
+                  onChange={(event) => this.handleChange(event)}
+                  type="text"
+                  name="username"
+                  className="input"
+                />
+              </div>
+              {errors.username && <small className="help is-danger">
+                {errors.username.message}
+              </small>}
             </div>
-            {errors.username && <small className="help is-danger">
-              {errors.username.message}
-            </small>}
-          </div>
 
-          <div className="field">
-            <label className="label">
-              Password
-            </label>
-            <div className="control">
-              <input
-                onChange={(event) => this.handleChange(event)}
-                type="password"
-                name="password"
-                className="input"
-              />
+            <div className="field">
+              <label className="label">
+                Password
+              </label>
+              <div className="control">
+                <input
+                  onChange={(event) => this.handleChange(event)}
+                  type="password"
+                  name="password"
+                  className="input"
+                />
+              </div>
+              {errors.password && <small className="help is-danger">
+                {errors.password.message}
+              </small>}
             </div>
-            {errors.password && <small className="help is-danger">
-              {errors.password.message}
-            </small>}
-          </div>
 
-          <div className="field">
-            <label className="label">
-              Confirm your password
-            </label>
-            <div className="control">
-              <input
-                onChange={(event) => this.handleChange(event)}
-                type="password"
-                name="passwordConfirmation"
-                className="input"
-              />
+            <div className="field">
+              <label className="label">
+                Confirm your password
+              </label>
+              <div className="control">
+                <input
+                  onChange={(event) => this.handleChange(event)}
+                  type="password"
+                  name="passwordConfirmation"
+                  className="input"
+                />
+              </div>
+              {errors.passwordConfirmation && <small className="help is-danger">
+                {errors.passwordConfirmation.message}
+              </small>}
             </div>
-            {errors.passwordConfirmation && <small className="help is-danger">
-              {errors.passwordConfirmation.message}
-            </small>}
-          </div>
-          <button className="button is-success">
-            Register
-          </button>
-        </form>
+            <button className="button is-blue is-primary is-medium is-fullwidth is-rounded">
+              Register
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   }
