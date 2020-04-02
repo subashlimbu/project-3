@@ -33,6 +33,7 @@ const schema = new mongoose.Schema({
 
   },
   favourites: [{ type: mongoose.Schema.ObjectId, ref: 'Restaurant', required: false }]
+  // imageCollection: [{ type: mongoose.Schema.ObjectId, ref: 'User', required: false }]
 
 })
 

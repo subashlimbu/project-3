@@ -91,9 +91,7 @@ class SingleRestaurant extends React.Component {
       <FavouriteButton restaurantId={id} isFavourited={this.state.isFavourited} />
       <div className="columns is-variable is-5" >
         <figure className="image is-4by2">
-          <img src={image} alt={name} className="sImage" />
-          {imageGallery.length !== 0 && <ImageSlider urlList={urlList} />}
-
+          {image !== '' && <img src={image} alt={name} className="sImage" />}
         </figure>
         <div className="column is-one-half single-info" >
           <div className="single-address">
@@ -130,12 +128,13 @@ class SingleRestaurant extends React.Component {
       <div className="container">
         <hr />
         <div className="columns is-full-mobile">
-          <div className="column is-one-third">
+          <div className="column is-one-third map-and-gallery">
             <div className="content">
               <Map
                 postcode={postcode}
               />
             </div>
+            {imageGallery.length !== 0 && <ImageSlider urlList={urlList} />}
           </div>
           <div className="column is-two-thirds">
             <Comments restaurantId={id} />
