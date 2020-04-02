@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const commentSchema = mongoose.Schema({ //how come don't need 'new mongoose.Schema' 🤷‍♂️
   text: { type: String, required: true },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  likedBy: [{ type: mongoose.Schema.ObjectId, ref: 'User', required: false }]
-  // dislikedBy: [{ type: mongoose.Schema.ObjectId, ref: 'User', required: false }]
+  likedBy: [{ type: mongoose.Schema.ObjectId, ref: 'User', required: false }],
+  dislikedBy: [{ type: mongoose.Schema.ObjectId, ref: 'User', required: false }] 
 }, {
   timestamps: true
 });
