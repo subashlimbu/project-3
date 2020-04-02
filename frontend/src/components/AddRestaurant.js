@@ -85,7 +85,7 @@ class AddRestaurant extends React.Component {
     const { errors, data, uploading, uploaded } = this.state
     return <div className="page-background main-container">
       <div className="page-title">
-        <h1 className="title">Add Restaurant</h1>
+        <h1 className="title defaultfont">Add Restaurant</h1>
         <hr className="login-hr" />
       </div>
       <div className="columns is-full-mobile">
