@@ -92,6 +92,7 @@ div.hero-body {
 
 .randombutton:hover {
   color: white;
+  border-bottom: 1px solid white;
 }
 
 .random-container {
@@ -123,6 +124,41 @@ div.hero-body {
   img{
     max-width: 200px;
   }
+}
+
+.allrestaurantsbackground {
+  padding-top: 50px;
+  background-image: url("https://i.imgur.com/3TsyQv4.jpg");
+  background-size: cover;
+}
+
+.button.is-success {
+    background-color:  #F2C782;
+}
+
+// .favrestaurantsbackground {
+//     padding-top: 50px;
+//     background-image: url("https://i.imgur.com/3TsyQv4.jpg");
+//     background-size: cover;
+//     height: 100vh;
+// }
+
+.defaultfont {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+}
+
+.formfont {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+
+.searchfont {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 nav.navbar {
@@ -256,22 +292,22 @@ a.navbar-item{
   color: red;
 }
 
-.card {
-  height: 200px;
-  text-align: center;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
-  border-radius: 10px;
-  margin: 10px;
-  transition: all .2s ease-out;
-  img{
-    height: 300px;
-    border-radius: 8px;
-  }
-  &:hover {
-    box-shadow: 0 4px 5px 0 rgba(0,0,0,.3);
-    margin: 5px;
-  }
-}
+// .card {
+//   height: 200px;
+//   text-align: center;
+//   box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+//   border-radius: 10px;
+//   margin: 10px;
+//   transition: all .2s ease-out;
+//   img{
+//     height: 300px;
+//     border-radius: 8px;
+//   }
+//   &:hover {
+//     box-shadow: 0 4px 5px 0 rgba(0,0,0,.3);
+//     margin: 5px;
+//   }
+// }
 
 .card-content {
   // transition: .5s ease;
@@ -375,6 +411,39 @@ img.sImage {
 div.dropdown {
   margin-bottom: 20px !important;
 }
+.card {
+  width: 300px;
+  height: 185px;
+  // background-color: #73AD21;
+  // border-radius: 20px;
+  text-align: center;
+  // max-height: 400px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+  background: rgba(89, 197, 146, 0.8);
+  border-radius: 10px;
+  margin: 10px;
+  transition: all .2s ease-in-out;
+  img{
+    height: 300px;
+    border-radius: 8px;
+  }
+  &:hover {
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.3);
+    margin: 5px;
+  }
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
 
 .field {
   padding: 10px;
@@ -410,7 +479,102 @@ div.dropdown {
   margin-left: 10px;
 }
 
+.include-eye {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  width: 35%;
+}
+
+.change {
+ border-color: transparent !important;
+}
+
+.eye {
+  margin: 0px 10px;
+  cursor: default;
+}
+
+.image-uploader{
+  right:0px;
+  position: absolute;
+}
+
+.image-slider {
+  max-width: 30vw;
+}
+
+.comment-delete {
+  float: right;
+  margin: 0 0 10px 0 !important;
+}
+
+.map-and-gallery {
+  align-self: center !important;
+.loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+}
+
+.page-background {
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.7), 
+    rgba(0, 0, 0, 0.7)
+  ),url('https://fast.clickbooq.com/94f233-986/071412_TOC_BlackBull_3615_FF-lg.jpg');
+  * {
+    color: white;
+    button {
+      color: black;
+    }
+  }
+}
+
+.page-title {
+  text-align: center;
+  padding-top: 50px
+}
+
+
+.transparent-background {
+  background-color: white;
+  opacity: 0.8;
+  border-radius: 6px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+  padding: 30px;
+}
+
+.box-override {
+  background-color: transparent !important;
+}
+
+.add-restaurant-box {
+  height: 70vh;
+  overflow-y: auto;
+  *{
+    color: black;
+  }
+  margin-left: 20vh;
+  width: fit-content;
+}
+
+.image-upload-button {
+  margin-left: 10px;
+}
+
+
 @media only screen and (max-width: 600px) {
+
+  .add-restaurant-box {
+    margin-left: 0;
+  }
 
   .login-top {
     height: 20vh;
@@ -430,6 +594,7 @@ div.dropdown {
     max-width: 80vw;
     max-height: 70vh;
   }
+
 
   .login-button {
     max-height: 60px;
