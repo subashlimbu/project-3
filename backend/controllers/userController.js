@@ -47,36 +47,97 @@ function getProfile(req, res) {
 }
 
 function changePassword(req, res) {
+  const user = req.currentUser._id
+
+  User
+    .findById(user)
+    .then(user => {
+      return user
+    })
+    .then(user => {
+      if (!user.validatePassword(req.body.oldPassword)) {
+        return res.status(401).send({ passwordValidation: { message: 'Wrong password' } })
+      }
+      user.set({ password: req.body.newPassword, passwordConfirmation: req.body.passwordConfirmation })
+      return user.save(function (error, user) {
+        if (error) {
+          console.log('line 64 error', error.errors)
+          return res.status(401).send(error.errors)
+        }
+        return res.sendStatus(200)
+      })
+    })
+  // .catch(error => {
+  //   console.log('line 71', Object.entries(error)[0])
+  //   res.status(401).send(error)
+  // })
+
+  // // check newPassword and passwordConfirmation match, and throw error if not
+  // // check password fits criteria and reject if not
+
+  // .then(user => {
+  //   const validationResult = passwordComplexity().validate(req.body.newPassword)
+  //   if (validationResult.error) {
+  //     return res.send('Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.' )
+  //   }
+  //   if (req.body.passwordConfirmation !== req.body.newPassword) {
+  //     return res.send('passwords should match' )
+  //   }
+  //   return user
+  // })
+
+  // .then(user => {
+  //   // user.password = req.body.newPassword
+  //   // user.passwordConfirmation = req.body.passwordConfirmation
+  //   user.set({ password: req.body.newPassword, passwordConfirmation: req.body.passwordConfirmation })
+  //   console.log('hello', user.password)
+  //   user.save()
+  //   return res.send('password change successful' )
+  // })
+  // // .then(user => res.status(200).send(user))
+  // .catch(error => console.log(error))
+}
+
+function favourite(req, res) {
   const user = req.currentUser
+  console.log(user)
+
+  // try {
+
+  //   User
+  //     .findOneAndUpdate(user, { $push: { favourites: { _id: req.body.restaurantId } } })
+  //     .then(user => console.log(user))
+  // } catch (e) {
+  //   console.log(e)
+  // }
+
 
   User
     .findOne(user)
-
-    // check the password first - this works! 🎉
     .then(user => {
-      if (!user.validatePassword(req.body.oldPassword)) {
-        return res.status(401).send({ error: 'bad naughty password' })
-      }
-      return user
+      // console.log(req.body.restaurantId)
+      // console.log(user, 'line 118')
+      user.favourites.push(req.body.restaurantId) //make sure i name it restuarantId when i axios.post in frontend
+      // console.log('gets in user push')
+      return user.save()
     })
-
-    // check newPassword and passwordConfirmation match, and throw error if not
-    // check password fits criteria and reject if not
-    .then(user => {
-      const validationResult = passwordComplexity().validate(req.body.newPassword)
-      if (validationResult.error) {
-        res.status(400).send({ error: 'Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.' })
-      }
-      if (req.body.passwordConfirmation !== req.body.newPassword) {
-        res.status(400).send({ error: 'passwords should match' })
-      }
-      return user
+    .then((user) => {
+      res.status(200).send({ message: 'added restaurant to user favourites field/array' })
     })
+    .catch(error => res.send({ errors: error.errors })) //unsure of this 
 
+
+}
+
+function unfavourite(req, res) {
+  const user = req.currentUser
+  User
+    .findOne(user)
     .then(user => {
-      user.set({ password: req.body.newPassword, passwordConfirmation: req.body.passwordConfirmation })
+      user.favourites.pull(req.body.restaurantId)
+      // console.log(user)
       user.save()
-      res.status(200).send({ message: 'password change successful' })
+      res.status(200).send({ message: 'removed restaurant from users favourites array' })
     })
     .catch(error => res.send({ errors: error.errors }))
 
@@ -89,11 +150,24 @@ function changePassword(req, res) {
 
 }
 
+function getFavourites(req, res) {
+  const user = req.currentUser
+  User
+    .findOne(user)
+    .populate('favourites').exec()
+    .then(user => {
+      console.log(user)
+      res.status(200).send(user.favourites)
+    })
+    .catch(err => console.log(err))
+}
 
 module.exports = {
   register,
   login,
   getProfile,
-  changePassword
-  // getImageUpload
+  changePassword,
+  favourite,
+  unfavourite,
+  getFavourites
 }

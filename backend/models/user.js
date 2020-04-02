@@ -27,7 +27,7 @@ const schema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'please enter a password'],
-    hide: true 
+    hide: true
     // validator: isValidPassword, //doesn't work because it's validating the HASHED password which is a complex string that passes this test! 
     // message: 'Password must have at least: 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.'
 
@@ -48,14 +48,14 @@ schema.
 
 schema
   .pre('validate', function checkPassword(next) {
-    // console.log(this._passwordConfirmation)
-    // console.log(this.password)
-    const validationResult = passwordComplexity().validate(this.password)
-    if (validationResult.error) {
-      this.invalidate('password', 'Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.')
-    }
-    if (this.isModified('password') && this._passwordConfirmation !== this.password) {
-      this.invalidate('passwordConfirmation', 'passwords should match')
+    if (this.isModified('password')) {
+      const validationResult = passwordComplexity().validate(this.password)
+      if (validationResult.error) {
+        this.invalidate('password', 'Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.')
+      }
+      if (this._passwordConfirmation !== this.password) {
+        this.invalidate('passwordConfirmation', 'passwords should match')
+      }
     }
     next()
   })
@@ -72,4 +72,6 @@ schema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password)
 }
 
-module.exports = mongoose.model('User', schema)
+// module.exports = mongoose.model('User', schema)
+
+module.exports = mongoose.models.User || mongoose.model('User', schema)

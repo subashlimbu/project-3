@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 import DropSearch from './DropSearch'
 import LoaderSpinner from './LoaderSpinner'
+// import auth from '../lib/auth'
 
 
 class Restaurants extends React.Component {
@@ -19,6 +20,9 @@ class Restaurants extends React.Component {
   }
 
   componentDidMount() {
+    // if (!auth.isAuthenticated()) {
+    //   auth.logout()
+    // }
     axios.get('/api/restaurants')
       .then((resp) => this.setState({
         restaurants: resp.data,
@@ -72,37 +76,34 @@ class Restaurants extends React.Component {
 
   render() {
     if (!this.state.restaurants) return <LoaderSpinner />
-    return <section className="section">
+    return    <div className="container">
+      <SearchBar query={this.state.query} onChange={() => this.handleSearch(event)} />
+      <DropSearch handleDropdown={() => this.handleDropdown(event)} />
 
-      <div className="container">
-        <SearchBar query={this.state.query} onChange={() => this.handleSearch(event)} />
-        <DropSearch handleDropdown={() => this.handleDropdown(event)} />
+      <div className="columns is-full-mobile is-multiline is-centered mobile-padding">
 
-        <div className="columns is-mobile is-multiline">
-
-          {this.state.filteredRestaurants.map(restaurant => {
-            console.log(restaurant.name)
-            console.log(restaurant.image)
-            console.log(restaurant)
-            return <div key={restaurant._id} className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
-              <div className="card">
-                <Link to={`/restaurant/${restaurant._id}`} className="card-image">
-                  <figure className="image is-4by3">
-                    <img src={restaurant.image} alt="Placeholder image" className="resImage" />
+        {this.state.filteredRestaurants.map(restaurant => {
+          console.log(restaurant.name)
+          console.log(restaurant.image)
+          console.log(restaurant)
+          return <Link key={restaurant._id} className="column is-one-quarter-desktop is-one-third-tablet is-full-mobile" to={`/restaurant/${restaurant._id}`}>
+            <div className="card">
+              <div className="card-image">
+                <figure className="image is-4by3">
+                  <img src={restaurant.image} alt="Placeholder image" className="resImage" />
 
 
-                    <div className="card-content">
-                      <p className="subtitle" >{restaurant.name}</p>
-                      <p className="subtitle">{restaurant.address}</p>
-                    </div>
-                  </figure>
-                </Link>
+                  <div className="card-content">
+                    <div className="white">{restaurant.name}</div>
+                    <p className="subtitle">{restaurant.address}</p>
+                  </div>
+                </figure>
               </div>
             </div>
-          })}
-        </div>
+          </Link>
+        })}
       </div>
-    </section>
+    </div>
   }
 }
 export default Restaurants

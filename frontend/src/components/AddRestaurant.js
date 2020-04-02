@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
 import RestaurantForm from './RestaurantForm'
+import ImageUploader from './ImageUploader'
 
 
 class AddRestaurant extends React.Component {
@@ -11,6 +12,7 @@ class AddRestaurant extends React.Component {
       restaurant: {
         name: '',
         link: '',
+        image: '',
         address: '',
         postcode: '',
         telephone: '',
@@ -18,13 +20,18 @@ class AddRestaurant extends React.Component {
         cuisine: [],
         serveAlcohol: null,
         veggieFriendly: null,
-        isHalal: null
+        halalFriendly: null,
+        priceRange: null
       },
+      data: {},
+      uploading: false,
+      uploaded: false,
       errors: {}
     }
   }
   handleChange(event) {
     const data = { ...this.state.data, [event.target.name]: event.target.value }
+    console.log(data)
     this.setState({ data })
   }
   handleSubmit(event) {
@@ -33,21 +40,71 @@ class AddRestaurant extends React.Component {
       this.state.data,
       { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => this.props.history.push(`/restaurant/${res.data._id}`))
+      .then(res => console.log('line 37', res))
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
+
+  uploadImages(event) {
+    event.preventDefault()
+    const { uploading, uploaded } = this.state
+    if (uploading) return
+    if (uploaded) this.setState({ uploaded: false })
+    //gets the image form from the dom
+    const imageForm = document.getElementById('image-form')
+    //gets the formdata in a way the backend will understand
+    const imageFormData = new FormData(imageForm)
+    if (imageFormData.get('image').name === '') return console.log('empty')
+    this.setState({ uploading: true })
+    console.log('HI BEN ', this.state)
+    //sets the content type for the request
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    }
+    axios.post('/api/upload', imageFormData, config)
+      .then(res => {
+        let files = res.data.files
+        console.log('RES ', res.data)
+        if (this.state.data.imageGallery !== undefined) {
+          const temp = this.state.data.imageGallery
+          files.forEach(file => { 
+            console.log('hi')
+            temp.push(file)
+          })
+          files = temp
+        }
+        const data = { ...this.state.data, ['imageGallery']: files }
+        this.setState({ uploading: false, uploaded: true })
+        this.setState({ data })
+      })
+      .catch(err => console.log('borked ', Object.entries(err)))
+  }
+
   render() {
-    const { errors, data } = this.state
-    return <section className="section">
-      <div className="container">
-        <h1 className="title">Add a new restaurant</h1>
-        <RestaurantForm
-          handleSubmit={(event) => this.handleSubmit(event)}
-          handleChange={(event) => this.handleChange(event)}
-          errors={errors}
-          data={data}
-        />
+    const { errors, data, uploading, uploaded } = this.state
+    return <div className="main-container">
+      <h1 className="title">Add a new restaurant</h1>
+      <div className="columns is-full-mobile">
+        <div className="column is-one-third-desktop">
+          <RestaurantForm
+            handleSubmit={(event) => this.handleSubmit(event)}
+            handleChange={(event) => this.handleChange(event)}
+            uploadImages={(event) => this.uploadImages(event)}
+            addImages={(event) => this.addImages(event)}
+            errors={errors}
+            data={data}
+          />
+        </div>
+        <div className="column is-two-thirds-desktop">
+          <ImageUploader
+            handleSubmit={(event) => this.uploadImages(event)}
+          />
+          {uploading && <small className="is-danger">Uploading...</small>}
+          {uploaded && <small className="is-danger">Uploaded!</small>}
+        </div>
       </div>
-    </section>
+    </div>
   }
 }
 export default AddRestaurant

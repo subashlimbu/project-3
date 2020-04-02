@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import Email from './Email'
 import auth from '../lib/auth'
 import FavouriteButton from './FavouriteButton'
+import ImageSlider from './ImageSlider'
 
 
 class SingleRestaurant extends React.Component {
@@ -14,14 +15,40 @@ class SingleRestaurant extends React.Component {
   constructor() {
     super()
     this.state = {
-      restaurant: null
+      restaurant: null,
+      isFavourited: null,
+      images: null
     }
   }
 
   componentDidMount() {
     const id = this.props.match.params.id
+    console.log('hello')
+    // if user.favourites includes id, then setState this.state.isFavourited: true. else false 
+
+    // COMMENTED OUT HERE 
+    // const isLoggedIn = auth.isLoggedIn()
+    // isLoggedIn && axios.get('/api/profile',
+    //   { headers: { Authorization: `Bearer ${auth.getToken()}` } }
+    // )
+    //   .then(resp => {
+    //     const favedRestoArray = resp.data.favourites
+    //     // console.log(favedRestoArray)
+    //     if (favedRestoArray.includes(id)) {
+    //       this.setState({ isFavourited: true })
+    //     } else {
+    //       this.setState({ isFavourited: false })
+    //     }
+    //   })
+
+
     axios.get(`/api/restaurant/${id}`)
-      .then(resp => this.setState({ restaurant: resp.data }))
+      .then(resp => {
+        // console.log(resp)
+        this.setState({ restaurant: resp.data })
+        console.log(resp.data)
+
+      })
       .catch(err => console.error(err))
   }
 
@@ -40,11 +67,15 @@ class SingleRestaurant extends React.Component {
     if (!this.state.restaurant) {
       return <LoaderSpinner />
     }
-
     const id = this.props.match.params.id
-    const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, isHalal } = this.state.restaurant
+    const { name, address, postcode, telephone, image, link, bookingLink, cuisine, serveAlcohol, veggieFriendly, halalFriendly, priceRange, imageGallery } = this.state.restaurant
     const isLoggedIn = auth.isLoggedIn()
-    return <>
+    const urlList = imageGallery.map(image => {
+      return {
+        url: `http://localhost:8000/api/image/${image.filename}`
+      }
+    })
+    return <div className='main-container'>
 
       {/* <section className="hero is-medium">
         <div className="hero-body" style={{ backgroundImage: `url(${image})` }}>
@@ -55,62 +86,61 @@ class SingleRestaurant extends React.Component {
           </div>
         </div>
       </section> */}
-
-      <section className="section">
-        <div className="container" >
-          <h1 className="title is-2 is-title-light">{name}</h1>
-          <hr />
-          <FavouriteButton />
-          <div className="columns is-variable is-5" >
-            <figure className="image is-4by2">
-              <img src={image} alt={name} className="sImage" />
-            </figure>
-            <div className="column is-one-half single-info" >
-              <div className="single-address">
-                <p className="single-details">{address}</p>
-                <p className="single-details">{postcode}</p>
-                <p className="single-details">{telephone}</p>
-              </div>
-              <div className="single-link">
-                <a target="blank" href={link}>{link}</a>
-              </div>
-              <div className="single-link-button">
-                {bookingLink && <button className="button is-normal">
-                  <a target="_blank" rel="noopener noreferrer" href={bookingLink}>
-                    {'Book online'}
-                  </a>
-                </button>}
-              </div>
-              <div className="single-cuisine">
-                <p className="smaller-details">Cuisines served: {cuisine.join(', ')} </p>
-              </div>
-              <div className="single-ticks">
-                <p className="smaller-details">Serves alcohol: {this.crossTick(serveAlcohol)}</p>
-                <p className="smaller-details">Vegetarian-friendly: {this.crossTick(veggieFriendly)}</p>
-                <p className="smaller-details">Serves halal meat: {this.crossTick(isHalal)}</p>
-              </div>
-              <div className="email">
-                {isLoggedIn && <Email restaurantId={id} />}
-              </div>
+      <h1 className="title is-1 is-title-light">{name}</h1>
+      <hr />
+      <FavouriteButton restaurantId={id} isFavourited={this.state.isFavourited} />
+      <div className="columns is-variable is-5" >
+        <figure className="image is-4by2">
+          {image !== '' && <img src={image} alt={name} className="sImage" />}
+        </figure>
+        <div className="column is-one-half single-info" >
+          <div className="single-address">
+            <p className="single-details">{address}</p>
+            <p className="single-details">{postcode}</p>
+            <p className="single-details">{telephone}</p>
+          </div>
+          <div className="single-link">
+            <Link to={link}>{link}</Link>
+          </div>
+          <div className="single-link-button">
+            {bookingLink && <button className="button is-normal">
+              <a target="_blank" rel="noopener noreferrer" href={bookingLink}>
+                {'Book online'}
+              </a>
+            </button>}
+          </div>
+          <div className="single-cuisine">
+            <p className="smaller-details">Cuisines served: {cuisine.join(', ')} </p>
+          </div>
+          <div className="single-ticks">
+            <p className="smaller-details">Serves alcohol: {this.crossTick(serveAlcohol)}</p>
+            <p className="smaller-details">Vegetarian-friendly: {this.crossTick(veggieFriendly)}</p>
+            <p className="smaller-details">Serves halal meat: {this.crossTick(halalFriendly)}</p>
+            <div className="single-price">
+              <p className="smaller-details">Price range: {'£'.repeat(priceRange)} </p>
             </div>
           </div>
-          <div className="container">
-            <hr />
-            <div className="columns is-one-half">
-              <div className="column">
-                <div className="content">
-                  <Map
-                    postcode={postcode}
-                  />
-                </div>
-              </div>
-              <div className="column">
-                <Comments restaurantId={id} />
-              </div>
-            </div>
+          <div className="email">
+            {isLoggedIn && <Email restaurantId={id} />}
           </div>
         </div>
-      </section>
+      </div>
+      <div className="container">
+        <hr />
+        <div className="columns is-full-mobile">
+          <div className="column is-one-third map-and-gallery">
+            <div className="content">
+              <Map
+                postcode={postcode}
+              />
+            </div>
+            {imageGallery.length !== 0 && <ImageSlider urlList={urlList} />}
+          </div>
+          <div className="column is-two-thirds">
+            <Comments restaurantId={id} />
+          </div>
+        </div>
+      </div>
 
       {/* <section className="section">
         <div className="container">
@@ -118,7 +148,7 @@ class SingleRestaurant extends React.Component {
         </div>
       </section> */}
 
-    </>
+    </div>
     // end of playing with layout
 
   }

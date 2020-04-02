@@ -44,65 +44,69 @@ class Login extends React.Component {
 
   render() {
     const { error } = this.state
-    return <section className="hero is-success is-fullheight">
-      <div className="hero-body">
-        <div className="container has-text-centered">
-          <div className="column is-4 is-offset-4">
-            <h1 className="title">Login</h1>
-            <hr className="login-hr" />
-            <p className="subtitle">Please login to proceed.</p>
-            <div className="box">
-              <figure className="avatar">
-                <img src="https://www.astleypark.lancs.sch.uk/images/blog/welcome-back.jpg" />
-              </figure>
-              <form
-                className="form"
-                onSubmit={(event) => this.handleSubmit(event)}
-              >
-                <div className="field">
-                  <label className="label">
-                    Email
-                  </label>
-                  <div className="control">
-                    <input
-                      onChange={(event) => this.handleChange(event)}
-                      type="text"
-                      name="email"
-                      className="input"
+    return <div className="login-container">
+      <section className="hero is-success is-fullheight">
+        <div className="hero-body">
+          <div className="container has-text-centered">
+            <div className="column is-4 is-offset-4">
+              <div className="login-top">
+                <h1 className="title">Login</h1>
+                <hr className="login-hr" />
+                <p className="subtitle">Please login to proceed.</p>
+              </div>
+              <div className="box">
+                <figure className="avatar">
+                  <img src="https://cdn.webshopapp.com/shops/251281/files/208187906/muddaritaville-mu-welcome-small.jpg" />
+                </figure>
+                <form
+                  className="form"
+                  onSubmit={(event) => this.handleSubmit(event)}
+                >
+                  <div className="field">
+                    <label className="label">
+                      Email
+                    </label>
+                    <div className="control">
+                      <input
+                        onChange={(event) => this.handleChange(event)}
+                        type="text"
+                        name="email"
+                        className="input"
 
-                    />
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <div className="field">
-                  <label className="label">
-                    Password
-                  </label>
-                  <div className="control">
-                    <input
-                      onChange={(event) => this.handleChange(event)}
-                      type="password"
-                      name="password"
-                      className="input"
-                    />
+                  <div className="field">
+                    <label className="label">
+                      Password
+                    </label>
+                    <div className="control">
+                      <input
+                        onChange={(event) => this.handleChange(event)}
+                        type="password"
+                        name="password"
+                        className="input"
+                      />
+                    </div>
+                    {error && <small className="help is-danger">
+                      {error}
+                    </small>}
                   </div>
-                  {error && <small className="help is-danger">
-                    {error}
-                  </small>}
-                </div>
 
-                <button className="button is-success is-block is-large is-fullwidth">
+                  <button className="button is-success is-block is-large is-fullwidth login-button">
 
-                  Login
-                  <FontAwesomeIcon icon={faSignInAlt} />
-                  {/* <FontAwesomeIcon icon={faThumbsUp} /> */}
-                </button>
-              </form>
+                    Login
+                    <FontAwesomeIcon icon={faSignInAlt} />
+                    {/* <FontAwesomeIcon icon={faThumbsUp} /> */}
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   }
 }
 

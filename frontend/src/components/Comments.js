@@ -83,7 +83,7 @@ class Comments extends React.Component {
     const isloggedIn = auth.isLoggedIn()
     const { comments } = this.state
     if (this.state.comments === null) return <h1>Comments loading...</h1>
-    return <section className="section">
+    return <section className="section comment-column">
       <div className="container">
         <div className="comments">
           <h1 className="title">Comments ({comments.length})</h1>

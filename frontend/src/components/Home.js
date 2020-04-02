@@ -8,22 +8,20 @@ import NavBar from './NavBar'
 
 
 const Home = (props) => {
-  console.log(this)
-  console.log(props)
+
   let randomRestaurantId
   function getRandomRestaurant() {
     axios.get('/api/random')
       .then((resp) => {
-
         randomRestaurantId = resp.data._id
         return randomRestaurantId
       })
       .then((randomRestaurantId) => {
-        console.log(randomRestaurantId)
         props.history.push(`/restaurant/${randomRestaurantId}`)
       })
 
   }
+
   return <>
     <section className="hero is-large">
       <div className="hero-body is-large">
@@ -35,8 +33,8 @@ const Home = (props) => {
           {props => (
             <div style={props}>
               <div className="container has-text-centered homepage-textbox">
-                <p className="title has-text-centered has-text-white">Food, glorious food!</p>
-                <p className="subtitle has-text-centered">Hungry? Find tasty food in Central London.</p>
+                <p className="has-text-centered has-text-white frontpagetitle">Food For Thought</p>
+                <p className="has-text-centered frontpagesubtitle">Find London's Hottest Restaurants</p>
               </div>
 
             </div>
@@ -45,15 +43,23 @@ const Home = (props) => {
 
       </div>
     </section>
-    <section>
+    <section className="footer-container">
       <div className="container is-fluid random-container">
         <div className="notification random-container-text">
-          <p className="random-text">Cant decide? Click to find a random restaurant!</p>
-          <button
-            onClick={() => getRandomRestaurant()}
-            className="button is-normal" >
-            {'Let fate decide!'}
-          </button>
+          <div className="columns">
+            <div className="column flexhome">
+              <span className="random-text introductiontext"> Suspendisse placerat commodo ipsum at pulvinar. Proin iaculis dolor non ante sagittis, id eleifend dui ultricies. Pellentesque consectetur elit non elementum finibus. Aliquam erat volutpat. Aliquam porttitor felis et nisi aliquet volutpat. Suspendisse potenti. Vivamus cursus felis quam, ac varius nibh vehicula quis. Vestibulum eget gravida leo, hendrerit egestas risus. Nunc sed ligula lectus. Nullam ut lacinia erat, sed blandit mi. </span>
+            </div>
+            <div className="column flexhomerandom">
+              <span className="random-text1 randomrestosection"> Click to find a random restaurant: </span>
+              <button
+                onClick={() => getRandomRestaurant()}
+                className="randombutton" >
+                {/* was previous button is-normal ^ */}
+                {'Gamble'}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
