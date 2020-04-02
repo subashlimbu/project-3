@@ -139,6 +139,14 @@ function unfavourite(req, res) {
       user.save()
       res.status(200).send({ message: 'removed restaurant from users favourites array' })
     })
+    .catch(error => res.send({ errors: error.errors }))
+
+    // function getImageUpload {
+    //   const currentUser = req.currentUser
+    //   User
+    //   .findOne(user)
+    //   .then
+    // }    
 
 }
 

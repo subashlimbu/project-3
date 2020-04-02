@@ -69,6 +69,7 @@
     "react-scroll-parallax": "^2.3.2",
     "react-simple-image-slider": "^1.0.3",
     "react-spring": "^8.0.27",
+    "svg-icon": "^0.8.2",
     "supertest": "^4.0.2",
     "validator": "^13.0.0"
   }
