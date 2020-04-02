@@ -115,7 +115,7 @@ class Register extends React.Component {
         </div>
         <button className="button is-success">
           Register
-          </button>
+        </button>
       </form>
     </div>
   }
