@@ -13,7 +13,7 @@ const GridFsStorage = require('multer-gridfs-storage')
 const Grid = require('gridfs-stream')
 const methodOverride = require('method-override')
 const crypto = require('crypto')
-const { dbURI, port } = require('.config/environment')
+const { dbURI, port } = require('./config/environment')
 
 
 mongoose.connect(uri,
