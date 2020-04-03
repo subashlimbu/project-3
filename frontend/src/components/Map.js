@@ -15,7 +15,7 @@ class Map extends React.Component {
   };
 
   componentDidMount() {
-    axios.get(`http://api.postcodes.io/postcodes/${this.props.postcode}`)
+    axios.get(`https://api.postcodes.io/postcodes/${this.props.postcode}`)
       .then(resp => {
         // console.log(resp.data.result.longitude)
         const viewport = { ...this.state.viewport, longitude: resp.data.result.longitude, latitude: resp.data.result.latitude }
