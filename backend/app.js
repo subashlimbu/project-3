@@ -6,12 +6,14 @@ const router = require('./router')
 const uri = 'mongodb+srv://benharris:Password-1@cluster0-kzea4.mongodb.net/restaurantdb?retryWrites=true&w=majority';
 require('dotenv').config()
 const path = require('path')
+const dist = path.join(__dirname, 'dist')
 
 const multer = require('multer')
 const GridFsStorage = require('multer-gridfs-storage')
 const Grid = require('gridfs-stream')
 const methodOverride = require('method-override')
 const crypto = require('crypto')
+const { dbURI, port } = require('.config/environment')
 
 
 mongoose.connect(uri,
@@ -83,6 +85,12 @@ expressServer.use((req, res, next) => {
 })
 
 expressServer.use('/api', router)
+
+expressServer.use('/', express.static(dist))
+
+expressServer.get('*', function(req, res) {
+  res.sendFile(path.join(dist, 'index.html'))
+})
 
 // module.exports = expressServer.listen(8000)
 expressServer.listen(8000)

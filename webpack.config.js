@@ -7,7 +7,7 @@ module.exports = {
   entry: './frontend/src/app.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve('dist'),
+    path: path.resolve('./backend/dist'),
     publicPath: '/'
   },
   module: {
@@ -35,7 +35,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new dotenv(), //added dotenv plugin 
     new HtmlWebpackPlugin({
-      template: 'frontend/src/index.html',
+      template: 'backend/dist/index.html',
       filename: 'index.html',
       inject: 'body'
     })
