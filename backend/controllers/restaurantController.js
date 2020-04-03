@@ -102,6 +102,7 @@ function CreateNewComment(req, res) {
     .then(restaurant => {
       if (!restaurant) return res.status(404).send({ message: 'No restaurant with this ID, sadly.' })
       restaurant.comments.push(req.body)
+      console.log(restaurant.comments)
       return restaurant.save()
     })
     .then(restaurant => res.status(201).send(restaurant))

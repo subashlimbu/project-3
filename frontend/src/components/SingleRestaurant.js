@@ -131,7 +131,7 @@ class SingleRestaurant extends React.Component {
       <div className="container">
         <hr />
         <div className="columns is-full-mobile">
-          <div className="column is-one-third map-and-gallery">
+          <div className="column is-one-third-desktop map-and-gallery is-full-tablet is-full-mobile">
             <div className="content">
               <Map
                 postcode={postcode}
@@ -139,7 +139,7 @@ class SingleRestaurant extends React.Component {
             </div>
             {imageGallery.length !== 0 && <ImageSlider urlList={urlList} />}
           </div>
-          <div className="column is-two-thirds">
+          <div className="column is-two-thirds-desktop is-full-tablet is-full-mobile">
             <Comments restaurantId={id} />
           </div>
         </div>

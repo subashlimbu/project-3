@@ -92,7 +92,8 @@ class Comments extends React.Component {
               onChange={(event) => this.handleChange(event)}
               onSubmit={(event) => this.handleSubmit(event)}
             />}
-          {comments.map(comment => {
+          {comments && comments.map(comment => {
+            console.log('COMMENTS HERE BEN ', comments)
             return <CommentCard
               key={comment._id}
               comment={comment}
