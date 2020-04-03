@@ -3,7 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import { Spring } from 'react-spring/renderprops'
-import { Parallax } from 'react-parallax'
+// import { Parallax } from 'react-parallax'
 import NavBar from './NavBar'
 
 
@@ -63,6 +63,7 @@ const Home = (props) => {
         </div>
       </div>
     </section>
+
 
   </>
 }
