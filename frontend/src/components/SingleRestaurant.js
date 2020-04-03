@@ -132,7 +132,7 @@ class SingleRestaurant extends React.Component {
         <hr />
         <div className="columns is-full-mobile">
           <div className="column is-one-third-desktop map-and-gallery is-full-tablet is-full-mobile">
-            <div className="content">
+            <div className="content map">
               <Map
                 postcode={postcode}
               />
