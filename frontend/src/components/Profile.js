@@ -35,20 +35,15 @@ class Profile extends React.Component {
             <h1 className="title defaultfont">Your profile</h1>
             <hr className="login-hr" />
           </div>
+
           <div className="columns is-full-mobile is-multiline is-centered mobile-padding">
-
-
-            {/* <h2 className="title is-centered your-profile"> Your Profile </h2> */}
-
             <div className="columns is-centered">
 
               <div className="column is-half flexparent">
-
                 <img className="profile-image" src="https://s3.amazonaws.com/37assets/svn/765-default-avatar.png" />
               </div>
 
               <div className="column is-half flexparent">
-
                 <div className="profile-box">
                   <p className="profile-text"> Username: {username} </p>
                   <p className="profile-text"> Email: {email} </p>
@@ -57,10 +52,9 @@ class Profile extends React.Component {
                   >
                     <Link to={'/profile/changePassword'} className="randombutton">
                       Change password
-                  </Link>
+                    </Link>
                   </button>
                 </div>
-
               </div>
 
             </div>
