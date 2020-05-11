@@ -7,7 +7,7 @@ const commentSchema = mongoose.Schema({ //how come don't need 'new mongoose.Sche
   dislikedBy: [{ type: mongoose.Schema.ObjectId, ref: 'User', required: false }] 
 }, {
   timestamps: true
-});
+})
 
 const restaurantSchema = mongoose.Schema({
   name: { type: String, required: true },
@@ -25,7 +25,7 @@ const restaurantSchema = mongoose.Schema({
   comments: [commentSchema],
   image: { type: String, required: false },
   imageGallery: { type: Array, required: false }
-});
+})
 
 
 

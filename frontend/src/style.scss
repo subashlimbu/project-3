@@ -53,7 +53,7 @@ div.hero-body {
     rgba(0, 0, 0, 0.7)
   ),url('https://fast.clickbooq.com/94f233-986/071412_TOC_BlackBull_3615_FF-lg.jpg');
   background-size: cover;
-  height: 85vh;
+  height: 125vh;
   // background-color: black;
   // opacity: 80%;
 }
@@ -538,24 +538,42 @@ div.dropdown {
   border-radius: 6px;
   box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
   padding: 30px;
+  // height: 20px;
 }
 
 .box-override {
   background-color: transparent !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 5px;
 }
 
 .add-restaurant-box {
   height: 70vh;
   overflow-y: auto;
-  *{
-    color: black;
-  }
   margin-left: 20vh;
   width: fit-content;
 }
 
+// .add-restaurant-box {
+//   height: 70vh;
+//   overflow-y: auto;
+//   *{
+//     color: black;
+//   }
+//   margin-left: 20vh;
+//   width: fit-content;
+// }
+
 .image-upload-button {
   margin-left: 10px;
+}
+.login-top {
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  // height: 10vh;
 }
 
 @media only screen and (max-width: 600px) {
@@ -565,7 +583,7 @@ div.dropdown {
   }
 
   .login-top {
-    height: 20vh;
+    // height: 20vh;
     h1{
       font-size: 30px;
     }

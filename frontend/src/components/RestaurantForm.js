@@ -3,7 +3,7 @@ import React from 'react'
 // few commented bits which can be used when we create the 'edit restaurant' feature
 
 const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
-  // const { name, link, address, postcode, telephone, bookingLink, cuisine, serveAlcohol, veggieFriendly, halalFriendly } = data
+  const { name, link, address, postcode, telephone, bookingLink, cuisine, serveAlcohol, veggieFriendly, halalFriendly, priceRange } = data
   console.log(data)
   return <form
     className="form"
@@ -20,12 +20,12 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="name"
           className="input"
-        // value={name}
+          value={name}
         />
       </div>
-      {/* {errors.name && <small className="help is-danger">
+      {errors.name && <small className="help is-danger">
         {errors.name}
-      </small>} */}
+      </small>}
     </div>
 
     <div className="field">
@@ -38,12 +38,12 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="link"
           className="input"
-        // value={link}
+          value={link}
         />
       </div>
-      {/* {errors.link && <small className="help is-danger">
+      {errors.link && <small className="help is-danger">
         {errors.link}
-      </small>} */}
+      </small>}
     </div>
 
     <div className="field">
@@ -56,12 +56,12 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="image"
           className="input"
-        // value={address}
+          value={address}
         />
       </div>
-      {/* {errors.address && <small className="help is-danger">
+      {errors.address && <small className="help is-danger">
         {errors.address}
-      </small>} */}
+      </small>}
     </div>
 
     <div className="field">
@@ -74,12 +74,12 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="address"
           className="input"
-        // value={address}
+          value={address}
         />
       </div>
-      {/* {errors.address && <small className="help is-danger">
+      {errors.address && <small className="help is-danger">
         {errors.address}
-      </small>} */}
+      </small>}
     </div>
 
     <div className="field">
@@ -92,12 +92,12 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="postcode"
           className="input"
-        // value={postcode}
+          value={postcode}
         />
       </div>
-      {/* {errors.postcode && <small className="help is-danger">
+      {errors.postcode && <small className="help is-danger">
         {errors.postcode}
-      </small>} */}
+      </small>}
     </div>
 
     <div className="field">
@@ -110,12 +110,12 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="telephone"
           className="input"
-        // value={telephone}
+          value={telephone}
         />
       </div>
-      {/* {errors.telephone && <small className="help is-danger">
+      {errors.telephone && <small className="help is-danger">
         {errors.telephone}
-      </small>} */}
+      </small>}
     </div>
 
     <div className="field">
@@ -128,12 +128,12 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="bookingLink"
           className="input"
-        // value={bookingLink}
+          value={bookingLink}
         />
       </div>
-      {/* {errors.bookingLink && <small className="help is-danger">
+      {errors.bookingLink && <small className="help is-danger">
         {errors.bookingLink}
-      </small>} */}
+      </small>}
     </div>
 
     <div className="field">
@@ -148,7 +148,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="cuisine"
           className="input"
-        // value={cuisine}>
+          value={cuisine}>
         >
           <option disabled selected value> -- select an option -- </option>
           <option value="Chinese">Chinese</option>
@@ -160,9 +160,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           <option value="Turkish">Turkish</option>
         </select>
       </div>
-      {/* {errors.cuisine && <small className="help is-danger">
+      {errors.cuisine && <small className="help is-danger">
         {errors.cuisine}
-      </small>} */}
+      </small>}
     </div>
 
     <div className="field">
@@ -175,7 +175,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="serveAlcohol"
           className="input"
-        // value={serveAlcohol}
+          value={serveAlcohol}
         >
           <option disabled selected value> -- select an option -- </option>
           <option value="true">Yes</option>
@@ -183,9 +183,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           <option value="false">Unsure</option>
         </select>
       </div>
-      {/* {errors.serveAlcohol && <small className="help is-danger">
+      {errors.serveAlcohol && <small className="help is-danger">
         {errors.serveAlcohol}
-      </small>} */}
+      </small>}
     </div>
 
     <div className="field">
@@ -198,6 +198,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="veggieFriendly"
           className="input"
+          value={veggieFriendly}
         >
           <option disabled selected value> -- select an option -- </option>
           <option value="true">Yes</option>
@@ -205,9 +206,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           <option value="false">Unsure</option>
         </select>
       </div>
-      {/* {errors.veggieFriendly && <small className="help is-danger">
+      {errors.veggieFriendly && <small className="help is-danger">
         {errors.veggieFriendly}
-      </small>} */}
+      </small>}
     </div>
 
     <div className="field">
@@ -220,6 +221,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="halalFriendly"
           className="input"
+          value={halalFriendly}
         >
           <option disabled selected value> -- select an option -- </option>
           <option value="true">Yes</option>
@@ -227,9 +229,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           <option value="false">Unsure</option>
         </select>
       </div>
-      {/* {errors.halalFriendly && <small className="help is-danger">
+      {errors.halalFriendly && <small className="help is-danger">
         {errors.halalFriendly}
-      </small>} */}
+      </small>}
     </div>
 
     <div className="field">
@@ -242,7 +244,7 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           type="text"
           name="priceRange"
           className="input"
-        // value={priceRange}
+          value={priceRange}
         >
           <option disabled selected value> -- select an option -- </option>
           <option value="1">£</option>
@@ -251,9 +253,9 @@ const RestaurantForm = ({ handleSubmit, handleChange, errors, data }) => {
           <option value="4">££££</option>
         </select>
       </div>
-      {/* {errors.image && <small className="help is-danger">
-        {errors.image}
-      </small>} */}
+      {errors.priceRange && <small className="help is-danger">
+        {errors.priceRange}
+      </small>}
     </div>
 
 
