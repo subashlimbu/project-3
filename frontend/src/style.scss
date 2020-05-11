@@ -44,7 +44,8 @@ body {
 // }
 
 .column {
-  padding: 20px;
+  padding: 5px 20px;
+  margin: 5px;
 }
 
 div.hero-body {
@@ -53,7 +54,7 @@ div.hero-body {
     rgba(0, 0, 0, 0.7)
   ),url('https://fast.clickbooq.com/94f233-986/071412_TOC_BlackBull_3615_FF-lg.jpg');
   background-size: cover;
-  height: 125vh;
+  height: 130vh;
   // background-color: black;
   // opacity: 80%;
 }
@@ -569,11 +570,10 @@ div.dropdown {
 .image-upload-button {
   margin-left: 10px;
 }
-.login-top {
+div.login-top {
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
-  // height: 10vh;
+  margin-top: 90px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -583,7 +583,7 @@ div.dropdown {
   }
 
   .login-top {
-    // height: 20vh;
+    height: 20vh;
     h1{
       font-size: 30px;
     }
@@ -597,7 +597,7 @@ div.dropdown {
   }
 
   .login-container {
-    height: 80vh !important;
+    height: 50vh !important;
   }
 
   .box {
