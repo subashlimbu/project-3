@@ -202,6 +202,11 @@ Most part of the project's basic structure was created as a group effort. My res
 
 I created the search and dropdown box filter functionality, including the use of the React Mapbox and register, login and new restaurants form validations.
 
+## Key learnings
+- Importance of planning on designing your schema. This will have a great impact on developing the frontend, to ensure the best user experience.
+
+- Communication among your team, great knowledge of Git and GitHub. Miscommunication during the use of Git can lead to issues that could otherwise have been easily avoided.
+
 
 ## Future features
 
